@@ -1,0 +1,139 @@
+﻿@model HeyDoc.Web.Models.UserModel
+@using HeyDoc.Web.Helpers;
+@using HeyDoc.Web;
+
+<!-- Menu Links -->
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        @Html.MenuLinks(new List<HtmlHelpers.MenuLink>() {
+            new HtmlHelpers.MenuLink() { LinkText = "Corporate User List", ActionName = "Index", ControllerName = "CorporateUser" },
+            new HtmlHelpers.MenuLink() { LinkText = "Corporate Reviews", ActionName = "UserCorporate", ControllerName = "CorporateUser" },
+        })
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-user-md"></i>
+                    <span>Corporate Info</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+
+                <div class="card">
+                    <h4 class="page-header">
+                        @Model.FullName
+                    </h4>
+                    <p>
+                        <b>Gender:</b> @Model.Gender
+                        <br />
+                        <b>Email:</b> <a href="mailto:@(Model.UserName)">@Model.UserName</a>
+                        <br />
+                        <b>Corporate Name: </b>  @(!Model.IsCorporate || string.IsNullOrEmpty(Model.CorporateName) ? "-" : Model.CorporateName)
+                        <br />
+                        <b>Branch Address: </b>  @(!Model.IsCorporate || string.IsNullOrEmpty(Model.BranchAdress) ? "-" : Model.BranchAdress )
+         
+
+                        @if (Model.IsDependent == true)
+                        {
+                            <br />
+                            <b>Dependant Employee Name: </b> @Model.EmployeeDependantName
+                            <br />
+                            <b>Dependant Employee IC: </b> @Model.EmployeeDependantIC
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-stethoscope fa-lg"></i>
+                    <span>Prescription List</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+
+                <div class="row">
+                    <div class="form-group col-sm-3 col-sm-offset-1">
+                        @Html.Label("Prescription Number", new { @class = "control-label" })
+                        <input type="text" id="searchName" class="form-control" />
+                    </div>
+                    <div class="form-group col-sm-3 col-sm-offset-1">
+                        @Html.Label("Status", new { @class = "control-label" })
+                        <select id="status" class="form-control">
+                            <option>All</option>
+                            <option value="@PrescriptionStatus.SelfCollection">Self Collection</option>
+                            <option value="@PrescriptionStatus.Delivery">Delivery</option>
+                            <option value="@PrescriptionStatus.OnSite">On Site Collection</option>
+                            <option value="@PrescriptionStatus.NoStatus">No Status</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <br />
+                        <button class="btn btn-primary" id="search" type="button">Search</button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <table id="codeList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Prescription Number</th>
+                            <th>Doctor </th>
+                            <th>Requested Date</th>
+                            <th>Request Mode</th>
+                            <th>Last status date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Prescription Number</th>
+                            <th>Doctor </th>
+                            <th>Requested Date</th>
+                            <th>Request Mode</th>
+                            <th>Last status date</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+@*<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+<link href="~/Scripts/devoops-master/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />*@
+    <script type="text/javascript">
+        loadCorporatePrescriptionList('@Model.UserId');
+    </script>
+@*<script src="~/Scripts/jquery.magnific-popup.js"></script>*@
+}

@@ -1,0 +1,96 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="modal fade bs-example-modal-md" id="bio_data" tabindex="-1" >
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header text-center ">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title terms-head font-kristen"><b>Patient Bio Data</b> </h2>
+            </div>
+            <div class="modal-body">
+                <form id="bioForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="text-center" id="p_name">Name Patient</h3>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">Weight</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="Weight" id="p_weight" class="form-control" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Height</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="Height" id="p_height" class="form-control" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">BMI</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="BMI" id="p_bmi" class="form-control" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Body Temperature</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="BodyTemperature" id="p_bt" class="form-control" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Heart Rate</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="HeartRate" id="p_hr" class="form-control" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Blood Pressure</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="BloodPressure" id="p_bp" class="form-control" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Blood Gluccose Fasting</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="BloodGluccoseFasting" id="p_bgf" class="form-control" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Blood Gluccose</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="BloodGluccose" id="p_bg" class="form-control" /></div>
+                    </div>
+                    <div class="row div_female">
+                        <div class="col-md-4">Menstrual Period</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="MenstrualPeriod" id="p_mp" class="form-control" /></div>
+                    </div>
+                    <div class="row div_female">
+                        <div class="col-md-4">Menstrual Duration</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><input type="text" name="MenstrualDuration" id="p_md" class="form-control" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Allergy</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><textarea name="Allergy" id="p_allergy" class="form-control"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Medication History</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><textarea name="MedicationHistory" id="p_mh" class="form-control"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Medication List</div>
+                        <div class="col-md-1">:</div>
+                        <div class="col-md-4"><textarea name="MedicationList" id="p_ml" class="form-control"></textarea></div>
+                    </div>
+                    <input type="hidden" name="UserId" id="bio_id" />
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="save_bio" onclick="saveBio()">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

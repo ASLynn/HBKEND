@@ -1,0 +1,150 @@
+﻿@model  HeyDoc.Web.Models.RegisterModel
+@using HeyDoc.Web;
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box clearfix">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-file-text"></i>
+                    <span>Bulk Insert / Register Corporate User</span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+
+                @using (Html.BeginForm("VerifyExcel", "CorporateUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">Corporate Name</label>
+                        @Html.DropDownList("CorporateId", ViewBag.CorporateWithoutAll as IEnumerable<SelectListItem>, new { data_url = Url.Action("GetBranches"), @class = "form-control", @id = "corporateSelect" })
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">Branch Name</label>
+                        @Html.DropDownList("BranchId", ViewBag.BranchList as IEnumerable<SelectListItem>, new { @class = "form-control", @id = "branchSelect" })
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <br />
+                        <a href="@Url.Content("~/CorporateUser/GenerateExcel")"><input type="button" value="Generate" name="generateExcel" class="excel" />
+                    </div>
+                    <div class="form-group form-col-1">
+                        <br />
+                        @*<input type="file" name="upexcel" />*@ @*Old*@
+                        <input type="file" name="upexcel" onchange="fileChange(this)" /> @*ASL*@
+                        @ViewBag.Message
+                    </div>
+                    <div class="form-group form-col-1">
+                        <br />
+                        <button class="btn btn-primary" id="btn_uploadverify" type="submit">Bulk Register</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    @if (ViewBag.successmsg != null)
+    {
+        <h4 style="color:forestgreen;">@ViewBag.successmsg</h4>
+    }
+
+    @if (ViewBag.mod != null)
+    {
+        <h4 style="color:red;">Below users are failed to register. please check</h4>
+        <table>
+            <tr>
+                <td bgcolor='#F0F0F0'>Full Name</td>
+                <td bgcolor='#F0F0F0'>Phone</td>
+            </tr>
+            @foreach (var item in ViewBag.mod)
+            {
+                <tr bgcolor='#F1F1F1'>
+                    <td> @item[1]</td>
+                    <td> @item[2]</td>
+                </tr>
+
+            }
+        </table>
+
+    }
+    @if (Model != null)
+    {
+        <!-- Table -->
+        <div class="card-body">
+            <h5>Imported Corporate Users</h5>
+            <div class="table-responsive">
+                <table id="tblImportedCorpUser" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>FullName</th>
+                            <th>PhoneNumber</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model.List)
+                        {
+                            <tr>
+                                <td>@item.FullName</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.Email</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#corporateSelect').change(function () {
+
+                var url = $(this).data('url');
+
+                var data = { corporateId: $(this).val() };
+
+                $.getJSON(url, data, function (GetCorporatePosition) {
+                    var ddlPosition = $('#branchSelect');
+                    ddlPosition.empty();
+                    ddlPosition.append($('<option/>', {
+                        value: 0,
+                        text: "Select Branch"
+                    }));
+
+
+                    $.each(GetCorporatePosition, function (index, positionObj) {
+
+                        ddlPosition.append($('<option/>', {
+                            value: positionObj.BranchId,
+                            text: positionObj.BranchName
+                        }));
+                    });
+                });
+            });
+
+
+        });
+
+</script>
+    <script>
+        function fileChange(target) {
+            var name = target.value;
+            var fileName = name.substring(name.lastIndexOf(".") + 1).toLowerCase();
+            if (fileName != "xls" && fileName != "xlsx") {
+                alert("please upload file in Excel format！");
+                target.value = "";
+                return false;
+            }
+        }
+    </script> @*ASL*@
+}

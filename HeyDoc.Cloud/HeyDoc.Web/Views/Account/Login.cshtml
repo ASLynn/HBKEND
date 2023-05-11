@@ -1,0 +1,86 @@
+﻿@model HeyDoc.Web.Models.LoginModel
+@using HeyDoc.Web.Helpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HOPE</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/images/appicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link href="~/Content/devoops-master/style_v1.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+                <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+                <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+        <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@ConstantHelper.GoogleAnalyticsId"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', '@ConstantHelper.GoogleAnalyticsId');
+    </script>
+
+    <style>
+        form {
+            width: 330px;
+            margin: 0 auto;
+        }
+
+        .field-validation-error, .validation-summary-errors {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div id="page-login" class="row">
+            <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <div class="box">
+                    <div class="box-content">
+                        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <h2 class="form-signin-heading">Please sign in</h2>
+                            <br />
+
+                            <label class="sr-only" for="UserName">User Name</label>
+                            @Html.TextBoxFor(m => m.UserName, new { placeholder = "User Name", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                            <br />
+                            <br />
+
+                            <label class="sr-only" for="Password">Password</label>
+                            @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                            <br />
+                            @Html.ValidationSummary(true)
+                            <br />
+
+                            <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+                            <br />
+                            <a href="@Url.Action("Signup","Doctor")" class="btn btn-lg btn-primary btn-block">Doctor Sign Up</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>

@@ -1,0 +1,91 @@
+﻿@using HeyDoc.Web;
+@model HeyDoc.Web.Models.PromoCodeModel
+
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+<link href="~/Scripts/devoops-master/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Redemption History</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-gift fa-lg"></i>
+                    <span>Redemption History : @Model.PromoCode</span>
+                </div>
+                <div class="box-icons">
+                  
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+                @using(Html.BeginForm("ExportHistory","PromoCode",FormMethod.Post))
+                {
+                <div class="row">
+                    <div class="form-group col-sm-3 col-sm-offset-1">
+                        @Html.Label("From", new { @class = "control-label" })
+                        <input type="text" id="from" class="form-control" />
+                    </div>
+                    <div class="form-group col-sm-3 ">
+                        @Html.Label("To", new { @class = "control-label" })
+                        <input type="text" id="to" class="form-control" />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <br />
+                        <button class="btn btn-primary" id="search" type="button">Search</button>
+                        @Html.HiddenFor(m=>m.PromoCodeId)
+                        <button class="btn btn-primary" id="export" type="submit">Export</button>
+                    </div>
+                </div>
+                }
+
+                <!-- Table -->
+                <table id="historyList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>User</th>
+                            <th>HCP</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Discount</th>
+                            <th>Paid</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                           <th></th>
+                            <th>No</th>
+                            <th>User</th>
+                            <th>HCP</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Discount</th>
+                            <th>Paid</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadRedemptionHistoryScripts('@Model.PromoCodeId');
+    </script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+}

@@ -1,0 +1,293 @@
+﻿@model HeyDoc.Web.Models.UserModel
+@using HeyDoc.Web
+
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/User/Index">User List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-support"></i>
+                    <span>Edit User</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", @id = "edit-user-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                    @Html.HiddenFor(Model => Model.UserId)
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Is Corporate</label>
+                        <div class="col-sm-4">
+                            @Html.CheckBoxFor(model => model.IsCorporate, new { @class = "form-control", @style = "width:20px;height:20px;", id = "isCorporateCheckbox" })
+                            @Html.ValidationMessageFor(model => model.IsCorporate)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">User Type</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(model => model.CorporateUserType, (IEnumerable<SelectListItem>)ViewBag.CorporateUserTypeSelectList, new { @class = "form-control", id = "userTypeSelect" })
+                            @Html.ValidationMessageFor(model => model.CorporateUserType)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Corporate</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(model => model.CorporateId, ViewBag.CorporateSelectList as IEnumerable<SelectListItem>, new { data_url = Url.Action("GetCorporatePosition"), @class = "form-control", @id = "corporateSelect" })
+                            @*@Html.DropDownListFor(m => m.StateId, ViewBag.State as IEnumerable<SelectListItem>, "Select State", new { data_url = Url.Action("GetCorporatePosition"), @class = "form-control" })*@
+                            @Html.ValidationMessageFor(model => model.CorporateId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Branch</label>
+                        <div class="col-sm-4">
+                            <select name="@Html.NameFor(m => m.BranchId)" id="branchSelect" class="form-control">
+                                @foreach (var branch in ViewBag.BranchList)
+                                {
+                                    <option value="@branch.Value" @(branch.Selected ? "selected" : "") data-corporate-id="@branch.CorporateId">
+                                        @branch.Text
+                                    </option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(model => model.BranchId)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Title / Position</label>
+                        <div class="col-sm-4">
+                          @*I have to change PositionId from Int to String because of this shit! , it is not getting selected with Integer value*@
+                            @Html.DropDownListFor(model => model.PositionId, ViewBag.fuckyou as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Full Name</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FullName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Phone Number</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">NRC</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.IC, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IC)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-4">
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @style = "width: 260px; height: 100px; resize: none;" })
+                            @Html.ValidationMessageFor(model => model.Address)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">State *</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.StateId, ViewBag.State as IEnumerable<SelectListItem>, "Select State", new { data_url = Url.Action("GetTownship"), @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.StateId)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Township *</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.TownshipId, ViewBag.Township as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TownshipId)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Birthday</label>
+                        <div class="col-sm-4 has-feedback">
+                            @Html.TextBoxFor(model => model.Birthday, new { @class = "form-control hasDatepicker", @id = "birthday-input" })
+                            <span class="fa fa-calendar form-control-feedback"></span>
+                            @Html.ValidationMessageFor(model => model.Birthday)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Gender</label>
+                        <div class="col-sm-4">
+                            @Html.EnumDropDownListFor(model => model.Gender, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Gender)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Blood Type</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.BloodType, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Emergency Contact Person</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PatientExtra.EmergencyPerson, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Emergency Contact Phone</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PatientExtra.EmergencyContact, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Relationship</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.PatientExtra.RelationshipId, ViewBag.Relationship as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Emergency Address</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PatientExtra.EmergencyAddress, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                }
+            </div>
+                </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#StateId').change(function () {              
+                var url = $(this).data('url');
+
+                var data = { stateId: $(this).val() };
+
+                $.getJSON(url, data, function (GetTownship) {
+                    var ddlTownship = $('#TownshipId');
+                    ddlTownship.empty();
+                    ddlTownship.append($('<option/>', {
+                        value: 0,
+                        text: "Select Township"
+                    }));
+
+
+                    $.each(GetTownship, function (index, TownshipObj) {
+                        ddlTownship.append($('<option/>', {
+                            value: TownshipObj.Value,
+                            text: TownshipObj.Text
+                        }));
+                    });
+                });
+            });
+
+            $('#corporateSelect').change(function () {
+               
+                var url = $(this).data('url');
+
+                var data = { corporateId: $(this).val() };
+
+                $.getJSON(url, data, function (GetCorporatePosition) {
+                    var ddlPosition = $('#PositionId');
+                    ddlPosition.empty();
+                    ddlPosition.append($('<option/>', {
+                        value: 0,
+                        text: "Select Position"
+                    }));
+
+
+                    $.each(GetCorporatePosition, function (index, positionObj) {
+                        ddlPosition.append($('<option/>', {
+                            value: positionObj.Value,
+                            text: positionObj.Text
+                        }));
+                    });
+                });
+            });
+
+        });
+
+        function doShowBranchOptions(corporateId, changeSelected = true) {
+            $('#branchSelect').children().each(function () {
+                if ($(this).data('corporate-id') == corporateId) {
+                    $(this).prop('hidden', false);
+                } else {
+                    $(this).prop('hidden', true);
+                    $(this).prop('selected', false);
+                }
+            });
+
+            if (changeSelected) {
+                let firstCorrespondingElem = $('#branchSelect').children().filter(function () { return $(this).prop('hidden') === false })[0];
+                $(firstCorrespondingElem).prop('selected', true);
+            }
+        }
+
+        function doEnableCorporateControls(enable) {
+            if (!enable) {
+                $('#userTypeSelect').prop('disabled', true);
+                $('#corporateSelect').prop('disabled', true);
+                $('#branchSelect').prop('disabled', true);
+            } else {
+                $('#userTypeSelect').prop('disabled', false);
+                $('#corporateSelect').prop('disabled', false);
+                $('#branchSelect').prop('disabled', false);
+            }
+        }
+
+        $(function () {
+
+            doShowBranchOptions($('#corporateSelect').val(), false);
+            doEnableCorporateControls($('#isCorporateCheckbox').prop('checked'));
+
+            $('#corporateSelect').change(function () {
+                doShowBranchOptions($(this).val());
+            });
+
+            $('#isCorporateCheckbox').change(function () {
+                doEnableCorporateControls($(this).prop('checked'));
+            })
+
+            $('#birthday-input').val(moment($('#birthday-input').val()).format("YYYY/MM/DD"));
+            LoadDateTimePickerScript(function () {
+                $('#edit-user-form .hasDatepicker').datetimepicker({
+                    timepicker: false,
+                    format: 'Y/m/d',
+                    onChangeDateTime: function (current_time, $input) {
+                        $input.trigger('input');
+                    },
+                });
+            });
+
+        });
+
+    </script>
+}

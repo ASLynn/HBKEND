@@ -1,0 +1,129 @@
+﻿@using HeyDoc.Web;
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Chat List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-comments"></i>
+                    <span>Chat Room List</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+              
+                <div class="form-group" style="padding:0 10px;">
+                     <div class="col-sm-6">
+            <input type="text" class="form-control" id="PatientNameOrEmail" name="PatientNameOrEmail" placeholder="Patient Name/Email" />
+                     </div>
+                    @Html.DropDownList("doctor", ViewBag.Doctors as IEnumerable<SelectListItem>, new { @class="col-sm-6"})
+                    
+                        
+                    
+                   
+                </div>
+                     <div style="text-align:center;" class="row">
+                            <button type="button" class="btn btn-primary" id="search">Search</button>
+                  
+               </div>
+                  
+
+                <!-- Table -->
+                <table id="chatRoomList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+
+                            @*<th>Patient Package</th>*@
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            @*<th>Patient Package</th>*@
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-comment"></i>
+                    <span>Chat List</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <br />
+            @if(User.IsInRole("Doctor"))
+            {
+                using (Html.BeginForm("Reply", "Chat", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "doctorChatReply" }))
+                { 
+             <div class="form-group" style="margin-left:30px;" >
+              @Html.DropDownList("ReplyMode", ViewBag.Reply as IEnumerable<SelectListItem>, new { @class="col-sm-6"})
+                 </div>
+            <br />
+                 <div class="row" style="margin-left:15px;" >
+                     <div class="col-sm-8" id="txtReply" style="display:none;">
+                     <textarea class="form-control" id="textReply" name="textReply"    ></textarea>
+                     </div>
+                     
+                         <div class="col-sm-4" id="imgRply">
+                            <div class="thumbnail-wapper">
+                                <div class="thumbnail">
+                                    <img src="/Images/placeholder.png" id="innerImg">
+                                </div>
+                                <input type="file" value="" style="display: none" name="File" id="File" >
+                            </div>
+                        </div>
+           
+                     
+                            <button type="button" class="btn btn-primary" id="Reply">Reply</button>
+
+            </div>
+            <br />
+                }
+            }
+            <div class="box-content">
+                <!-- Table -->
+                <table id="chatList" class="table no-border" style="overflow-x: hidden;">
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var imgObj = '';
+        var isDoctor ='@User.IsInRole("Doctor")';
+        var chatRoomId = 0;
+        var patientId = 0;
+        var selectedRow = 0;
+        var firstLoad = true;
+        LoadChatIndexScripts();
+        
+        
+    </script>
+}
+
+
+

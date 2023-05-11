@@ -1,0 +1,422 @@
+﻿@model HeyDoc.Web.Models.PrescriptionModel
+@using HeyDoc.Web;
+@using HeyDoc.Web.Helpers;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HOPE</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/images/appicon.png" rel="shortcut icon" type="image/x-icon" />
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link href="~/Content/devoops-master/style_v1.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/QRCode/qrcode.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@ConstantHelper.GoogleAnalyticsId"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', '@ConstantHelper.GoogleAnalyticsId');
+    </script>
+
+    <style type="text/css">
+
+        #content {
+            background: #fff;
+        }
+
+        .received-watermark {
+            background: url(/Content/images/received.png) !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: contain !important;
+        }
+
+        .dispensed-watermark {
+            background: url(/Content/images/supplied.png) !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: contain !important;
+        }
+
+        .cancelled-watermark {
+            background: url(/Content/images/cancelled.png) !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: contain !important;
+        }
+
+        .pharmacy-logo {
+            max-height: 100px;
+        }
+
+        @@media (min-width: 512px) {
+            .pharmacy-logo {
+                max-width: 250px !important; /* The Bootstrap css files have max-width: 100% !important applied to print media (not sure why), so need !important to override that */
+            }
+        }
+
+        @@media (max-width: 512px) {
+            .pharmacy-logo {
+                max-width: 120px !important;
+            }
+        }
+
+        .div-print {
+            display: none;
+        }
+
+        #main {
+            margin-top: 25px;
+        }
+
+        @@media print {
+            .dispensed-watermark, .received-watermark, .cancelled-watermark {
+                background: #fff !important;
+            }
+
+            .div-print {
+                display: block;
+            }
+
+            #main {
+                margin-top: 5mm;
+            }
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+                <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+                <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+        <![endif]-->
+    @*    <script>
+            var d = new Date();
+            var gmtHours = d.getTimezoneOffset() / 60;
+            document.cookie = "offset=" + gmtHours;
+        </script>*@
+    <script type="text/javascript">
+        //var qrcode = new QRCode("pres_qr", {
+        //    text: "http://jindo.dev.naver.com/collie",
+        //    width: 128,
+        //    height: 128,
+        //    colorDark: "#000000",
+        //    colorLight: "#ffffff",
+        //    correctLevel: QRCode.CorrectLevel.H
+        //});
+        $(document).ready(function () {
+            var qrcode = new QRCode("pres_qr", {
+                text: "@ViewBag.QRIdentifier",
+                width: 128,
+                height: 128,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        })
+    </script>
+</head>
+
+<body style="background: #fff;">
+    @{
+        var cssClass = "";
+    }
+    @if (Model.IsDispensed)
+    {
+        cssClass = "dispensed-watermark";
+        <div style="width: 100%;height: 100vh;position: fixed;z-index: 11;" class="div-print">
+            <img src="/Content/images/supplied.png" style="width: 85%;height: 80vh;z-index: 99;position: fixed;max-width: 500px;opacity:0.3;">
+        </div>
+    }
+    else if (Model.PrescriptionStatus != PrescriptionStatus.NoStatus)
+    {
+        cssClass = "received-watermark";
+        <div style="width: 100%;height: 100vh;position: fixed;z-index: 11;" class="div-print">
+            <img src="/Content/images/received.png" style="width: 85%;height: 100vh;z-index: 99;position: fixed;max-width: 500px;">
+        </div>
+    }
+    else if (Model.PrescriptionAvailabilityStatus == PrescriptionAvailabilityStatus.Cancelled)
+    {
+        cssClass = "cancelled-watermark";
+        <div style="width: 100%;height: 100vh;position: fixed;z-index: 11;" class="div-print">
+            <img src="~/Content/images/cancelled.png" style="width: 85%;height: 80vh;z-index: 99;position: fixed;max-width: 500px;opacity:0.3;">
+        </div>
+    }
+
+    <!--Start Container-->
+    <div id="main" class="container-fluid">
+        <div class="row">
+            <!--Start Content-->
+            <div id="content" class="col-xs-12 col-sm-10 @cssClass" style="width: 100%; margin-top: 2%; margin-bottom: 2% !important; padding-bottom: 5px !important;">
+                @*<div style="width: 60%;text-align: center;">
+                        <img src="/Content/images/received.png" style="position: fixed;top: 0;/* width: 50%; */height: 100vh;z-index: 10;">
+                    </div>*@
+                <div id="ajax-content">
+                    <div id="breadcrumb" class="row">
+                        <div class="col-md-12">
+                            <h3 style="padding:5px;color:#fff;">@(Model.IsPrescribedByPharmacist ? Resources.Prescription.MedicationRecordTitle : Resources.Prescription.EPrescriptionTitle) </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-xs-8">
+                            <!--TODO M: Replace appicon_name.png file with appropriate image-->
+                            <img class="pull-left" style="margin-left: 1px; margin-right: 2rem" width="300" src="/Content/images/appicon_name.png" />
+                            @if (!string.IsNullOrEmpty(ViewBag.PharmacyLogo))
+                            {
+                                <img class="pharmacy-logo" src="@ViewBag.PharmacyLogo" />
+                            }
+                        </div>
+                        <div class="col-md-4 col-xs-4 text-right">
+                            <div id="pres_qr" class="pull-right"></div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-5">
+                                    <b>@Resources.Prescription.NameInfoLabel</b>
+                                </div>
+                                <div class="col-md-8 col-xs-7">@Model.Patient.FullName</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-5">
+                                    <b>@Resources.Prescription.DateOfBirthInfoLabel</b>
+                                </div>
+                                <div class="col-md-8 col-xs-7">@(Model.Patient.Birthday.HasValue ? Model.Patient.Birthday.Value.AddHours(8).ToString("dd-MMM-yyyy") : "")</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-5">
+                                    <b>@Resources.Prescription.IcNumberInfoLabel</b>
+                                </div>
+                                <div class="col-md-8 col-xs-7">@Model.Patient.IC</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-5">
+                                    <b>@Resources.Prescription.AddressInfoLabel</b>
+                                </div>
+                                <div class="col-md-8 col-xs-7">@Model.Patient.Address</div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-md-4 col-xs-5"><b>@Resources.Prescription.AllergiesInfoLabel</b></div>
+                                <div class="col-md-8 col-xs-7">@Model.Allergy</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-xs-5"><b>@Resources.Prescription.HeightInfoLabel</b></div>
+                                <div class="col-md-8 col-xs-7">@Model.Height</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-xs-5"><b>@Resources.Prescription.WeightInfoLabel</b></div>
+                                <div class="col-md-8 col-xs-7">@Model.Weight</div>
+                            </div>
+                            @if (Model.IcdEntries == null || Model.IcdEntries.Count == 0)
+                            {
+                                <div class="row">
+                                    <div class="col-md-4 col-xs-5"><b>@Resources.Prescription.MedicalSummaryInfoLabel</b></div>
+                                    <div class="col-md-8 col-xs-7">@Model.MedicalSummary</div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-4 col-xs-5"><b>@Html.Raw(Resources.Prescription.DiagnosisCodeInfoLabelNonBreakHyphen)</b></div>
+                                @helper IcdEntryMarkup(HeyDoc.Web.Models.IcdEntryModel model)
+                                { 
+                                    <span><b>@(model.IcdCode)</b> - @(model.IcdCodeDescription)</span>
+                                }
+                                <div class="col-md-8 col-xs-7">
+                                    @if (Model.IcdEntries != null && Model.IcdEntries.Count > 0)
+                                    {
+                                        @Html.Raw(string.Join("<br>", Model.IcdEntries.Select(e => IcdEntryMarkup(e))))
+                                    }
+                                    else
+                                    {
+                                        <span>-</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-6"><b>@Resources.Prescription.CreateDateInfoLabel</b></div>
+                                <div class="col-md-6 col-xs-6">@Model.CreateDate.ToString("dd-MMM-yyyy")</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-6"><b>@(Model.IsPrescribedByPharmacist ? Resources.Prescription.RecordIdInfoLabel : Resources.Prescription.PrescriptionIdInfoLabel)</b></div>
+                                <div class="col-md-6 col-xs-6">@Model.PrescriptionId</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-striped">
+                                <tr style="background:none;">
+                                    <th>@Resources.Prescription.NumberDrugTableHeader</th>
+                                    <th>@Resources.Prescription.DrugNamesDrugTableHeader</th>
+                                    <th>@Resources.Prescription.DosageDrugTableHeader</th>
+                                    <th>@Resources.Prescription.AdministrationRouteDrugTableHeader</th>
+                                    <th>@Resources.Prescription.FrequencyDrugTableHeader</th>
+                                    <th>@Resources.Prescription.AmountDrugTableHeader</th>
+                                    <th>@Resources.Prescription.StatusDrugTableHeader</th>
+                                    <th>@Resources.Prescription.DispensedAmountDrugTableHeader</th>
+                                </tr>
+                                @if (Model.Drugs != null && Model.Drugs.Count > 0)
+                                {
+                                    for (int i = 0; i < Model.Drugs.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>
+                                                @Model.Drugs[i].MedicationName
+                                                @if (!string.IsNullOrEmpty(Model.Drugs[i].Remark))
+                                                {
+                                                    <br />
+                                                    <span>@string.Format(Resources.Prescription.DrugRemark, Model.Drugs[i].Remark)</span>
+                                                }
+                                            </td>
+                                            <td>@Model.Drugs[i].Dosage</td>
+                                            <td>@(Resources.Prescription.ResourceManager.GetString($"DrugRoute_{Model.Drugs[i].Route}") ?? Model.Drugs[i].Route)</td>
+                                            <td>@(Resources.Prescription.ResourceManager.GetString($"DrugFrequency_{Model.Drugs[i].Frequency}") ?? Model.Drugs[i].Frequency)</td>
+                                            <td>@Model.Drugs[i].Amount</td>
+                                            <td>@(Resources.Prescription.ResourceManager.GetString($"DrugStatus_{Model.Drugs[i].Status}") ?? Model.Drugs[i].Status)</td>
+                                            <td>@(Model.Drugs[i].DispensedAmount ?? "-")</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="7">@Resources.Prescription.PrescriptionNoDrugs</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            @if (Model.DispensedUser != null)
+                            {
+                                <div>
+                                    @Resources.Prescription.DispensedByInfoLabel
+                                    <br />
+                                    <div>
+                                        <b>@Model.DispensedUser.FullName </b>
+                                        <br />
+                                        <div>
+                                            @if (!string.IsNullOrEmpty(Model.DispensedUser.SignatureUrl))
+                                            {
+                                                <img src="@Model.DispensedUser.SignatureUrl" style="width:80px;" />
+                                            }
+                                        </div>
+                                        @Model.DispensedUser.RegisterNumber
+                                        <br />
+                                        @Model.DispensedUser.Qualification
+                                        <br />
+                                        @Model.DispensedUser.HospitalName
+                                        <br />
+                                        @Model.DispensedUser.Address
+                                        <br />
+                                        @if (Model.DispensedDate != null)
+                                        {
+                                            <div>
+                                                @string.Format(Resources.Prescription.DispensedOnDate, Model.DispensedDate.Value.ToString("dd-MMM-yyyy"))<br />
+                                            </div>
+                                        }
+                                        @if (Model.DispensedOutletId != null)
+                                        {
+                                            <div>
+                                                @string.Format(Resources.Prescription.DispensedFromOutlet, Model.DispensedOutlet.OutletName)<br />
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 text-left pull-left">
+                            @(Model.IsPrescribedByPharmacist ? Resources.Prescription.CreatedElectronicallyByInfoLabel : Resources.Prescription.PrescribedElectronicallyByInfoLabel)
+                            <br />
+                            @if (Model.Doctor != null)
+                            {
+                                <div>
+                                    <b>@Model.Doctor.FullName </b>
+                                    <br />
+                                    <div>
+                                        @if (!string.IsNullOrEmpty(Model.Doctor.SignatureUrl))
+                                        {
+                                            <img src="@Model.Doctor.SignatureUrl" style="width:80px;" />
+                                        }
+                                    </div>
+                                    @Model.Doctor.RegisterNumber
+                                    <br />
+                                    @Model.Doctor.Qualification
+                                    <br />
+                                    @Model.Doctor.HospitalName<br />
+                                    @Model.Doctor.Address
+                                    <br />
+                                    @*@Model.Doctor.PhoneNumber*@
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (Model.IsPrescribedByPharmacist)
+                                {
+                                    <p>
+                                        @Resources.Prescription.MedicalRecordMustBeDispensedByLicensedPharmacist<br />
+                                        @Resources.Prescription.MedicalRecordElectronicallyGenerated
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        @Resources.Prescription.EPrescriptionMustBeDispensedByLicensedPharmacist<br />
+                                        @Resources.Prescription.EPrescriptionElectrionicallyGenerated
+                                    </p>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="text-center text-danger">@Resources.Prescription.DisclaimerWarningHeader</h4>
+                                <p>
+                                    @Resources.Prescription.CheckMedicationAndAdviceDisclaimer
+                                </p>
+                                <p>
+                                    @Resources.Prescription.MedicationMayNotBeSuitableDisclaimer
+                                </p>
+                                <p>
+                                    @Resources.Prescription.InformationDisclaimer
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End Content-->
+            </div>
+        </div>
+    </div>
+
+    <!--End Container-->
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+﻿@model HeyDoc.Web.Models.ResetPasswordModel
+@using HeyDoc.Web.Helpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HOPE</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/images/appicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link href="~/Content/devoops-master/style_v1.css" rel="stylesheet" />
+    <link href="~/fonts/genericons.css" rel="stylesheet" />
+    <link href="~/Content/css/doc2style.css" rel="stylesheet" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@ConstantHelper.GoogleAnalyticsId"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', '@ConstantHelper.GoogleAnalyticsId');
+    </script>
+
+    <style>
+        form {
+            width: auto;
+            margin: 0 auto;
+            height: auto;
+        }
+
+        .row {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+        }
+
+        .field-validation-error, .validation-summary-errors {
+            color: red;
+        }
+
+        #NewPassword:focus {
+            color: #000000 !important;
+        }
+
+        #ConfirmPassword:focus {
+            color: #000000 !important;
+        }
+
+        .custom-background {
+            background-color: #ffffff;
+            background-image: url('/Content/images/header_img.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="">
+    <div class="container-fluid" style="padding-left: 0px;">
+        <div id="page-login">
+            <div class="row" id="masthead">
+                <div class="hgroup-wrap">
+                    <div class="container clearfix">
+                        <section id="site-logo" class="clearfix">
+                            <h1 id="site-title">
+                                <a href="http://www.hope.com.mm/" title="HOPE" rel="home">
+                                    <img src="~/Content/images/appicon.png" alt="HOPE"></a>
+                            </h1>
+                        </section>
+                        <!-- #site-logo -->
+                        <button class="menu-toggle" id="clickME">Responsive Menu</button>
+                        <section class="hgroup-right">
+                            <nav id="site-navigation" class="main-navigation clearfix" role="navigation">
+                                <ul class="nav-menu">
+                                    <li id="menu-item-57" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-26 current_page_item menu-item-57"><a href="https://www.hope.com.mm/">Home</a></li>
+                                    <li id="menu-item-248" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248"><a href="https://www.hope.com.mm/?p=236">About Us</a></li>
+                                    <li id="menu-item-225" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-225"><a href="http://www.hope.com.mm/index.php/doctors-selection/">Our Doctors</a></li>
+                                    <li id="menu-item-268" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-268"><a href="http://www.hope.com.mm/index.php/blogs/">Blog</a></li>
+                                </ul>
+                            </nav>
+                            <!-- #access -->
+                        </section>
+                        <!-- .hgroup-right -->
+                    </div>
+                    <!-- .container -->
+                </div>
+            </div>
+            <div class="row custom-background">
+                <div class="col-lg-6 col-lg-offset-3 text-center">
+                    <div class=" col-md-12  ">
+                        <div class="box" style="margin-top: 6%; border-radius: 3px;">
+                            <div class="box-content" style="background-color: #fff; opacity: 0.95;">
+                                <br />
+                                <div style="text-align: center; font-family: Helvetica; color: #558ED5; font-size: 30px">Your account has been verified !</div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; vertical-align: central; width: auto; height: 50px; background-color: black;">
+                <table style="margin-left: 25%; border-spacing: 0; border-collapse: collapse; vertical-align: top; height: 50px; width: 47%; table-layout: fixed;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="https://www.facebook.com/Doc2Us">
+                                    <i class="fa fa-facebook-official fa-2x" style="color:#ccc"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a style="position: relative;" href="https://www.instagram.com/doc2us/">
+                                    <i class="fa fa-instagram fa-2x" style="color:#ccc"></i>
+                                </a>
+
+                            </td>
+                            <td>
+                                <a style="position: relative;" href="https://twitter.com/Doc2Us">
+                                    <i class="fa fa-twitter fa-2x" style="color:#ccc"></i>
+                                </a>
+
+                            </td>
+                            <td>
+                                <a style="position: relative;" href="mailto:hello@heydoc.asia">
+                                    <i class="fa fa-envelope fa-2x" style="color:#ccc"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer id="colophon" class="site-footer clearfix" role="contentinfo">
+                <div class="widget-wrap">
+                    <div class="container">
+                        <div class="widget-area clearfix">
+                            <div class="one-fourth">
+                                <aside id="black-studio-tinymce-11" class="widget widget_black_studio_tinymce">
+                                    <div class="textwidget">
+                                        <p><strong>HOPE</strong></p>
+                                        <p><a href="http://www.heydoc.asia/?p=236">About Us</a></p>
+                                        <p><a href="http://www.heydoc.asia/index.php/vision/">Vision&nbsp;&amp; Mission</a></p>
+                                        <p><a href="http://www.heydoc.asia/index.php/doctors-selection/">Team</a></p>
+                                    </div>
+                                </aside>
+                            </div>
+                            <!-- .one-fourth -->
+                            <div class="one-fourth">
+                                <aside id="black-studio-tinymce-19" class="widget widget_black_studio_tinymce">
+                                    <div class="textwidget">
+                                        <p><strong>Support</strong></p>
+                                        <p><a href="http://www.heydoc.asia/index.php/faq/">FAQ</a></p>
+                                        <p><a href="http://www.heydoc.asia/?p=143">Privacy</a></p>
+                                        <p><a href="http://www.heydoc.asia/?p=233">Terms</a></p>
+                                    </div>
+                                </aside>
+                            </div>
+                            <!-- .one-fourth -->
+                            <div class="one-fourth">
+                                <aside id="black-studio-tinymce-13" class="widget widget_black_studio_tinymce">
+                                    <div class="textwidget">
+                                        <p style="text-align: left;"><strong>Connect With Us</strong></p>
+                                        <p style="text-align: left;">
+                                            <a href="https://www.facebook.com/Doc2Us" target="_blank">
+                                                <i class="fa fa-facebook-official fa-lg fa-fw" style="color:#888;"></i>
+                                                Facebook
+                                            </a>
+                                        </p>
+                                        <p style="text-align: left;">
+                                            <a href="https://www.instagram.com/doc2us/">
+                                                <i class="fa fa-instagram fa-lg fa-fw" style="color:#888;"></i>
+                                                Instagram
+                                            </a>
+                                        </p>
+                                        <p style="text-align: left;">
+                                            <a href="https://twitter.com/Doc2Us">
+                                                <i class="fa fa-twitter fa-lg fa-fw" style="color:#888;"></i>
+                                                Twitter
+                                            </a>
+                                        </p>
+                                        <p style="text-align: left;">
+                                        </p>
+                                    </div>
+                                </aside>
+                            </div>
+                            <!-- .one-fourth -->
+                            <div class="one-fourth">
+                                <aside id="black-studio-tinymce-17" class="widget widget_black_studio_tinymce">
+                                    <div class="textwidget">
+                                        <p><strong>Contact&nbsp;Us</strong></p>
+                                        <!--TODO M UNBLANK: Support email-->
+                                        <p><a href="mailto:{support email}">{support email}</a></p>
+                                    </div>
+                                </aside>
+                            </div>
+                            <!-- .one-fourth -->
+                        </div>
+                        <!-- .widget-area -->
+                    </div>
+                    <!-- .container -->
+                </div>
+                <!-- .widget-wrap -->
+
+                <div class="site-info clearfix">
+                    <div class="container">
+                        <div class="social-profiles clearfix">
+                        </div>
+                        <!-- .social-profiles -->
+                        <div class="copyright">© 2016 <a href="https://www.hope.com.mm/" title="HOPE"><span>HOPE</span></a> |  Theme by: <a href="http://themehorse.com" target="_blank" title="Theme Horse"><span>Theme Horse</span></a> |  Proudly Powered by: <a href="http://wordpress.org" target="_blank" title="WordPress"><span>WordPress</span></a></div>
+                        <!-- .copyright -->
+                    </div>
+                    <!-- .container -->
+                </div>
+                <!-- .site-info -->
+                <div class="back-to-top" style="display: block;"><a title="Go to Top" href="#masthead"></a></div>
+                <!-- .back-to-top -->
+            </footer>
+            @*</div>*@
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @* <script type="text/javascript">
+        $(document).ready(function () {
+            if (/Android|webOS|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                window.location = 'doc2us://';
+                setTimeout(function () {
+                    window.close()
+                }, 5000);
+            }
+            else {
+                $("#callAndroid").on("click", function () {
+                    window.location = 'intent://home/#Intent;scheme=doc2us;package=com.heydoc;end';
+                });
+            }
+        });
+    </script>*@
+</body>
+</html>
+
+

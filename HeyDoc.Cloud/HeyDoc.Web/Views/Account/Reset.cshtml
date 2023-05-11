@@ -1,0 +1,113 @@
+﻿@model HeyDoc.Web.Models.ResetPasswordModel
+
+@{
+    Layout = "_ChangePasswordLayout.cshtml";
+}
+<div class="row custom-background">
+    <div class="col-lg-6 col-lg-offset-3 text-center">
+        <div class=" col-md-12">
+            <div class="box" style="margin-top:6%;border-radius:3px;">
+                <div class="box-content" style="background-color:#fff;opacity:0.95;">
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { onsubmit = "return validateForm()" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.ResetToken)
+                        <div style="text-align:center;font-family:Helvetica;color:#558ED5;font-size:30px;margin-top:2rem;">Reset Password</div>
+                        <br />
+                        <div class="row" style="text-align:center;">
+                            Password must be at least 6 characters long.
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2 text-center">
+                                @Html.PasswordFor(m => m.NewPassword, new { @class = "form-group col-lg-6 ", @placeholder = "New Password", @style = "text-align:center;color:#999999" })
+                                @Html.ValidationMessageFor(m => m.NewPassword)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2 text-center">
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-group col-lg-6 ", @placeholder = "Confirm Password", @style = "text-align:center;color:#999999" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2 text-center">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block" style="background-color:#558ED5 ;border-radius:3px; border:2px solid #406EA0 ;">Reset</button>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <div style="text-align:center;">
+                            <!--TODO M UNBLANK: Support email-->
+                            <a href="mailto:{support email}" style="font-family:Helvetica;text-decoration:underline;color:#3FA9F5;">I can't recover my password using this page</a>
+                        </div>
+                        <br />
+                        <br />
+                        @Html.ValidationSummary(true)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#clickME').click(function () {
+                if (!$('#site-navigation').hasClass('toggled-on')) {
+                    $('#site-navigation').addClass('toggled-on');
+                }
+                else {
+                    $('#site-navigation').removeClass('toggled-on');
+                }
+            });
+        });
+        if ($('.back-to-top').length) {
+            var scrollTrigger = 100, // px
+                backToTop = function () {
+                    var scrollTop = $(window).scrollTop();
+                    if (scrollTop > scrollTrigger) {
+                        $('.back-to-top').css('display', 'block');
+                    } else {
+                        $('.back-to-top').css('display', 'none');
+                    }
+                };
+            backToTop();
+            $(window).on('scroll', function () {
+                backToTop();
+            });
+            $('.back-to-top').on('click', function (e) {
+                e.preventDefault();
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 700);
+            });
+        }
+
+
+
+        function validateForm() {
+            if ($('#NewPassword').val().length < 6) {
+                alert("New Password needs to be at least 6 characters long.");
+                return false;
+            }
+            if ($('#ConfirmPassword').val().length < 6) {
+                alert("Confirm Password needs to be at least 6 characters long.");
+                return false;
+            }
+            if ($('#NewPassword').val() != $('#ConfirmPassword').val()) {
+                alert("New password is mismatch with confirm password.");
+                return false;
+            }
+        }
+    </script>
+}

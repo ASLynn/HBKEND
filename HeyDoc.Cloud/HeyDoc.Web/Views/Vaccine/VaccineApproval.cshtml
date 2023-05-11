@@ -1,0 +1,95 @@
+﻿
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Vaccinated Users</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-wheelchair"></i>
+                    <span>Vaccinated User List</span>
+                </div>
+                <div class="box-icons">
+                    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                    {
+                        <a class="download-link">
+                            <i class="fa fa-cloud-download"></i>
+                        </a>
+                    }
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <br />
+          
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            @Html.Label("Name", new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="Name" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            @Html.Label("Status", new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
+                                <select class="form-control" id="ddlStatus">
+                                    <option value="all">All</option>
+                                    <option value="pending" selected="selected">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button type="button" class="btn btn-primary" id="search">Search</button>
+                        </div>
+                    </div>
+
+                    <div class="box-content no-padding">
+                        <!-- Table -->
+                        <table id="vaccinatedUserTable" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                            <thead>
+                                <tr>
+                                    <th>RecordID</th>
+
+                                    <th>Name</th>
+                                    <th>Dose</th>
+                                    <th>Status</th>
+                                    <th>Reject Reason</th>
+                                    <th>Submitted Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadVaccinatedUserForApprovalScripts();
+    </script>
+}
+
+
+

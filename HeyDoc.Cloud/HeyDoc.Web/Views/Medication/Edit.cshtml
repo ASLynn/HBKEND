@@ -1,0 +1,78 @@
+﻿@model HeyDoc.Web.Models.MedicationModel
+@using HeyDoc.Web
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Medication/Index">Medication List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-search"></i>
+                    <span>Medication edit form</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("Edit", "Medication", FormMethod.Post, new { @class = "form-horizontal", id = "medEdit" }))
+                {
+                    @Html.HiddenFor(model => model.MedicationId)
+                    <h4 class="page-header">Medication Info</h4>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label">Medication Name *</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.MedicationName, new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.MedicationName)
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col-sm-6 col-xs-8 col-md-2">
+                            <label class="control-label">Is LTM?</label>
+                        </div>
+                        <div class="col-sm-1 col-xs-1 col-md-1" style="width:50px;">
+                            @Html.CheckBoxFor(model => model.IsLTM, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IsLTM)
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-sm-12 col-xs-12 col-md-2">
+                            <label class="control-label">Prescribed For:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            @foreach (var medicalConditionModel in ViewBag.MedicalConditions as List<HeyDoc.Web.Models.MedicalConditionModel>)
+                            {
+                                <div class="row">
+                                    <input type="checkbox" name="ForMedicalConditionsWithIds" value="@medicalConditionModel.ConditionId" checked="@Model.ForMedicalConditionsWithIds.Contains(medicalConditionModel.ConditionId)" />
+                                    <label>@medicalConditionModel.ConditionName</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary" id="btnSubmit1">Update</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        LoadMedicationEditScripts();
+    </script>
+}

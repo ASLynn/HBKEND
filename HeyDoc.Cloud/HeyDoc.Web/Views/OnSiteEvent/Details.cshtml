@@ -1,0 +1,109 @@
+﻿@model HeyDoc.Web.Entity.OnSiteEvent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    .detailTable .detailLabel {
+        font-weight: 700;
+        padding-right: 1.5rem;
+    }
+    .detailTable {
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/OnSiteEvent/Index">On Site Events</a></li>
+            <li><a href="#">Details</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-medkit"></i>
+                    <span>On Site Event Details</span>
+                </div>
+            </div>
+            <div class="box-content">
+                <table class="detailTable">
+                    <tr>
+                        <td class="detailLabel">
+                            @Html.DisplayNameFor(model => model.Code)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Code)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="detailLabel">
+                            @Html.DisplayNameFor(model => model.Description)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Description)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="detailLabel">
+                            Is Active
+                        </td>
+
+                        <td>
+                            @(Model.IsActive ? Html.Raw("<i class=\"fa fa-check\"></i>") : Html.Raw("<i class=\"fa fa-times\"></i>"))
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="detailLabel">
+                            Create Date
+                        </td>
+
+                        <td id="createDate">
+                            @Html.DisplayFor(model => model.CreateDate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="detailLabel">
+                            Corporate Name
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Corporate.BranchName)
+                        </td>
+                    </tr>
+                </table>
+                <a class="btn btn-primary" href="/OnSiteEvent/CheckedInUsersCSV?id=@Model.Id">Export Checked In User List</a>
+                <br />
+                <b>Checked In Users</b>
+                <table id="userList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Corporate Branch Name</th>
+                            <th>Check In Time</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadOnSiteEventDetailScripts(@Model.Id);
+    </script>
+}

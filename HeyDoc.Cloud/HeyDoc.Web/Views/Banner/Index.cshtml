@@ -1,0 +1,65 @@
+﻿@using HeyDoc.Web;
+
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+<link href="~/Scripts/devoops-master/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Banners</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-tags fa-lg"></i>
+                    <span>Banner List</span>
+                </div>
+               <div class="box-icons">
+                    <a href="/Banner/Create" title="Add new Banner">
+                        <i class="fa fa-plus "></i></a>  
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+                <!-- Table -->
+                <table id="bannerList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Banner</th>
+                            <th>Link</th>
+                            <th>Sequence</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>No</th>
+                            <th>Banner</th>
+                            <th>Link</th>
+                            <th>Sequence</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadBannerIndexScripts();
+    </script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+}

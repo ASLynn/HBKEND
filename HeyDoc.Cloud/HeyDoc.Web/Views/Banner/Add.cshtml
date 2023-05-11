@@ -1,0 +1,75 @@
+﻿@using HeyDoc.Web;
+@model HeyDoc.Web.Models.BannerModel
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Banner</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-tags fa-lg"></i>
+                    <span>@(Model.BannerId > 0 ? "Edit Banner" : "Add Banner")</span>
+                </div>
+                <div class="box-icons">
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("AddOrEditBanner", "Banner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label">Banner (Recommended Size 830 x 312)</label>
+                            <input type="file" name="bannerImage" />
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <div class="col-md-4">
+                                <br />
+                                <img src="@Model.ImageUrl" style="width:10%;" />
+                            </div>
+                        }
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label">Link</label>
+                            @Html.TextBoxFor(model => model.LinkUrl, new { @class = "form-control", required = "required" })
+                            @Html.ValidationMessageFor(model => model.LinkUrl)
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">Sequence</label>
+                            @Html.TextBoxFor(model => model.Sequence, new { @class = "form-control", type = "number", required = "required" })
+                            @Html.ValidationMessageFor(model => model.Sequence)
+                        </div>
+
+                        @Html.HiddenFor(m => m.BannerId)
+                    </div>
+                    <br />
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary" style="margin-left:17px">Save</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        //LoadCategoryIndexScripts();
+    </script>
+}

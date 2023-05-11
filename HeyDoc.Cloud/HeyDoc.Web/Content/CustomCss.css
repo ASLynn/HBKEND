@@ -1,0 +1,135 @@
+﻿#content {
+    background: #fff;
+}
+
+.received-watermark {
+    background: url('../../Content/images/paid.png') !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+}
+
+.div-print {
+    display: none;
+}
+
+.mrg0T {
+    margin-top: 0px;
+}
+
+.mrg0B {
+    margin-bottom: 0px;
+}
+
+.mrg0L {
+    margin-left: 0px;
+}
+
+.mrg0R {
+    margin-right: 0px;
+}
+
+.mrg0T {
+    margin-top: 0px;
+}
+
+.mrg5B {
+    margin-bottom: 5px;
+}
+
+.mrg5L {
+    margin-left: 5px;
+}
+
+.mrg5R {
+    margin-right: 5px;
+}
+
+.mrg10T {
+    margin-top: 10px;
+}
+
+.mrg10B {
+    margin-bottom: 10px;
+}
+
+.mrg10L {
+    margin-left: 10px;
+}
+
+.mrg10R {
+    margin-right: 10px;
+}
+
+.mrg20T {
+    margin-top: 20px;
+}
+
+.pad0T {
+    padding-top: 0px;
+}
+
+.pad0L {
+    padding-left: 0px;
+}
+
+.pad0R {
+    padding-right: 0px;
+}
+
+.pad5L {
+    padding-left: 5px;
+}
+
+.pad5R {
+    padding-right: 5px;
+}
+
+.pad5T {
+    padding-top: 5px;
+}
+
+.pad5B {
+    padding-bottom: 5px;
+}
+
+.pad10L {
+    padding-left: 10px;
+}
+
+.pad10R {
+    padding-right: 10px;
+}
+
+.pad10T {
+    padding-top: 10px;
+}
+
+.pad10B {
+    padding-bottom: 10px;
+}
+
+.pad20T {
+    padding-top: 20px;
+}
+
+.pad20L {
+    padding-left: 20px;
+}
+
+.pad20R {
+    padding-right: 20px;
+}
+
+.pad20B {
+    padding-bottom: 20px;
+}
+
+.border-black {
+    border: solid 1px black;
+}
+
+.custom-cb {
+    width: 20px;
+    height: 20px;
+}

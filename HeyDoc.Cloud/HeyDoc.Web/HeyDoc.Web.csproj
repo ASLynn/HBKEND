@@ -1,0 +1,2408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E7B95F84-8BB0-4E85-8C92-CD3E25F42702}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HeyDoc.Web</RootNamespace>
+    <AssemblyName>HeyDoc.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.3.22.1\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.SimpleNotificationService, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.SimpleNotificationService.3.3.0.29\lib\net45\AWSSDK.SimpleNotificationService.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Braintree, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31b586f34d3e96c7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Braintree.3.1.0\lib\net452\Braintree.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.95.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.95.3\lib\net40\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.3.0\lib\net45\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="Fissoft.EntityFramework.Fts, Version=1.0.80.0, Culture=neutral, PublicKeyToken=00e20d155e1afabe, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fissoft.EntityFramework.Fts.1.0.80\lib\net45\Fissoft.EntityFramework.Fts.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentFTP, Version=19.2.2.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentFTP.19.2.2\lib\net45\FluentFTP.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentScheduler, Version=5.3.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet, Version=49.0.0.1067, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <HintPath>..\packages\GemBox.Spreadsheet.49.0.1067\lib\net35\GemBox.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.49.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.AndroidPublisher.v2, Version=1.9.2.19, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.AndroidPublisher.v2.1.9.2.190\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.AndroidPublisher.v2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.49.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.49.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.49.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.49.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Sheets.v4, Version=1.49.0.2146, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Sheets.v4.1.49.0.2146\lib\net45\Google.Apis.Sheets.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.9.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.9\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net.Appender.Azure, Version=1.4.0.22240, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.Appender.Azure.1.4.3.0\lib\net45\log4net.Appender.Azure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Services.AppAuthentication, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Services.AppAuthentication.1.0.3\lib\net452\Microsoft.Azure.Services.AppAuthentication.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.6.25.0\lib\net45\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.19.8\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.Platform, Version=3.19.8.16603, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.19.8\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.25.0\lib\net45\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.25.0\lib\net45\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.25.0\lib\net45\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Jwt.4.2.2\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.20\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.ServiceBus.5.2.0\lib\net45\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Administration.7.0.0.0\lib\net20\Microsoft.Web.Administration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.7\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=7.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.7.2.1\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.DocumentObjectModel-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.Rendering-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.RtfRendering-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="NaCl, Version=0.1.13.0, Culture=neutral, PublicKeyToken=827c20e50a9775fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\NaCl.Net.0.1.13\lib\net45\NaCl.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\PdfSharp-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\PdfSharp.Charting-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PusherServer, Version=4.6.1.0, Culture=neutral, PublicKeyToken=892cb56c732dfd7e, processorArchitecture=MSIL">
+      <HintPath>..\packages\PusherServer.4.6.1\lib\net45\PusherServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PushSharp.Amazon, Version=4.0.10.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.4.0.10\lib\net45\PushSharp.Amazon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Apple, Version=4.0.10.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.4.0.10\lib\net45\PushSharp.Apple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Blackberry, Version=4.0.10.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.4.0.10\lib\net45\PushSharp.Blackberry.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Core, Version=4.0.10.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.4.0.10\lib\net45\PushSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Firefox, Version=4.0.10.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.4.0.10\lib\net45\PushSharp.Firefox.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Google, Version=4.0.10.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.4.0.10\lib\net45\PushSharp.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PushSharp.Windows, Version=4.0.10.0, Culture=neutral, PublicKeyToken=cf74b75eab2c0170, processorArchitecture=MSIL">
+      <HintPath>..\packages\PushSharp.4.0.10\lib\net45\PushSharp.Windows.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.1\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.5.1.0\lib\net451\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.4.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.4\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.8.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.9.0\lib\net452\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Portable, Version=20.2120.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Net.Core.20.2.0.39\lib\netstandard1.2\Syncfusion.Compression.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.2451.0.39, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.2.0.39\lib\net451\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Portable, Version=20.2120.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.Net.Core.20.2.0.39\lib\netstandard1.2\Syncfusion.XlsIO.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.5.0.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity.Repository, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Entity.Repository.2.0.0.1\lib\net45\System.Data.Entity.Repository.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.25.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard1.1\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.4\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.4.0.30506\lib\net40\System.Web.Http.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.9\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Tracing, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.5.2.9\lib\net45\System.Web.Http.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebApi.OutputCache.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Strathweb.CacheOutput.WebApi2.0.10.0\lib\net45\WebApi.OutputCache.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebApi.OutputCache.V2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Strathweb.CacheOutput.WebApi2.0.10.0\lib\net45\WebApi.OutputCache.V2.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.7\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.7\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Z.EntityFramework.Extensions, Version=5.1.8.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.5.1.8\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Z.EntityFramework.Plus.EF6, Version=5.1.8.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Plus.EF6.5.1.8\lib\net45\Z.EntityFramework.Plus.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Z.Expressions.Eval, Version=4.0.28.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.Expressions.Eval.4.0.28\lib\net45\Z.Expressions.Eval.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, PublicKeyToken=431cba815f6a8b5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zlib.Portable.Signed.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\ChattingController.cs" />
+    <Compile Include="Controllers\Api\MobileController.cs" />
+    <Compile Include="Controllers\Api\VaccineController.cs" />
+    <Compile Include="Controllers\Api\ZoomController.cs" />
+    <Compile Include="Controllers\DoctorDutyController.cs" />
+    <Compile Include="Controllers\HelperController.cs" />
+    <Compile Include="Controllers\MemoryPostedFile.cs" />
+    <Compile Include="Controllers\PatientTransactionController.cs" />
+    <Compile Include="Controllers\PrescriptionRequestController.cs" />
+    <Compile Include="Controllers\CorporateUserController.cs" />
+    <Compile Include="Controllers\Api\AIController.cs" />
+    <Compile Include="Controllers\Api\AvixoController.cs" />
+    <Compile Include="Controllers\Api\BranchController.cs" />
+    <Compile Include="Controllers\Api\ChatBotController.cs" />
+    <Compile Include="Controllers\Api\CorperateController.cs" />
+    <Compile Include="Controllers\Api\IcdController.cs" />
+    <Compile Include="Controllers\Api\QueueMedController.cs" />
+    <Compile Include="Controllers\AuditLogController.cs" />
+    <Compile Include="Controllers\CorporateController.cs" />
+    <Compile Include="Controllers\OnSiteEventController.cs" />
+    <Compile Include="Controllers\ManagementAccountsController.cs" />
+    <Compile Include="Controllers\ThirdPartyAdministratorController.cs" />
+    <Compile Include="Controllers\Api\AccountController.cs" />
+    <Compile Include="Controllers\Api\BannerController.cs" />
+    <Compile Include="Controllers\Api\ChatController.cs" />
+    <Compile Include="Controllers\Api\MedicationController.cs" />
+    <Compile Include="Controllers\Api\NotificationController.cs" />
+    <Compile Include="Controllers\Api\CountryController.cs" />
+    <Compile Include="Controllers\Api\DeviceController.cs" />
+    <Compile Include="Controllers\Api\DutyController.cs" />
+    <Compile Include="Controllers\Api\PatientGoalController.cs" />
+    <Compile Include="Controllers\Api\PaymentController.cs" />
+    <Compile Include="Controllers\Api\PrescriptionController.cs" />
+    <Compile Include="Controllers\Api\ReferralController.cs" />
+    <Compile Include="Controllers\Api\ReviewController.cs" />
+    <Compile Include="Controllers\Api\SettingController.cs" />
+    <Compile Include="Controllers\Api\TeamController.cs" />
+    <Compile Include="Controllers\Api\PatientController.cs" />
+    <Compile Include="Controllers\Api\TransactionController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BannerController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\PharmacyOutletsController.cs" />
+    <Compile Include="Controllers\PromoCodeController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\MedicationController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PrescriptionController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\Api\OnSiteEventController.cs" />
+    <Compile Include="Controllers\VaccineController.cs" />
+    <Compile Include="Entity\AuditLog.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\AvixoMedicalCertificate.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Bank.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Banner.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BloodGluccoseFastingHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BloodGluccoseHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BloodPressureHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BMIHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BodyTemperatureHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Branch.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CashOutRequest.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Category.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Certi.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Chat.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChatBotAnswer.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChatBotAnswerKey.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChatBotQuestion.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChatBotResponse.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChatBotResponseTag.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChatBotSession.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChatResponse.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ChatRoom.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CompanyWhiteLabel.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CompanyWhiteLabelCurrentLogin.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Corporate.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CorporatePosition.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Country.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\database_firewall_rules.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\db_HeyDocEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_HeyDocEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\db_HeyDocEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\db_HeyDocEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_HeyDocEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\db_HeyDocEntities1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_HeyDocEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Device.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DocFacilityAccessment.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Doctor.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DoctorApproved.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DoctorDuty.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DoctorGroupUserTypeAssociation.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DoctorQualification.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DoctorSpeciality.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DoctorStat.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DoctorUserReview.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Drug.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DutyRoster.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ExternalVideoChatLog.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Facility.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FacilityType.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Group.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\HeartRateHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\HeightHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Icd.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Invitation.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MedicalCondition.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MedicalConditionMedication.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Medication.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MedicationGroup.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MedicationQuestion.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MedicationUserAnswer.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MenstrualDurationHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MenstrualPeriodHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MessageDAO.cs" />
+    <Compile Include="Entity\Notification.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\NotificationReadStatu.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\NotificationTag.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OnlineStatusLog.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OnSiteDateSelection.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OnSiteDispens.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OnSiteEvent.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OnSiteEventCheckIn.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OnSiteEventType.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Patient.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PatientExtra.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PatientGoal.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PaymentMethod.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PaymentRequest.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Photo.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PlatformPercent.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PointBalance.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PointTopupRequest.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Prescription.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PrescriptionDispatch.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PrescriptionLog.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PrescriptionSource.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PromoCode.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PromotionUrl.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Qualification.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Relationship.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Remark.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ScanDetail.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Setting.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SignUpPurpose.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Speciality.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\State.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ThirdPartyAdministrator.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Title.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Township.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UserCorperate.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UserExtra.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UserProfile.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\UserProfileExtended.cs" />
+    <Compile Include="Entity\UserReferralCode.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VaccinatedUser.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VaccinatedUserInfo.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VaccineDetail.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VaccineGeneral.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VirtualPoint.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\VirtualPointDetails.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Voice.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\webpages_Membership.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\webpages_OAuthMembership.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\webpages_Roles.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\WeightHistory.cs">
+      <DependentUpon>db_HeyDocEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enums.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Filters\CustomHandleErrorAttribute.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ActivityAuditHelper.cs" />
+    <Compile Include="Helpers\CustomDateTimeConverter.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Helpers\HashAlgorithmExtension.cs" />
+    <Compile Include="Helpers\SMSHelper.cs" />
+    <Compile Include="Lib\AzureTableStorageAuditAppender.cs" />
+    <Compile Include="Lib\HeaderValueProvider.cs" />
+    <Compile Include="Lib\IJwtTokenManager.cs" />
+    <Compile Include="Lib\JwtTokenManager.cs" />
+    <Compile Include="Lib\PusherServer.cs" />
+    <Compile Include="Models\AvixoApiModels.cs" />
+    <Compile Include="Models\AvixoMCNotifyModel.cs" />
+    <Compile Include="Models\BoolResultWithData.cs" />
+    <Compile Include="Models\ChatBots\ChatBotSelectListResponseModel.cs" />
+    <Compile Include="Models\CorporatePositionModel.cs" />
+    <Compile Include="Models\DoctorDutyModel.cs" />
+    <Compile Include="Models\OTPverifyModel.cs" />
+    <Compile Include="Models\CreateNotificationTagModel.cs" />
+    <Compile Include="Models\DoctorDashboardModel.cs" />
+    <Compile Include="Models\CertiModel.cs" />
+    <Compile Include="Models\DoctorFacilityModel.cs" />
+    <Compile Include="Models\DoctorQualificationModel.cs" />
+    <Compile Include="Models\DoctorSpecialityModel.cs" />
+    <Compile Include="Models\PatientExtraModel.cs" />
+    <Compile Include="Models\PaymentMethodModel.cs" />
+    <Compile Include="Models\RelationshipModel.cs" />
+    <Compile Include="Models\QualificationModel.cs" />
+    <Compile Include="Models\SpecialityModel.cs" />
+    <Compile Include="Models\PointTopupRequestModel.cs" />
+    <Compile Include="Models\UserExtraModel.cs" />
+    <Compile Include="Models\FacilityModel.cs" />
+    <Compile Include="Models\VaccinatedUserModel.cs" />
+    <Compile Include="Models\VaccinatedUserInfoModel.cs" />
+    <Compile Include="Models\VaccineDetailModel.cs" />
+    <Compile Include="Models\VaccineGeneralModel.cs" />
+    <Compile Include="Models\VirtualPointModel.cs" />
+    <Compile Include="Models\FacilityTypeModel.cs" />
+    <Compile Include="Models\IcdEntityModel.cs" />
+    <Compile Include="Models\IcdSearchResponseModel.cs" />
+    <Compile Include="Models\PharmacyRegisterModel.cs" />
+    <Compile Include="Models\PrescriptionSourceModel.cs" />
+    <Compile Include="Models\GdexApiModel.cs" />
+    <Compile Include="Models\StateModel.cs" />
+    <Compile Include="Models\TownshipModel.cs" />
+    <Compile Include="Models\TPAModel.cs" />
+    <Compile Include="Models\PropertyCountsReportModel.cs" />
+    <Compile Include="Models\IcdEntryModel.cs" />
+    <Compile Include="Models\MedicalConditionModel.cs" />
+    <Compile Include="Models\NotificationStatsModel.cs" />
+    <Compile Include="Models\NotificationTagModel.cs" />
+    <Compile Include="Models\NotificationTagStatsModel.cs" />
+    <Compile Include="Models\OnSiteEventModel.cs" />
+    <Compile Include="Models\PasswordModel.cs" />
+    <Compile Include="Models\ReferralSignUpResources.cs" />
+    <Compile Include="Models\ServiceBusQueueMessage.cs" />
+    <Compile Include="Models\SignUpOptions.cs" />
+    <Compile Include="Models\OnSiteEventMetadata.cs" />
+    <Compile Include="Models\DoctorPrescriptionStatsModel.cs" />
+    <Compile Include="Models\EpsPrescriptionStatsModel.cs" />
+    <Compile Include="Models\OAuthUserStatusModel.cs" />
+    <Compile Include="Models\ReportActivityCountModel.cs" />
+    <Compile Include="Models\ReportChatRequestModel.cs" />
+    <Compile Include="Models\ReportDoctorReviewModel.cs" />
+    <Compile Include="Models\ReportPrescriptionMedModel.cs" />
+    <Compile Include="Models\TransactionStatsModel.cs" />
+    <Compile Include="Models\UserPrescriptionStatsModel.cs" />
+    <Compile Include="Models\DataTableRequestParamModel.cs" />
+    <Compile Include="Helpers\QueryDynamicOrderingExtension.cs" />
+    <Compile Include="Helpers\ConstantHelper.cs" />
+    <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Lib\BrainTreeConfiguration.cs" />
+    <Compile Include="Lib\CloudBlob.cs" />
+    <Compile Include="Lib\DutyFileHelper.cs" />
+    <Compile Include="Lib\Encoder.cs" />
+    <Compile Include="Lib\GoogleJsonWebToken.cs" />
+    <Compile Include="Lib\VoiceHelper.cs" />
+    <Compile Include="Lib\PhotoHelper.cs" />
+    <Compile Include="Lib\PushManager.cs" />
+    <Compile Include="Models\AuditLogModel.cs" />
+    <Compile Include="Models\ChatBots\ChatBotAnswerResponseModel.cs" />
+    <Compile Include="Models\ChatBots\ChatBotInteractRequestModel.cs" />
+    <Compile Include="Models\ChatBots\ChatBotQuestionResponseModel.cs" />
+    <Compile Include="Models\ChatBots\ChatBotSessionResponseModel.cs" />
+    <Compile Include="Models\DoctorRemarkModel.cs" />
+    <Compile Include="Models\GenericDataModel.cs" />
+    <Compile Include="Models\QuestionModel.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AIModel.cs" />
+    <Compile Include="Models\BankModel.cs" />
+    <Compile Include="Models\BannerModel.cs" />
+    <Compile Include="Models\BlockchainModel.cs" />
+    <Compile Include="Models\BoolResult.cs" />
+    <Compile Include="Models\BrainTreePaymentModel.cs" />
+    <Compile Include="Models\BranchModel.cs" />
+    <Compile Include="Models\CashOutRequestModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\ChatModel.cs" />
+    <Compile Include="Models\ChatRoomModel.cs" />
+    <Compile Include="Models\CorporateModel.cs" />
+    <Compile Include="Models\CountryModel.cs" />
+    <Compile Include="Models\CreditCardModel.cs" />
+    <Compile Include="Models\DeviceModel.cs" />
+    <Compile Include="Models\DoctorBankModel.cs" />
+    <Compile Include="Models\DoctorModel.cs" />
+    <Compile Include="Models\DoctorReviewModel.cs" />
+    <Compile Include="Models\DrugModel.cs" />
+    <Compile Include="Models\DutyModel.cs" />
+    <Compile Include="Models\LoginModels.cs" />
+    <Compile Include="Models\GraphModel.cs" />
+    <Compile Include="Models\GroupModel.cs" />
+    <Compile Include="Models\IntResult.cs" />
+    <Compile Include="Models\AIImageRequest.cs" />
+    <Compile Include="Models\MedicationModel.cs" />
+    <Compile Include="Models\NotificationModel.cs" />
+    <Compile Include="Models\OAuthLoginModel.cs" />
+    <Compile Include="Models\OnSiteDispenseModel.cs" />
+    <Compile Include="Models\OutletModel.cs" />
+    <Compile Include="Models\PartnerRegisterModel.cs" />
+    <Compile Include="Models\PatientGoalModel.cs" />
+    <Compile Include="Models\PatientModel.cs" />
+    <Compile Include="Models\PaymentRequestModel.cs" />
+    <Compile Include="Models\PhotoModel.cs" />
+    <Compile Include="Models\PrescriptionDispatchModel.cs" />
+    <Compile Include="Models\PrescriptionLogModel.cs" />
+    <Compile Include="Models\PrescriptionModel.cs" />
+    <Compile Include="Models\PromoCodeModel.cs" />
+    <Compile Include="Models\QueueModel.cs" />
+    <Compile Include="Models\ReferralModel.cs" />
+    <Compile Include="Models\RemarkModel.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
+    <Compile Include="Models\ReviewModel.cs" />
+    <Compile Include="Models\RQModel\GenericRQModel.cs" />
+    <Compile Include="Models\ScanUserModel.cs" />
+    <Compile Include="Models\SettingModel.cs" />
+    <Compile Include="Models\SimpleIdModel.cs" />
+    <Compile Include="Models\StringResult.cs" />
+    <Compile Include="Models\TransactionModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\VoiceModel.cs" />
+    <Compile Include="Models\WhoIcdApiResponseModel.cs" />
+    <Compile Include="MultipartMediaTypeFormatter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\RelationshipController.cs" />
+    <Compile Include="Controllers\QualificationController.cs" />
+    <Compile Include="Resources\Account.zh-CN.Designer.cs">
+      <DependentUpon>Account.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Account.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Account.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Chat.zh-CN.Designer.cs">
+      <DependentUpon>Chat.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Errors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Errors.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Forms.zh-CN.Designer.cs">
+      <DependentUpon>Forms.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Forms.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Forms.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\HCPPatient.zh-CN.Designer.cs">
+      <DependentUpon>HCPPatient.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\HCPPatient1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HCPPatient.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Location.zh-CN.Designer.cs">
+      <DependentUpon>Location.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Location.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Location.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Medications.zh-CN.Designer.cs">
+      <DependentUpon>Medications.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Medications.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Medications.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Payments.zh-CN.Designer.cs">
+      <DependentUpon>Payments.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Payments.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Payments.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Prescription.zh-CN.Designer.cs">
+      <DependentUpon>Prescription.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Prescription.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Prescription.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Chat.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Chat.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Promo.zh-CN.Designer.cs">
+      <DependentUpon>Promo.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Promo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Promo.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\AuditLogService.cs" />
+    <Compile Include="Services\AvixoService.cs" />
+    <Compile Include="Services\AwsSnsService.cs" />
+    <Compile Include="Services\BannerService.cs" />
+    <Compile Include="Services\BlockchainService.cs" />
+    <Compile Include="Services\BrainTreeService.cs" />
+    <Compile Include="Services\BranchService.cs" />
+    <Compile Include="Services\ChatBotService.cs" />
+    <Compile Include="Services\ChatService.cs" />
+    <Compile Include="Services\CompanyService.cs" />
+    <Compile Include="Services\HashingService.cs" />
+    <Compile Include="Services\NIRCTranslationService.cs" />
+    <Compile Include="Services\QualificationService.cs" />
+    <Compile Include="Services\RelationshipService.cs" />
+    <Compile Include="Services\SpecialityService.cs" />
+    <Compile Include="Services\FacilityService.cs" />
+    <Compile Include="Services\GoogleSheetsService.cs" />
+    <Compile Include="Services\IcdService.cs" />
+    <Compile Include="Services\PrescriptionSourceService.cs" />
+    <Compile Include="Services\ServiceBusService.cs" />
+    <Compile Include="Services\TPAService.cs" />
+    <Compile Include="Services\MedicalConditionService.cs" />
+    <Compile Include="Services\CorporateService.cs" />
+    <Compile Include="Services\CountryService.cs" />
+    <Compile Include="Services\CryptUtil.cs" />
+    <Compile Include="Services\DeliveryPortalService.cs" />
+    <Compile Include="Services\DeviceService.cs" />
+    <Compile Include="Services\DoctorService.cs" />
+    <Compile Include="Services\DrugService.cs" />
+    <Compile Include="Services\DutyService.cs" />
+    <Compile Include="Services\AIService.cs" />
+    <Compile Include="Services\EncryptionService.cs" />
+    <Compile Include="Services\MedicationService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
+    <Compile Include="Services\OnSiteDispensesService.cs" />
+    <Compile Include="Services\OnSiteEventService.cs" />
+    <Compile Include="Services\PatientGoalService.cs" />
+    <Compile Include="Services\PaymentService.cs" />
+    <Compile Include="Services\PrescriptionService.cs" />
+    <Compile Include="Services\QueueMedService.cs" />
+    <Compile Include="Services\QueueService.cs" />
+    <Compile Include="Services\ReferralService.cs" />
+    <Compile Include="Services\ReportService.cs" />
+    <Compile Include="Services\ReviewService.cs" />
+    <Compile Include="Services\SASService.cs" />
+    <Compile Include="Services\SettingService.cs" />
+    <Compile Include="Services\TeamService.cs" />
+    <Compile Include="Services\PatientService.cs" />
+    <Compile Include="Controllers\FacilitiesController.cs" />
+    <Compile Include="Controllers\SpecialityController.cs" />
+    <Compile Include="Services\VaccineService.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="WebApi\WebApiErrorCode.cs" />
+    <Compile Include="WebApi\WebApiException.cs" />
+    <Compile Include="WebApi\WebApiWrapper.cs" />
+    <Compile Include="WebRole.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".well-known\pki-validation\9749B22EB6DE4C26956F55E48CBA3BF2.txt" />
+    <Content Include="Content\AI\skin_cancer_icon%403x.png" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\doc2style.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\select2-spinner.gif" />
+    <Content Include="Content\css\select2.css" />
+    <Content Include="Content\css\select2.min.css" />
+    <Content Include="Content\css\Twilio.css" />
+    <Content Include="Content\CustomCss.css" />
+    <Content Include="Content\DataTables\css\dataTables.autoFill.css" />
+    <Content Include="Content\DataTables\css\dataTables.autoFill.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\css\dataTables.colReorder.css" />
+    <Content Include="Content\DataTables\css\dataTables.colReorder.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.colVis.css" />
+    <Content Include="Content\DataTables\css\dataTables.colvis.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.colVis.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.fixedColumns.css" />
+    <Content Include="Content\DataTables\css\dataTables.fixedColumns.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.fixedHeader.css" />
+    <Content Include="Content\DataTables\css\dataTables.fixedHeader.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.keyTable.css" />
+    <Content Include="Content\DataTables\css\dataTables.keyTable.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.responsive.css" />
+    <Content Include="Content\DataTables\css\dataTables.scroller.css" />
+    <Content Include="Content\DataTables\css\dataTables.scroller.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.tableTools.css" />
+    <Content Include="Content\DataTables\css\dataTables.tableTools.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\images\background.png" />
+    <Content Include="Content\DataTables\images\back_disabled.png" />
+    <Content Include="Content\DataTables\images\back_enabled.png" />
+    <Content Include="Content\DataTables\images\back_enabled_hover.png" />
+    <Content Include="Content\DataTables\images\collection.png" />
+    <Content Include="Content\DataTables\images\collection_hover.png" />
+    <Content Include="Content\DataTables\images\copy.png" />
+    <Content Include="Content\DataTables\images\copy_hover.png" />
+    <Content Include="Content\DataTables\images\csv.png" />
+    <Content Include="Content\DataTables\images\csv_hover.png" />
+    <Content Include="Content\DataTables\images\details_close.png" />
+    <Content Include="Content\DataTables\images\details_open.png" />
+    <Content Include="Content\DataTables\images\filler.png" />
+    <Content Include="Content\DataTables\images\forward_disabled.png" />
+    <Content Include="Content\DataTables\images\forward_enabled.png" />
+    <Content Include="Content\DataTables\images\forward_enabled_hover.png" />
+    <Content Include="Content\DataTables\images\insert.png" />
+    <Content Include="Content\DataTables\images\loading-background.png" />
+    <Content Include="Content\DataTables\images\pdf.png" />
+    <Content Include="Content\DataTables\images\pdf_hover.png" />
+    <Content Include="Content\DataTables\images\print.png" />
+    <Content Include="Content\DataTables\images\print_hover.png" />
+    <Content Include="Content\DataTables\images\sort_asc.png" />
+    <Content Include="Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\images\sort_both.png" />
+    <Content Include="Content\DataTables\images\sort_desc.png" />
+    <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\images\xls.png" />
+    <Content Include="Content\DataTables\images\xls_hover.png" />
+    <Content Include="Content\DataTables\swf\copy_csv_xls.swf" />
+    <Content Include="Content\DataTables\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Content\devoops-master\style_v1.css" />
+    <Content Include="Content\devoops-master\style_v2.css" />
+    <Content Include="Content\images\appicon_name.png" />
+    <Content Include="Content\images\appicon_name_bk.png" />
+    <Content Include="Content\images\cancelled.png" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\appicon.png" />
+    <Content Include="Content\images\Categories\h_dietician.png" />
+    <Content Include="Content\images\Categories\h_gp.png" />
+    <Content Include="Content\images\Categories\h_nutritionist.png" />
+    <Content Include="Content\images\Categories\h_phamarcist.png" />
+    <Content Include="Content\images\Categories\h_specialist.png" />
+    <Content Include="Content\images\dispensed.png" />
+    <Content Include="Content\images\email_active.png" />
+    <Content Include="Content\images\fb_active.png" />
+    <Content Include="Content\images\fb_btn_mo%402x.png" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\header_img.jpg" />
+    <Content Include="Content\images\supplied.png" />
+    <Content Include="Content\images\insta_active.png" />
+    <Content Include="Content\images\insta_btn_mo%402x.png" />
+    <Content Include="Content\images\mail_btn%402x.png" />
+    <Content Include="Content\images\paid.png" />
+    <Content Include="Content\images\received.png" />
+    <Content Include="Content\images\twitter_btn%402x.png" />
+    <Content Include="Content\images\twit_active.png" />
+    <Content Include="Content\jquery.datetimepicker.css" />
+    <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\Sounds\iphone_6_original.mp3" />
+    <Content Include="Content\Sounds\olive.mp3" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Docs\TelemedicineConsent.html" />
+    <Content Include="Docs\ConsentLetter.html" />
+    <Content Include="Docs\Terms.html" />
+    <Content Include="Emails\CashOutReceipt.html" />
+    <Content Include="Emails\ChatCancelUser.html" />
+    <Content Include="Emails\ChatReceipt.html" />
+    <Content Include="Emails\ChatRequest.html" />
+    <Content Include="Emails\ChatCancel.html" />
+    <Content Include="Emails\FeedBackEmail.html" />
+    <Content Include="Emails\AvixoMCReady.html" />
+    <Content Include="Emails\PasswordChanged.html" />
+    <Content Include="Emails\PrescriptionRequested.html" />
+    <Content Include="Emails\PrescriptionUnassigned.html" />
+    <Content Include="Emails\TransactionTestEmail.html" />
+    <Content Include="Emails\PatientSupportFreeChatEmail.html" />
+    <Content Include="Emails\PatientSupportEmail.html" />
+    <Content Include="Emails\ResetEmail.html" />
+    <Content Include="Emails\TransactionEmail.html" />
+    <Content Include="Emails\PrescriptionRejected.html" />
+    <Content Include="Emails\VerificationEmail.html" />
+    <Content Include="Entity\db_HeyDocEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>db_HeyDocEntities.Context.cs</LastGenOutput>
+      <DependentUpon>db_HeyDocEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entity\db_HeyDocEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>db_HeyDocEntities.cs</LastGenOutput>
+      <DependentUpon>db_HeyDocEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\genericons.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <EntityDeploy Include="Entity\db_HeyDocEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db_HeyDocEntities1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entity\db_HeyDocEntities.edmx.diagram">
+      <DependentUpon>db_HeyDocEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Icon.png" />
+    <Content Include="Images\avatar.jpg" />
+    <Content Include="Images\details_close.png" />
+    <Content Include="Images\details_open.png" />
+    <Content Include="Images\Download_on_the_App_Store_Badge_US-UK_135x40.png" />
+    <Content Include="Images\getdata.gif" />
+    <Content Include="Images\google-play-badge.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\placeholder.png" />
+    <Content Include="Images\user.png" />
+    <Content Include="Scripts\avatar.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.colVis.js" />
+    <Content Include="Scripts\DataTables\dataTables.colVis.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.tableTools.js" />
+    <Content Include="Scripts\DataTables\dataTables.tableTools.min.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\README.md" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrap\bootstrap.css.map" />
+    <Content Include="Scripts\devoops-master\plugins\chartist\chartist.min.map" />
+    <Content Include="Scripts\devoops-master\plugins\chartist\LICENSE" />
+    <Content Include="Scripts\devoops-master\plugins\d3\LICENSE" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\README.md" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\LICENSE" />
+    <Content Include="Scripts\devoops-master\plugins\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\devoops-master\plugins\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\devoops-master\plugins\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\devoops-master\plugins\jQuery-Knob\LICENSE" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\LICENSE-MIT" />
+    <Content Include="Scripts\devoops-master\plugins\justified-gallery\README.md" />
+    <Content Include="Scripts\devoops-master\plugins\moment\LICENSE" />
+    <Content Include="Scripts\devoops-master\plugins\select2\bower.json" />
+    <Content Include="Scripts\devoops-master\plugins\select2\component.json" />
+    <Content Include="Scripts\devoops-master\plugins\select2\composer.json" />
+    <Content Include="Scripts\devoops-master\plugins\select2\LICENSE" />
+    <Content Include="Scripts\devoops-master\plugins\select2\package.json" />
+    <Content Include="Scripts\devoops-master\plugins\select2\README.md" />
+    <Content Include="Scripts\devoops-master\plugins\select2\release.sh" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2.jquery.json" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_en.js.template" />
+    <Content Include="Scripts\devoops-master\plugins\springy\LICENSE" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\langs\readme.md" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\readme.md" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Scripts\devoops-master\plugins\xcharts\LICENSE" />
+    <Content Include="Scripts\devoops-master\plugins\xcharts\README.md" />
+    <Content Include="Scripts\devoops-master\README" />
+    <Content Include="Content\DataTables\css\dataTables.responsive.scss" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.scss" />
+    <Content Include="fonts\Genericons.eot" />
+    <Content Include="fonts\Genericons.ttf" />
+    <Content Include="fonts\Genericons.woff" />
+    <Content Include="Properties\webjobs-list.json" />
+    <Content Include="appsettings.json" />
+    <None Include="Properties\PublishProfiles\hopestaging - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\hopestaging - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\hopestaging - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\hopestaging - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\telemed-staging - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\telemed-staging - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\devoops-master\js\devoops.js" />
+    <Content Include="Scripts\devoops-master\license_MIT.txt" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\amcharts.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\exporting\amexport.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\exporting\canvg.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\exporting\filesaver.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\exporting\jspdf.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\exporting\jspdf.plugin.addimage.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\exporting\rgbcolor.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\funnel.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\gauge.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\0.gif" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\1.gif" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\2.gif" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\3.gif" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\bg.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\bgSky.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\bicycle.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\board.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\car.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\dragIcon.gif" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\dragIconBlack.gif" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\dragIconH.gif" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\dragIconHBlack.gif" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\export.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\exportWhite.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\lens.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\lensWhite.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\logo.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\motorcycle.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\redstar.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\images\star.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\az.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\bg.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\de.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\es.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\fi.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\fo.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\fr.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\hr.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\hu.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\id.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\is.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\it.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\lt.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\lv.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\mk.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\mn.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\mt.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\nl.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\no.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\pl.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\pt.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\ro.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\ru.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\rw.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\sk.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\so.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\th.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\lang\tr.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern1.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern10.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern11.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern12.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern13.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern14.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern15.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern16.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern17.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern18.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern19.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern2.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern20.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern21.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern3.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern4.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern5.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern6.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern7.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern8.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\black\pattern9.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\chalk\pattern1.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\chalk\pattern1r.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\chalk\pattern2.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\chalk\pattern3.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\chalk\pattern4.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\chalk\pattern5.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\chalk\pattern6.jpg" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern1.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern10.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern11.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern12.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern13.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern14.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern15.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern16.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern17.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern18.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern19.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern2.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern20.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern21.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern3.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern4.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern5.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern6.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern7.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern8.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\patterns\white\pattern9.png" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\pie.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\radar.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\serial.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\themes\black.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\themes\chalk.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\themes\dark.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\themes\light.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\themes\patterns.js" />
+    <Content Include="Scripts\devoops-master\plugins\amcharts\xy.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\bootstrapValidator.css" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\bootstrapValidator.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\bootstrapValidator.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\bootstrapValidator.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\ar_MA.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\be_FR.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\be_NL.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\bg_BG.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\cs_CZ.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\da_DK.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\de_DE.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\en_US.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\es_CL.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\es_ES.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\fa_IR.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\fr_FR.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\gr_EL.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\hu_HU.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\it_IT.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\ja_JP.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\nl_NL.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\no_NO.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\pl_PL.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\pt_BR.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\ro_RO.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\ru_RU.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\sr_RS.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\sv_SE.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\th_TH.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\tr_TR.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\ua_UA.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\vi_VN.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\zh_CN.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrapvalidator\language\zh_TW.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrap\bootstrap-theme.css" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrap\bootstrap.css" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrap\bootstrap.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\chartist\chartist.js" />
+    <Content Include="Scripts\devoops-master\plugins\chartist\chartist.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\chartist\chartist.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\d3\d3.js" />
+    <Content Include="Scripts\devoops-master\plugins\d3\d3.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\datatables\copy_csv_xls_pdf.swf" />
+    <Content Include="Scripts\devoops-master\plugins\datatables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\devoops-master\plugins\datatables\jquery.dataTables.js" />
+    <Content Include="Scripts\devoops-master\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\datatables\TableTools.js" />
+    <Content Include="Scripts\devoops-master\plugins\datatables\TableTools_orig.js" />
+    <Content Include="Scripts\devoops-master\plugins\datatables\ZeroClipboard.js" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\blank.gif" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\fancybox_loading.gif" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\fancybox_overlay.png" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\fancybox_sprite.png" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\jquery.fancybox.css" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\jquery.fancybox.js" />
+    <Content Include="Scripts\devoops-master\plugins\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\edit.gif" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\fineuploader-5.0.5.css" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\fineuploader-5.0.5.js" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\fineuploader-5.0.5.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\fineuploader-5.0.5.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\iframe.xss.response-5.0.5.js" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\jquery.fineuploader-5.0.5.js" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\jquery.fineuploader-5.0.5.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\loading.gif" />
+    <Content Include="Scripts\devoops-master\plugins\fineuploader\processing.gif" />
+    <Content Include="Scripts\devoops-master\plugins\flot\jquery.flot.js" />
+    <Content Include="Scripts\devoops-master\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\devoops-master\plugins\flot\jquery.flot.time.js" />
+    <Content Include="Scripts\devoops-master\plugins\flot\LICENSE.txt" />
+    <Content Include="Scripts\devoops-master\plugins\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\fullcalendar.css" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\fullcalendar.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\fullcalendar.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\gcal.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang-all.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\ar-ma.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\ar-sa.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\ar.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\bg.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\ca.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\cs.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\da.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\de-at.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\de.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\el.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\en-au.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\en-ca.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\en-gb.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\es.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\fa.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\fi.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\fr-ca.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\fr.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\hi.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\hr.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\hu.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\id.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\is.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\it.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\ja.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\ko.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\lt.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\lv.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\nl.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\pl.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\pt-br.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\pt.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\ro.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\ru.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\sk.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\sl.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\sr-cyrl.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\sr.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\sv.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\th.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\tr.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\uk.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\vi.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\zh-cn.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\lang\zh-tw.js" />
+    <Content Include="Scripts\devoops-master\plugins\fullcalendar\license.txt" />
+    <Content Include="Scripts\devoops-master\plugins\jQuery-Knob\jquery.knob.js" />
+    <Content Include="Scripts\devoops-master\plugins\jQuery-Knob\jquery.knob.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-addon-i18n.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-addon-i18n.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-af.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-am.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-bg.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-ca.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-cs.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-da.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-de.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-el.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-es.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-et.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-eu.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-fi.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-fr.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-gl.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-he.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-hr.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-hu.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-id.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-it.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-ja.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-ko.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-lt.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-nl.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-no.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-pl.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-pt-BR.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-pt.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-ro.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-ru.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-sk.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-sl.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-sr-RS.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-sr-YU.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-sv.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-th.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-tr.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-uk.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-vi.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-zh-CN.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\i18n\jquery-ui-timepicker-zh-TW.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\index.html" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\jquery-ui-timepicker-addon.css" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\jquery-ui-timepicker-addon.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui-timepicker-addon\jquery-ui-timepicker-addon.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery-ui-i18n.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-af.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ar-DZ.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ar.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-az.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-be.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-bg.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-bs.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ca.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-cs.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-cy-GB.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-da.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-de.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-el.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-en-AU.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-en-GB.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-en-NZ.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-eo.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-es.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-et.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-eu.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-fa.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-fi.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-fo.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-fr-CA.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-fr-CH.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-fr.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-gl.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-he.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-hi.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-hr.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-hu.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-hy.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-id.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-is.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-it.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ja.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ka.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-kk.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-km.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ko.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ky.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-lb.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-lt.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-lv.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-mk.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ml.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ms.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-nb.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-nl-BE.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-nl.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-nn.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-no.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-pl.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-pt-BR.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-pt.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-rm.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ro.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ru.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-sk.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-sl.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-sq.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-sr-SR.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-sr.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-sv.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-ta.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-th.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-tj.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-tr.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-uk.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-vi.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-zh-CN.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-zh-HK.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\i18n\jquery.ui.datepicker-zh-TW.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\jquery-ui.css" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\jquery-ui.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\jquery\jquery.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\justified-gallery\jquery.justifiedGallery.js" />
+    <Content Include="Scripts\devoops-master\plugins\justified-gallery\jquery.justifiedGallery.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\justified-gallery\justifiedGallery.css" />
+    <Content Include="Scripts\devoops-master\plugins\justified-gallery\justifiedGallery.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\leaflet\images\layers-2x.png" />
+    <Content Include="Scripts\devoops-master\plugins\leaflet\images\layers.png" />
+    <Content Include="Scripts\devoops-master\plugins\leaflet\images\marker-icon-2x.png" />
+    <Content Include="Scripts\devoops-master\plugins\leaflet\images\marker-icon.png" />
+    <Content Include="Scripts\devoops-master\plugins\leaflet\images\marker-shadow.png" />
+    <Content Include="Scripts\devoops-master\plugins\leaflet\leaflet-src.js" />
+    <Content Include="Scripts\devoops-master\plugins\leaflet\leaflet.css" />
+    <Content Include="Scripts\devoops-master\plugins\leaflet\leaflet.js" />
+    <Content Include="Scripts\devoops-master\plugins\moment\moment-with-locales.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\moment\moment.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\morris\morris.js" />
+    <Content Include="Scripts\devoops-master\plugins\morris\morris.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\raphael\raphael-min.js" />
+    <Content Include="Scripts\devoops-master\plugins\raphael\raphael.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2-bootstrap.css" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2-spinner.gif" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2.css" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2.png" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2x2.png" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ar.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_az.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_bg.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ca.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_cs.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_da.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_de.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_el.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_es.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_et.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_eu.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_fa.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_fi.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_fr.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_gl.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_he.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_hr.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_hu.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_id.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_is.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_it.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ja.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ka.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ko.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_lt.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_lv.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_mk.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ms.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_nl.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_no.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_pl.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_pt-BR.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_pt-PT.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ro.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_rs.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ru.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_sk.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_sv.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_th.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_tr.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ua.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_ug-CN.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_uk.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_vi.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_zh-CN.js" />
+    <Content Include="Scripts\devoops-master\plugins\select2\select2_locale_zh-TW.js" />
+    <Content Include="Scripts\devoops-master\plugins\sparkline\jquery.sparkline.js" />
+    <Content Include="Scripts\devoops-master\plugins\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\springy\springy.js" />
+    <Content Include="Scripts\devoops-master\plugins\springy\springyui.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\license.txt" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\example\dialog.html" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce-small.dev.svg" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce.dev.svg" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\devoops-master\plugins\xcharts\xcharts.css" />
+    <Content Include="Scripts\devoops-master\plugins\xcharts\xcharts.js" />
+    <Content Include="Scripts\devoops-master\plugins\xcharts\xcharts.min.css" />
+    <Content Include="Scripts\devoops-master\plugins\xcharts\xcharts.min.js" />
+    <Content Include="Scripts\i18n\af.js" />
+    <Content Include="Scripts\i18n\ar.js" />
+    <Content Include="Scripts\i18n\az.js" />
+    <Content Include="Scripts\i18n\bg.js" />
+    <Content Include="Scripts\i18n\bn.js" />
+    <Content Include="Scripts\i18n\bs.js" />
+    <Content Include="Scripts\i18n\ca.js" />
+    <Content Include="Scripts\i18n\cs.js" />
+    <Content Include="Scripts\i18n\da.js" />
+    <Content Include="Scripts\i18n\de.js" />
+    <Content Include="Scripts\i18n\dsb.js" />
+    <Content Include="Scripts\i18n\el.js" />
+    <Content Include="Scripts\i18n\en.js" />
+    <Content Include="Scripts\i18n\es.js" />
+    <Content Include="Scripts\i18n\et.js" />
+    <Content Include="Scripts\i18n\eu.js" />
+    <Content Include="Scripts\i18n\fa.js" />
+    <Content Include="Scripts\i18n\fi.js" />
+    <Content Include="Scripts\i18n\fr.js" />
+    <Content Include="Scripts\i18n\gl.js" />
+    <Content Include="Scripts\i18n\he.js" />
+    <Content Include="Scripts\i18n\hi.js" />
+    <Content Include="Scripts\i18n\hr.js" />
+    <Content Include="Scripts\i18n\hsb.js" />
+    <Content Include="Scripts\i18n\hu.js" />
+    <Content Include="Scripts\i18n\hy.js" />
+    <Content Include="Scripts\i18n\id.js" />
+    <Content Include="Scripts\i18n\is.js" />
+    <Content Include="Scripts\i18n\it.js" />
+    <Content Include="Scripts\i18n\ja.js" />
+    <Content Include="Scripts\i18n\ka.js" />
+    <Content Include="Scripts\i18n\km.js" />
+    <Content Include="Scripts\i18n\ko.js" />
+    <Content Include="Scripts\i18n\lt.js" />
+    <Content Include="Scripts\i18n\lv.js" />
+    <Content Include="Scripts\i18n\mk.js" />
+    <Content Include="Scripts\i18n\ms.js" />
+    <Content Include="Scripts\i18n\nb.js" />
+    <Content Include="Scripts\i18n\ne.js" />
+    <Content Include="Scripts\i18n\nl.js" />
+    <Content Include="Scripts\i18n\pl.js" />
+    <Content Include="Scripts\i18n\ps.js" />
+    <Content Include="Scripts\i18n\pt-BR.js" />
+    <Content Include="Scripts\i18n\pt.js" />
+    <Content Include="Scripts\i18n\ro.js" />
+    <Content Include="Scripts\i18n\ru.js" />
+    <Content Include="Scripts\i18n\sk.js" />
+    <Content Include="Scripts\i18n\sl.js" />
+    <Content Include="Scripts\i18n\sq.js" />
+    <Content Include="Scripts\i18n\sr-Cyrl.js" />
+    <Content Include="Scripts\i18n\sr.js" />
+    <Content Include="Scripts\i18n\sv.js" />
+    <Content Include="Scripts\i18n\th.js" />
+    <Content Include="Scripts\i18n\tk.js" />
+    <Content Include="Scripts\i18n\tr.js" />
+    <Content Include="Scripts\i18n\uk.js" />
+    <Content Include="Scripts\i18n\vi.js" />
+    <Content Include="Scripts\i18n\zh-CN.js" />
+    <Content Include="Scripts\i18n\zh-TW.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\jquery.cycle.lite.js" />
+    <Content Include="Scripts\jquery.flot.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
+    <Content Include="Scripts\jquery.form.min.js.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
+    <Content Include="Scripts\jquery.magnific-popup.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JsBarcodeCode128.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\QRCode\qrcode.min.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="SQL Backup\Speciality_DataSeeder.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Account\ConfirmationFailure.cshtml" />
+    <Content Include="Views\Account\ConfirmationSuccess.cshtml" />
+    <Content Include="Views\Account\Reset.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Shared\Copy of _Layout.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\Create.cshtml" />
+    <Content Include="Views\Doctor\Reviews.cshtml" />
+    <Content Include="Views\Notification\Create.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\Chat\Chat.cshtml" />
+    <Content Include="Views\Package\Index.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
+    <Content Include="Views\Account\Setting.cshtml" />
+    <Content Include="Views\Doctor\SignUp.cshtml" />
+    <Content Include="Views\Doctor\_CreateDoctorPartial.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Prescription\Prescription.cshtml" />
+    <Content Include="Views\Transaction\Index.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Doctor\_SignUpPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmationDeepLink.cshtml" />
+    <Content Include="Views\Medication\Index.cshtml" />
+    <Content Include="Views\Medication\Add.cshtml" />
+    <Content Include="Views\Medication\Edit.cshtml" />
+    <Content Include="Views\Medication\_AddMedicationPartial.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Add.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\PromoCode\Index.cshtml" />
+    <Content Include="Views\PromoCode\History.cshtml" />
+    <Content Include="Views\Banner\Add.cshtml" />
+    <Content Include="Views\Banner\Index.cshtml" />
+    <Content Include="Views\PharmacyOutlets\Index.cshtml" />
+    <Content Include="Views\PharmacyOutlets\Create.cshtml" />
+    <Content Include="Views\PharmacyOutlets\Edit.cshtml" />
+    <Content Include="Views\Shared\_BioPopupPartial.cshtml" />
+    <Content Include="Views\PrescriptionRequest\Index.cshtml" />
+    <Content Include="Views\PrescriptionRequest\UserCorporate.cshtml" />
+    <Content Include="Views\PrescriptionRequest\RequestList.cshtml" />
+    <Content Include="Views\PrescriptionRequest\PrescriptionLog.cshtml" />
+    <Content Include="Views\CorporateUser\Index.cshtml" />
+    <Content Include="Views\CorporateUser\UserCorporate.cshtml" />
+    <Content Include="Views\PrescriptionRequest\Detail.cshtml" />
+    <Content Include="Views\Corporate\Index.cshtml" />
+    <Content Include="Views\Corporate\Create.cshtml" />
+    <Content Include="Views\Corporate\Edit.cshtml" />
+    <Content Include="Views\Corporate\BranchList.cshtml" />
+    <Content Include="Views\Corporate\CreateBranch.cshtml" />
+    <Content Include="Views\Corporate\EditBranch.cshtml" />
+    <Content Include="Views\Corporate\UploadBranch.cshtml" />
+    <Content Include="Views\AuditLog\List.cshtml" />
+    <Content Include="Views\Prescription\AllPrescriptions.cshtml" />
+    <Content Include="Views\OnSiteEvent\Create.cshtml" />
+    <Content Include="Views\OnSiteEvent\Edit.cshtml" />
+    <Content Include="Views\OnSiteEvent\Index.cshtml" />
+    <Content Include="Views\OnSiteEvent\Details.cshtml" />
+    <Content Include="Views\ManagementAccounts\Create.cshtml" />
+    <Content Include="Views\ManagementAccounts\Edit.cshtml" />
+    <Content Include="Views\ManagementAccounts\Index.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordLayout.cshtml" />
+    <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\Notification\Edit.cshtml" />
+    <Content Include="Views\Notification\Stats.cshtml" />
+    <Content Include="Views\Notification\CreateTag.cshtml" />
+    <Content Include="Views\OnSiteEvent\CheckIn.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\PrescriptionRequest\ViewPatientMedia.cshtml" />
+    <Content Include="Views\Group\Edit.cshtml" />
+    <Content Include="Views\Group\_CreateEditFormPartial.cshtml" />
+    <Content Include="Views\Group\Create.cshtml" />
+    <Content Include="Views\PharmacyOutlets\CreatePharmacy.cshtml" />
+    <Content Include="Views\PharmacyOutlets\EditPharmacy.cshtml" />
+    <Content Include="Views\ThirdPartyAdministrator\Index.cshtml" />
+    <Content Include="Views\ThirdPartyAdministrator\Edit.cshtml" />
+    <Content Include="Views\ThirdPartyAdministrator\Add.cshtml" />
+    <Content Include="Views\Facilities\Create.cshtml" />
+    <Content Include="Views\Facilities\Delete.cshtml" />
+    <Content Include="Views\Facilities\Edit.cshtml" />
+    <Content Include="Views\Facilities\Index.cshtml" />
+    <Content Include="Views\Relationship\Create.cshtml" />
+    <Content Include="Views\Relationship\Delete.cshtml" />
+    <Content Include="Views\Relationship\Details.cshtml" />
+    <Content Include="Views\Relationship\Edit.cshtml" />
+    <Content Include="Views\Relationship\Index.cshtml" />
+    <Content Include="Views\Qualification\Create.cshtml" />
+    <Content Include="Views\Qualification\Delete.cshtml" />
+    <Content Include="Views\Qualification\Details.cshtml" />
+    <Content Include="Views\Qualification\Edit.cshtml" />
+    <Content Include="Views\Qualification\Index.cshtml" />
+    <Content Include="Views\Speciality\Create.cshtml" />
+    <Content Include="Views\Speciality\Delete.cshtml" />
+    <Content Include="Views\Speciality\Details.cshtml" />
+    <Content Include="Views\Speciality\Edit.cshtml" />
+    <Content Include="Views\Speciality\Index.cshtml" />
+    <Content Include="Views\Account\Otpverify.cshtml" />
+    <Content Include="Views\Vaccine\VaccineApproval.cshtml" />
+    <Content Include="Views\Vaccine\VaccineApprovalDetail.cshtml" />
+    <Content Include="Views\PatientTransaction\Index.cshtml" />
+    <Content Include="Views\Account\Otpresend.cshtml" />
+    <Content Include="Views\Corporate\CreatePosition.cshtml" />
+    <Content Include="Views\Corporate\EditPosition.cshtml" />
+    <Content Include="Views\CorporateUser\CorporateBulkInsert.cshtml" />
+    <Content Include="Views\DoctorDuty\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Chatting\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AWSSDK.SimpleNotificationService.3.3.0.29\analyzers\dotnet\cs\AWSSDK.SimpleNotificationService.CodeAnalysis.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Account.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Account.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Account.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Account.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Chat.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Chat.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Errors.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errors.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Errors.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Forms.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Forms.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Forms.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Forms.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HCPPatient.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HCPPatient.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HCPPatient.resx">
+      <LastGenOutput>HCPPatient1.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Location.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Location.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Location.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Location.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Medications.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Medications.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Medications.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Medications.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Payments.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Payments.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Payments.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Payments.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Prescription.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Prescription.zh-CN.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Prescription.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Prescription.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Chat.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Chat.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Promo.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Promo.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Promo.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Promo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:46484/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/appsettings.json" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebJobs.Publish.2.0.0\build\Microsoft.Web.WebJobs.Publish.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebJobs.Publish.2.0.0\build\Microsoft.Web.WebJobs.Publish.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Azure.Services.AppAuthentication.1.0.3\build\Microsoft.Azure.Services.AppAuthentication.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Azure.Services.AppAuthentication.1.0.3\build\Microsoft.Azure.Services.AppAuthentication.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.2.0.0\build\Microsoft.Web.WebJobs.Publish.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.2.0.0\build\Microsoft.Web.WebJobs.Publish.targets')" />
+  <Import Project="..\packages\Microsoft.Azure.Services.AppAuthentication.1.0.3\build\Microsoft.Azure.Services.AppAuthentication.targets" Condition="Exists('..\packages\Microsoft.Azure.Services.AppAuthentication.1.0.3\build\Microsoft.Azure.Services.AppAuthentication.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

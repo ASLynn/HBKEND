@@ -1,0 +1,54 @@
+﻿@model HeyDoc.Web.Models.CreateNotificationTagModel
+@using HeyDoc.Web;
+
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Notification/Index">Notification</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" id="msgCreate">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-plus"></i>
+                    <span>Create Notification Tag</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @Html.ValidationSummary()
+                @using (Html.BeginForm("CreateTag", "Notification", FormMethod.Post, new { @class = "form form-horizontal", id = "create" }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TagName, new { @class = "col-md-2 control-label", id = "tag-name" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.TagName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TagName)
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-2">
+                                <button type="submit" class="btn btn-primary">Create Tag</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

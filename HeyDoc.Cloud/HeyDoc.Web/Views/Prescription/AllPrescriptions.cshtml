@@ -1,0 +1,131 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model  List<HeyDoc.Web.Models.UserModel>
+    @using HeyDoc.Web;
+
+    <div class="row">
+        <div id="breadcrumb" class="col-xs-12">
+            <a href="#" class="show-sidebar">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ol class="breadcrumb pull-left">
+                <li><a href="#">Prescriptions</a></li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box clearfix">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-file-text"></i>
+                        <span>Get Prescription Statistics</span>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <form id="statsExportForm">
+                        <div class="form-group form-col-2">
+                            @Html.Label("Start Date", new { @class = "control-label" })
+                            <input type="date" placeholder="yyyy-mm-dd" name="startDate" id="startDate" class="form-control" />
+                        </div>
+                        <div class="form-group form-col-2">
+                            @Html.Label("End Date", new { @class = "control-label" })
+                            <input type="date" placeholder="yyyy-mm-dd" name="endDate" id="endDate" class="form-control" />
+                        </div>
+                        <div class="form-group form-col-1">
+                            @Html.Label("Rx Source", new { @class = "control-label" })
+                            @Html.DropDownList("prescriptionStatsSource", ViewBag.PrescriptionSourcesWithoutAll as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group form-col-1">
+                            <br />
+                            <button class="btn btn-primary" id="getStatistics" type="submit">Get Statistics</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-file-text"></i>
+                        <span>Prescription List</span>
+                    </div>
+                </div>
+                <br />
+
+                <div class="box-content no-padding">
+
+                    <div class="row">
+                        <div class="form-group form-col-1 ">
+                            @Html.Label("Rx Number", new { @class = "control-label" })
+                            <input type="text" id="prescriptionNo" placeholder="Prescription ID" class="form-control" />
+                        </div>
+                        <div class="form-group form-col-2 ">
+                            @Html.Label("Name", new { @class = "control-label" })
+                            <input type="text" id="fullName" placeholder="Patient/Doctor name" class="form-control" />
+                        </div>
+                        <div class="form-group form-col-1">
+                            @Html.Label("Rx Source", new { @class = "control-label" })
+                            @Html.DropDownList("prescriptionSource", ViewBag.PrescriptionSources as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group form-col-1">
+                            <br />
+                            <button class="btn btn-primary" id="search" type="button">Search</button>
+                        </div>
+                    </div>
+                    <!-- Table -->
+                    <table id="prescriptionList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Prescription Number</th>
+                                <th>Patient</th>
+                                <th>Doctor</th>
+                                <th>Created By</th>
+                                <th>Approval Status</th>
+                                <th>Supplied Status</th>
+                                <th>Doctor Remarks</th>
+                                <th>Created On</th>
+                                <th>Dig. Rx</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th>No</th>
+                                <th>Prescription Number</th>
+                                <th>Patient</th>
+                                <th>Doctor</th>
+                                <th>Created By</th>
+                                <th>Approval Status</th>
+                                <th>Supplied Status</th>
+                                <th>Doctor Remarks</th>
+                                <th>Created On</th>
+                                <th>Dig. Rx</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @section Scripts {
+        <script type="text/javascript">
+            LoadPrescriptionList();
+        </script>
+    }
+
+
+

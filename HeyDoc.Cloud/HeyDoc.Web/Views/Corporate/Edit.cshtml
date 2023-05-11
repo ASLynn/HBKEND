@@ -1,0 +1,154 @@
+﻿@model HeyDoc.Web.Models.CorporateModel
+@using HeyDoc.Web
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Corporate/Index">Corporate List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-support"></i>
+                    <span>Edit Corporate</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("Edit", "Corporate", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "outletCreate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                    @Html.HiddenFor(Model => Model.CorporateId)
+                    <h4 class="page-header">Edit Corporate</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Corporate Name *</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.BranchName, new { @class = "form-control", placeholder = "Corporate Name" })
+                            @Html.ValidationMessageFor(model => model.BranchName)
+                        </div>
+                    </div>
+
+                    <h4 class="page-header">Corporate Info</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Address *</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.BranchAddress, new { @class = "form-control", placeholder = "Address" })
+                            @Html.ValidationMessageFor(model => model.BranchAddress)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">TPA/Insurance Provider</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(model => model.TPAId, (IEnumerable<SelectListItem>)ViewBag.TPAList, new { @class = "form-control", placeholder = "Select TPA/Insurance Provider" })
+                            @Html.ValidationMessageFor(model => model.TPAId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Hide from public sign up selection</label>
+                        <div class="col-sm-4">
+                            @Html.CheckBoxFor(model => model.IsHiddenPublicSelection, new { @style = "width:20px;height:20px;" })
+                            @Html.ValidationMessageFor(model => model.IsHiddenPublicSelection)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Supplying Pharmacies</label>
+                        <div class="col-sm-4">
+                            <select class="pharmacy-select" name="SupplyingPharmacyIds" multiple="multiple">
+                                <optgroup label="All Pharmacies">
+                                    @foreach (var pharmacy in ViewBag.PharmacyList as IEnumerable<SelectListItem>)
+                                    {
+                                        <option value="@pharmacy.Value" selected="@Model.SupplyingPharmacyIds.Any(id => id.ToString().Equals(pharmacy.Value))">@pharmacy.Text</option>
+                                    }
+                                </optgroup>
+                            </select>
+                            <p id="pharmacy-disabled-text" style="margin-top: 12px;">Pharmacy selection will follow the chosen TPA. To select individually, remove TPA selection.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Policy: Same Day Delivery (Minor Ailment)</label>
+                        <div class="col-sm-4">
+                            @Html.CheckBoxFor(model => model.PolicyHasSameDayDelivery, new { @style = "width:20px;height:20px;" })
+                            @Html.ValidationMessageFor(model => model.PolicyHasSameDayDelivery)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Policy: Supply Duration (Months)</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PolicySupplyDurationInMonths, new { @class = "form-control", placeholder = "Duration In Months", @type = "number" })
+                            @Html.ValidationMessageFor(model => model.PolicySupplyDurationInMonths)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Policy: E-MC</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PolicyEMC, new { @class = "form-control", placeholder = "E-MC Policy" })
+                            @Html.ValidationMessageFor(model => model.PolicyEMC)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Policy: Remarks</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PolicyRemarks, new { @class = "form-control", placeholder = "Remarks" })
+                            @Html.ValidationMessageFor(model => model.PolicyRemarks)
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        //LoadOutletCreateScripts();
+        $(function () {
+            LoadSelect2Script(function () {
+                LoadSelect2OptGroupSelectScript(function () {
+                    $.fn.select2.amd.require(["optgroup-data", "optgroup-results"], function (OptgroupData, OptgroupResults) {
+                        $('.pharmacy-select').select2({
+                            dataAdapter: OptgroupData,
+                            resultsAdapter: OptgroupResults,
+                            dropdownAlwaysBelow: true, // custom implemented option - refer to select2.js:4543 (_positionDropdown function)
+                        });
+                    });
+                })
+            });
+
+            function setPharmacyDisabled(selectElem) {
+                if (selectElem.val() == 0) { // no TPA selected
+                    $('.pharmacy-select').prop('disabled', false);
+                    $('#pharmacy-disabled-text').hide();
+                } else {
+                    $('.pharmacy-select').prop('disabled', true);
+                    $('#pharmacy-disabled-text').show();
+                }
+            }
+
+            setPharmacyDisabled($('#TPAId'));
+            $('#TPAId').change(function () {
+                setPharmacyDisabled($(this));
+            })
+        });
+    </script>
+}

@@ -1,0 +1,90 @@
+﻿@model HeyDoc.Web.Models.OTPverifyModel
+
+@{
+    Layout = "_ChangePasswordLayout.cshtml";
+}
+<div class="row custom-background">
+    <div class="col-lg-6 col-lg-offset-3 text-center">
+        <div class=" col-md-12">
+            <div class="box" style="margin-top:6%;border-radius:3px;">
+                <div class="box-content" style="background-color:#fff;opacity:0.95;">
+                    @using (Html.BeginForm(null, null, FormMethod.Get, new { onsubmit = "return validateForm()" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div style="text-align:center;font-family:Helvetica;color:#558ED5;font-size:30px;margin-top:2rem;">HOPE OTP Verification</div>
+                        <br />
+                       
+                        <div class="row" style="text-align:center; color:red">
+                            @ViewBag.message @if (ViewBag.message == "OTP verification successful. Please click here to ")
+                            {<a href="@ViewBag.CompanyId">Login</a>}
+
+                        </div>
+
+
+                        <div class="row">
+                           
+                            
+                            <div class="col-lg-8 col-lg-offset-2 text-center">
+
+                                @Html.DropDownListFor(m => m.CompanyId, ViewBag.Companies as IEnumerable<SelectListItem>, new { @class = "form-control", @id = "companySelect" })
+
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-group col-lg-6 ", @placeholder = "Phone Number", @style = "text-align:center;color:#999999" })
+
+                            </div>
+                        </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-8 col-lg-offset-2 text-center">
+                                    @Html.TextBoxFor(m => m.OTPCode, new { @class = "form-group col-lg-6 ", @placeholder = "OTP Code", @style = "text-align:center;color:#999999" })
+
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-8 col-lg-offset-2 text-center">
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block" style="background-color:#558ED5 ;border-radius:3px; border:2px solid #406EA0 ;">Verify</button>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <div style="text-align:center;">
+                                <!--TODO M UNBLANK: Support email-->
+                                <a href="https://app.hope.com.mm/account/otpresend/" style="font-family:Helvetica;text-decoration:underline;color:#3FA9F5;">Resend OTP</a>
+                            </div>
+                            <br />
+                            <div style="text-align:center;">
+                                <!--TODO M UNBLANK: Support email-->
+                                <a href="mailto:{support email}" style="font-family:Helvetica;text-decoration:underline;color:#3FA9F5;">I can't verify my OTP using this page</a>
+                            </div>
+                            <br />
+                            <br />
+
+                            }
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script type="text/javascript">
+
+
+
+
+        function validateForm() {
+           
+            if ($('#OTPCode').val().length != 6) {
+                alert("OTP Code must be 6 digit number.");
+                return false;
+            }
+
+        }
+    </script>
+}

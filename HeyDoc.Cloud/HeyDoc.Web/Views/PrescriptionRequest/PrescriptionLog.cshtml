@@ -1,0 +1,90 @@
+﻿@*@model HeyDoc.Web.Models.PrescriptionLogModel*@
+@using HeyDoc.Web.Helpers;
+@using HeyDoc.Web;
+
+<style>
+    #url { display: none; }
+</style>
+<!-- Menu Links -->
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        @Html.MenuLinks(new List<HtmlHelpers.MenuLink>() {
+            new HtmlHelpers.MenuLink() { LinkText = "Request List", ActionName = "RequestList", ControllerName = "PrescriptionRequest" },
+            new HtmlHelpers.MenuLink() { LinkText = "Log Prescription", ActionName = "PrescriptionLog", ControllerName = "PrescriptionRequest" },
+        })
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-stethoscope fa-lg"></i>
+                    <span>Prescription Log #@ViewBag.PrescriptionId</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+
+                <div class="row">
+                    <div class="form-group col-sm-6 col-sm-offset-1">
+                        @Html.Label("Add status log", new { @class = "control-label" })&emsp;&emsp;<br />
+                        <div id="radio_Btn">
+                            <input type="radio" id="logtype" name="status" value="@PnActionType.Message.ToString()" checked="checked" />  Message &emsp;&emsp;&emsp;&emsp;
+                            <input type="radio" id="logtype" name="status" value="@PnActionType.URL.ToString()" />  Url
+                        </div>
+                        <br />
+                        <div>
+                            <label>Text</label>
+                            <input type="text" id="logtxt" class="form-control" maxlength="400" />
+                        </div>
+                        <div id="url">
+                            <label>Url</label>
+                            <input type="text" id="logurl" class="form-control" maxlength="400" />
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <button class="btn btn-primary" id="sending" type="button">Send</button>
+                        </div>
+                    </div>
+                    </div>
+
+                <!-- Table -->
+                <table id="codeList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Status</th>
+                            <th>Url </th>
+                            <th>Date </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Status</th>
+                            <th>Url </th>
+                            <th>Date </th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        loadPrescriptionLogList('@ViewBag.Id', '@ViewBag.PrescriptionId');
+    </script>
+}

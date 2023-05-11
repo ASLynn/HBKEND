@@ -1,0 +1,210 @@
+﻿@using HeyDoc.Web;
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Corporate User</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box clearfix">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-file-text"></i>
+                    <span>Get User Prescription Statistics</span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <form id="statsExportForm">
+                    <div class="form-group form-col-2">
+                        @Html.Label("Start Date", new { @class = "control-label" })
+                        <input type="date" placeholder="yyyy-mm-dd" name="startDate" id="startDate" class="form-control" />
+                    </div>
+                    <div class="form-group form-col-2">
+                        @Html.Label("End Date", new { @class = "control-label" })
+                        <input type="date" placeholder="yyyy-mm-dd" name="endDate" id="endDate" class="form-control" />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">Corporate Name</label>
+                         @Html.DropDownList("statisticsCorporateId", ViewBag.CorporateWithoutAll as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>                    
+                    <div class="form-group form-col-1">
+                        <br />
+                        <button class="btn btn-primary" id="getStatistics" type="submit">Get Statistics</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-plus-square"></i>
+                    <span>Corporate User List</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+                <div class="row">                    
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">Search</label>
+                        @Html.TextBox("searchName", ViewBag.FilterValue as string, new { @class = "form-control", @placeholder = "Name / IC" })
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">Corporate Name</label>
+                        @Html.DropDownList("corporateId", ViewBag.Corporate as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">TPA</label>
+                        @Html.DropDownList("tpaId", ViewBag.TPAName as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">Registration Source</label>
+                        @Html.DropDownList("createdSource", ViewBag.UserType as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <br/>&emsp;<input type="submit" id="searchBtn" value="Search" class="btn btn-primary" onclick="Load();" />
+                    </div>
+                </div>
+            </div>
+            <!-- Table -->
+            <table id="outletList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>IC</th>
+                        <th>Email</th>
+                        <th>Corporate Name</th>
+                        <th>TPA/Insurance</th>
+                        <th>Registration Source</th>
+                        <th>Created on</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>IC</th>
+                        <th>Email</th>
+                        <th>Corporate Name</th>
+                        <th>TPA/Insurance</th>
+                        <th>Registration Source</th>
+                        <th>Created on</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@*@Html.Action("RequestList", "User")
+    @Html.Action("Details", "Request")*@
+@*@Html.Action("Reviews", "Doctor")*@
+
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadCorporateUserIndexScripts();
+        // Cleanup: Gives bad error message for invalid dates like 2019-02-30
+        // on browsers that support date type inputs, due to the value property
+        // getting set to empty in those cases
+        $(document).ready(function() {
+                $('#statsExportForm')
+                    .bootstrapValidator({
+                        fields: {
+                            startDate: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Fill in Start Date'
+                                    },
+                                    date: {
+                                        format: 'YYYY-MM-DD',
+                                        separator: '-',
+                                        message: 'Invalid date or format, please use yyyy-mm-dd format'
+                                    },
+                                    callback: {
+                                        callback: function(value, validator, $field) {
+                                            const startDate = moment(value, 'YYYY-M-D');
+                                            const endDate = moment(validator.getFieldElements('endDate').val(), 'YYYY-M-D');
+                                            if (!endDate.isValid()) {
+                                                return true;
+                                            }
+
+                                            if (startDate.isAfter(endDate)) {
+                                                return {
+                                                    valid: false,
+                                                    message: 'Start Date must be earlier or same day as End Date'
+                                                };
+                                            } else if (startDate.clone().add(366, 'days').isSameOrBefore(endDate)) {
+                                                return {
+                                                    valid: false,
+                                                    message: 'Start Date and End Date must be less than 366 days apart'
+                                                };
+                                            }
+
+                                            return true;
+                                        }
+                                    }
+                                }
+                            },
+                            endDate: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Fill in End Date'
+                                    },
+                                    date: {
+                                        format: 'YYYY-MM-DD',
+                                        separator: '-',
+                                        message: 'Invalid date or format, please use yyyy-mm-dd format'
+                                    },
+                                    callback: {
+                                        callback: function(value, validator, $field) {
+                                            validator.revalidateField('startDate');
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                    .on('success.form.bv', function(e) {
+                        e.preventDefault();
+
+                        const startDate = moment(document.getElementById('startDate').value, 'YYYY-M-D');
+                        const endDate = moment(document.getElementById('endDate').value, 'YYYY-M-D');
+                        const corporateId = document.getElementById('statisticsCorporateId').value;
+
+                        // Pass true to toISOString to keep offset
+                        // This is so the server can return a file named based on client local time
+                        const startDateString = startDate.toISOString(true);
+                        const endDateString = endDate.toISOString(true);
+                        const url = `/CorporateUser/GetUserPrescriptionCSVStats?startDate=${encodeURIComponent(startDateString)}&endDate=${encodeURIComponent(endDateString)}&corporateId=${encodeURIComponent(corporateId)}`;
+                        window.open(url);
+                        
+                        // For whatever reason, Bootstrap Validator likes to disable the button after
+                        // the form has been submitted, so forcibly re-enable it
+                        $(e.target).data('bootstrapValidator').disableSubmitButtons(false);
+                    })
+                    // Remove successful validation styling
+                    .on('success.field.bv', function(e, data) {
+                        data.element.parents('.form-group').removeClass('has-success');
+                    })
+            })
+    </script>
+}

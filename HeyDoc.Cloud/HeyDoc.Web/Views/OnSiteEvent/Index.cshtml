@@ -1,0 +1,74 @@
+﻿@model IEnumerable<HeyDoc.Web.Entity.OnSiteEvent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">On Site Events</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-medkit"></i>
+                    <span>On Site Event List</span>
+                </div>
+                <div class="box-icons">
+                    <a href="@Url.Action("Create")" title="Create new event">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content no-padding">
+                <table id="onSiteEventTable" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Code)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th>
+                                Corporate Name
+                            </th>
+                            <th>
+                                Event Type
+                            </th>
+                            <th>
+                                Create Date
+                            </th>
+                            <th>
+                                Is Active
+                            </th>
+                            <th>
+                                No. of Check Ins
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*Anti forgery token for delete requests*@
+@Html.AntiForgeryToken()
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadOnSiteEventIndexScripts();
+    </script>
+}

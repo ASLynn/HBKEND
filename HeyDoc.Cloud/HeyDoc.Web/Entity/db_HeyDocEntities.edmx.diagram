@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3069b9e6da4f4b18a51d139ab2cda1af" Name="Diagram1" ZoomLevel="68" >
+        <EntityTypeShape EntityType="db_HeyDocModel.BloodGluccoseFastingHistory" Width="1.5" PointX="13.5" PointY="69.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.BloodGluccoseHistory" Width="1.5" PointX="13.5" PointY="56" />
+        <EntityTypeShape EntityType="db_HeyDocModel.BloodPressureHistory" Width="1.5" PointX="13.5" PointY="47.875" />
+        <EntityTypeShape EntityType="db_HeyDocModel.BMIHistory" Width="1.5" PointX="13.5" PointY="67" />
+        <EntityTypeShape EntityType="db_HeyDocModel.BodyTemperatureHistory" Width="1.5" PointX="13.5" PointY="64.25" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ChatRoom" Width="1.5" PointX="16.5" PointY="53" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Chat" Width="1.5" PointX="6" PointY="47.125" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Country" Width="1.5" PointX="6" PointY="44.375" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Doctor" Width="1.5" PointX="11.25" PointY="48.375" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DoctorStat" Width="1.5" PointX="13.5" PointY="44.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DoctorUserReview" Width="1.5" PointX="11.25" PointY="78.625" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DutyRoster" Width="1.5" PointX="4.5" PointY="0.875" />
+        <EntityTypeShape EntityType="db_HeyDocModel.HeartRateHistory" Width="1.5" PointX="13.5" PointY="53.375" />
+        <EntityTypeShape EntityType="db_HeyDocModel.HeightHistory" Width="1.5" PointX="13.5" PointY="58.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Invitation" Width="1.5" PointX="11.25" PointY="81.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.MenstrualDurationHistory" Width="1.5" PointX="13.5" PointY="72.5" />
+        <EntityTypeShape EntityType="db_HeyDocModel.MenstrualPeriodHistory" Width="1.5" PointX="13.5" PointY="50.625" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PatientGoal" Width="1.5" PointX="18.75" PointY="60.375" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Patient" Width="1.5" PointX="11.25" PointY="58.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Photo" Width="1.5" PointX="0.75" PointY="48.375" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Remark" Width="1.5" PointX="21" PointY="53" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Setting" Width="1.5" PointX="0.625" PointY="2.5" />
+        <EntityTypeShape EntityType="db_HeyDocModel.UserProfile" Width="1.5" PointX="8.875" PointY="45" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Voice" Width="1.5" PointX="3.75" PointY="42.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.webpages_Membership" Width="1.5" PointX="11.25" PointY="24" />
+        <EntityTypeShape EntityType="db_HeyDocModel.webpages_OAuthMembership" Width="1.5" PointX="11.25" PointY="21.5" />
+        <EntityTypeShape EntityType="db_HeyDocModel.webpages_Roles" Width="1.5" PointX="6.75" PointY="53" />
+        <EntityTypeShape EntityType="db_HeyDocModel.WeightHistory" Width="1.5" PointX="13.5" PointY="61.5" />
+        <AssociationConnector Association="db_HeyDocModel.FK_BloodGluccoseFastingHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_BloodGluccoseHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_BloodPressureHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_BMIHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_BodyTemperatureHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatRooms_Chats" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatRooms_Doctors" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatRooms_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Chats_ChatRooms" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PatientGoals_ChatRooms" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Chats_FromUserId" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Chats_Photos" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Chats_ToUserId" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Chats_Voices" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_Countries" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Doctors_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_DoctorStats_Doctors" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserReview_Doctor" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserReview_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_HeartRateHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_HeightHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Invitations_UserInvited" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Invitations_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_MenstrualDurationHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_MenstrualPeriodHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Remarks_PatientGoals" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Patients_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_WeightHistories_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_Photos" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Remarks_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_webpages_Membership_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.webpages_UsersInRoles" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PaymentRequest" Width="1.75" PointX="18.75" PointY="45.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PaymentRequest_ChatRooms" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Bank" Width="1.5" PointX="9" PointY="42" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Doctors_Banks" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PlatformPercent" Width="1.5" PointX="4.125" PointY="3.375" />
+        <EntityTypeShape EntityType="db_HeyDocModel.CashOutRequest" Width="1.5" PointX="11.25" PointY="37.625" />
+        <AssociationConnector Association="db_HeyDocModel.FK_CashOutRequest_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PaymentRequest_CashOutRequest" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PromotionUrl" Width="1.5" PointX="13.5" PointY="41.875" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Notification" Width="1.5" PointX="11.25" PointY="41.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Notification_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.NotificationPromotionUrl" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ChatResponse" Width="1.5" PointX="18.75" PointY="52.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatResponse_ChatRooms" />
+        <AssociationConnector Association="db_HeyDocModel.FK_webpages_OAuthMembership_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Group" Width="1.5" PointX="3" PointY="48" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Doctors_Groups" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Groups_Photos" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PromoCode" Width="1.5" PointX="16.5" PointY="47.125" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PaymentRequest_PromoCodes" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PromoCodes_Doctors" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Banner" Width="1.5" PointX="7.125" PointY="1" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PrescriptionDispatch" Width="1.5" PointX="24" PointY="61.625" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Corporate" Width="1.5" PointX="6.75" PointY="55.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_Corporates" />
+        <EntityTypeShape EntityType="db_HeyDocModel.OnSiteDispens" Width="1.5" PointX="21.75" PointY="65.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PrescriptionDispatchs_OnSiteDispenses" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Branch" Width="1.5" PointX="14" PointY="38.25" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ScanDetail" Width="1.5" PointX="11.25" PointY="65.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Branchs_Corporates" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ScanDetails_Partners" />
+        <EntityTypeShape EntityType="db_HeyDocModel.OnSiteDateSelection" Width="1.5" PointX="24" PointY="66.5" />
+        <AssociationConnector Association="db_HeyDocModel.FK_OnSiteDateSelection_OnSiteDispenses" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PrescriptionDispatchs_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Device" Width="1.5" PointX="11.25" PointY="33.5" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Prescription" Width="1.5" PointX="27" PointY="55" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_ChatRooms" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Devices_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_Doctors" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_Patients" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PrescriptionDispatchs_Prescription" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PrescriptionLog" Width="1.5" PointX="28.5" PointY="64" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PrescriptionLog_PrescriptionDispatchs" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_UserProfile1" />
+        <EntityTypeShape EntityType="db_HeyDocModel.UserCorperate" Width="1.5" PointX="16.25" PointY="42.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserCorperate_Branchs" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserCorperate_Corporates" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserCorperate_UserProfile" />
+		<EntityTypeShape EntityType="db_HeyDocModel.MedicationQuestion" Width="1.5" PointX="27" PointY="48.5" />
+        <EntityTypeShape EntityType="db_HeyDocModel.MedicationUserAnswer" Width="1.5" PointX="29.25" PointY="57.625" />
+        <AssociationConnector Association="db_HeyDocModel.FK_MedicationUserAnswer_MedicationQuestion" />
+        <AssociationConnector Association="db_HeyDocModel.FK_MedicationUserAnswer_Prescription" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Drug" Width="1.5" PointX="29.25" PointY="52.5" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Medication" Width="1.5" PointX="24.75" PointY="37.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Drugs_Medication" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Drugs_Prescription" />
+        <AssociationConnector Association="db_HeyDocModel.FK_MedicationQuestion_Medication" />
+        <EntityTypeShape EntityType="db_HeyDocModel.AuditLog" Width="1.5" PointX="11.25" PointY="29.5" />
+        <AssociationConnector Association="db_HeyDocModel.FK_AuditLogs_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_Dispensed_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK__Prescript__Dispe__149C0161" />
+        <EntityTypeShape EntityType="db_HeyDocModel.MedicationGroup" Width="1.5" PointX="22.5" PointY="44.375" />
+        <AssociationConnector Association="db_HeyDocModel.FK__Medicatio__Group__00FABC92" />
+        <EntityTypeShape EntityType="db_HeyDocModel.OnlineStatusLog" Width="1.5" PointX="11.25" PointY="72" />
+        <AssociationConnector Association="db_HeyDocModel.FK__OnlineSta__Docto__0DD9F539" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ThirdPartyAdministrator" Width="1.5" PointX="4.5" PointY="56.375" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Corporates_TPA" />
+        <EntityTypeShape EntityType="db_HeyDocModel.OnSiteEventCheckIn" Width="1.5" PointX="21.25" PointY="62" />
+        <EntityTypeShape EntityType="db_HeyDocModel.OnSiteEvent" Width="1.5" PointX="8.875" PointY="64.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_OnSiteEvents_Corporate" />
+        <AssociationConnector Association="db_HeyDocModel.FK_OnSiteEventCheckIns_OnSiteEvent" />
+        <AssociationConnector Association="db_HeyDocModel.FK_OnSiteEventCheckIns_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.OnSiteEventType" Width="1.5" PointX="5.375" PointY="63.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_OnSiteEvents_OnSiteEventType" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ChatBotAnswer" Width="1.5" PointX="5.25" PointY="37.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ChatBotQuestion" Width="1.5" PointX="3" PointY="37.375" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ChatBotResponse" Width="1.5" PointX="25" PointY="42.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ChatBotResponseTag" Width="1.5" PointX="27.25" PointY="41.625" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ChatBotSession" Width="1.5" PointX="18.75" PointY="55.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotAnswers_NextQuestion" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotAnswers_ParentQuestion" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotResponses_ChatBotAnswers" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotQuestions_NextQuestion" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotQuestions_Photos" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotResponses_ChatBotQuestions" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotResponses_ChatBotSessions" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotResponseTags_ChatBotResponse" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotSessions_ChatRooms" />
+        <EntityTypeShape EntityType="db_HeyDocModel.MedicalConditionMedication" Width="1.5" PointX="30" PointY="48.875" />
+        <EntityTypeShape EntityType="db_HeyDocModel.MedicalCondition" Width="1.5" PointX="27.75" PointY="44.875" />
+        <AssociationConnector Association="db_HeyDocModel.FK_MedicalConditionMedications_MedicalConditions" />
+        <AssociationConnector Association="db_HeyDocModel.FK_MedicalConditionMedications_Medication" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_ChatBotSession" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Chats_ChatBotSession" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ChatBotAnswerKey" Width="1.5" PointX="7.5" PointY="39.125" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ChatBotAnswerKey_ChatBotAnswer" />
+        <EntityTypeShape EntityType="db_HeyDocModel.SignUpPurpose" Width="1.5" PointX="16.25" PointY="40.125" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserCorperate_Purpose" />
+        <EntityTypeShape EntityType="db_HeyDocModel.UserReferralCode" Width="1.5" PointX="6.75" PointY="42.375" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_UserReferralCodes" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserReferralCodes_Corporate" />
+        <EntityTypeShape EntityType="db_HeyDocModel.ExternalVideoChatLog" Width="1.5" PointX="11.125" PointY="75.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ExternalVideoChatLogs_UserProfile_Doctor" />
+        <AssociationConnector Association="db_HeyDocModel.FK_ExternalVideoChatLogs_UserProfile_Patient" />
+        <AssociationConnector Association="db_HeyDocModel.UserProfile_ExternalVideoChatLog" />
+        <EntityTypeShape EntityType="db_HeyDocModel.AvixoMedicalCertificate" Width="1.5" PointX="11.125" PointY="18.5" />
+        <AssociationConnector Association="db_HeyDocModel.FK_AvixoMedicalCertificates_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_OnSiteEventCheckIns_Branch" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DoctorGroupUserTypeAssociation" Width="1.5" PointX="5.25" PointY="34.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_DoctroGroupUserTypeAssociatons_Groups" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_PaymentRequest" />
+        <EntityTypeShape EntityType="db_HeyDocModel.NotificationReadStatu" Width="1.5" PointX="18.5" PointY="42.125" />
+        <EntityTypeShape EntityType="db_HeyDocModel.NotificationTag" Width="1.5" PointX="13.5" PointY="35" />
+        <AssociationConnector Association="db_HeyDocModel.FK_NotificationReadStatusNotification" />
+        <AssociationConnector Association="db_HeyDocModel.FK_NotificationReadStatusUserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.NotificationTagNotification" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Icd" Width="1.5" PointX="3.375" PointY="6" />
+        <AssociationConnector Association="db_HeyDocModel.PrescriptionIcd" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Groups_Photos_TpPhoto" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PrescriptionSource" Width="1.5" PointX="3" PointY="52.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PrescriptionSource_Photo" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_PrescriptionSource" />
+        <AssociationConnector Association="db_HeyDocModel.PharmaciesSupplyCorporates" />
+        <AssociationConnector Association="db_HeyDocModel.PharmaciesSupplyTPAs" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_Doctors_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Prescription_Patients_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Facility" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.FacilityType" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.State" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Township" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Certi" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DocFacilityAccessment" Width="2.875" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DoctorApproved" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.VirtualPoint" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.VirtualPointDetails" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.UserExtra" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Qualification" Width="1.5" PointX="7.375" PointY="10.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Relationship" Width="1.5" PointX="12.375" PointY="8" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Speciality" Width="1.5" PointX="9.375" PointY="10.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_State" />
+        <AssociationConnector Association="db_HeyDocModel.FK_UserProfile_Township" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DoctorQualification" Width="1.5" PointX="13.5" PointY="75.5" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DoctorSpeciality" Width="1.5" PointX="13.5" PointY="32.125" />
+        <AssociationConnector Association="db_HeyDocModel.FK_DoctorQualification_Doctors" />
+        <AssociationConnector Association="db_HeyDocModel.FK_DoctorSpeciality_DoctorSpeciality" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Title" Width="1.5" PointX="10.375" PointY="3.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_DocFacilityAccessment_Doctors" />
+        <AssociationConnector Association="db_HeyDocModel.FK_DocFacilityAccessment_Facility" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Facility_FacilityType" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Facility_State" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Facility_Township" />
+        <EntityTypeShape EntityType="db_HeyDocModel.database_firewall_rules" Width="1.5" PointX="12.375" PointY="3.75" />
+        <EntityTypeShape EntityType="db_HeyDocModel.VaccinatedUserInfo" Width="1.5" PointX="11.125" PointY="13.625" />
+        <EntityTypeShape EntityType="db_HeyDocModel.VaccineDetail" Width="1.5" PointX="5.625" PointY="14" />
+        <EntityTypeShape EntityType="db_HeyDocModel.VaccineGeneral" Width="1.5" PointX="3.375" PointY="13.875" />
+        <AssociationConnector Association="db_HeyDocModel.FK_VaccinatedUserInfo_UserProfile" />
+        <AssociationConnector Association="db_HeyDocModel.FK_VaccineDetail_Vaccine" />
+        <EntityTypeShape EntityType="db_HeyDocModel.VaccinatedUser" Width="1.5" PointX="16.375" PointY="31.625" />
+        <AssociationConnector Association="db_HeyDocModel.FK_VaccinatedUser_UserProfile1" />
+        <AssociationConnector Association="db_HeyDocModel.FK_VaccinatedUser_VaccinatedUserInfo" />
+        <AssociationConnector Association="db_HeyDocModel.FK_VaccinatedUser_VaccineDetail1" />
+        <AssociationConnector Association="db_HeyDocModel.FK_VaccinatedUserInfo_State" />
+        <AssociationConnector Association="db_HeyDocModel.FK_VaccinatedUserInfo_Township" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PointTopupRequest" Width="1.5" PointX="11.125" PointY="84.875" />
+        <AssociationConnector Association="db_HeyDocModel.FK_TopupOrder_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PointBalance" Width="1.5" PointX="16.375" PointY="67.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PointBalance_PointTopupRequest" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PointBalance_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.Category" Width="1.5" PointX="13.375" PointY="14" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Doctors_Category" />
+        <AssociationConnector Association="db_HeyDocModel.FK_Groups_Category" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PromoCodes_Category" />
+        <EntityTypeShape EntityType="db_HeyDocModel.CorporatePosition" Width="1.5" PointX="9" PointY="61.375" IsExpanded="true" />
+        <AssociationConnector Association="db_HeyDocModel.FK_CorporatePosition_Corporates" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PatientExtra" Width="1.5" PointX="13.5" PointY="78.25" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PatientExtra_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.CompanyWhiteLabel" Width="1.5" PointX="11.375" PointY="10.75" />
+        <AssociationConnector Association="db_HeyDocModel.userprofile_companywhitelabel_FK" />
+        <EntityTypeShape EntityType="db_HeyDocModel.DoctorDuty" Width="1.5" PointX="11.125" PointY="68.5" />
+        <AssociationConnector Association="db_HeyDocModel.FK_DoctorDuty_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.CompanyWhiteLabelCurrentLogin" Width="1.5" PointX="16.625" PointY="36.625" />
+        <AssociationConnector Association="db_HeyDocModel.FK_CompanyWhiteLabelCurrentLogin_CompanyWhiteLabel" />
+        <AssociationConnector Association="db_HeyDocModel.FK_CompanyWhiteLabelCurrentLogin_UserProfile" />
+        <EntityTypeShape EntityType="db_HeyDocModel.PaymentMethod" Width="1.5" PointX="13.375" PointY="0.75" />
+        <AssociationConnector Association="db_HeyDocModel.FK_PaymentMethod_CompanyWhiteLabel" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

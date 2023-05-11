@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    @using HeyDoc.Web;
+
+    <div class="row">
+        <div id="breadcrumb" class="col-xs-12">
+            <a href="#" class="show-sidebar">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ol class="breadcrumb pull-left">
+                <li><a href="#">EPS Audit Logs</a></li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header" style="display:flex;">
+                    <div class="box-name" style="flex-grow:1;">
+                        <i class="fa fa-file-text"></i>
+                        <span>Audit Logs</span>
+                    </div>
+                    <button onclick="$('#auditLogList').DataTable().ajax.reload();"><i class="fa fa-refresh"></i></button>
+                </div>
+                <div class="box-content no-padding">
+                    <div class="row">
+                        <div class="form-group col-sm-4 ">
+                            @Html.Label("Search", new { @class = "control-label" })
+                            <input type="text" id="search" placeholder="Enter a search term" class="form-control" />
+                            <i id="clearSearchBtn" class="fa fa-times" style="cursor: pointer; position: absolute; right: 24px; top: 32px; opacity: 0.6; display: none"></i>
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <br />
+                            <button class="btn btn-primary" id="searchBtn" type="button">Search</button>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <table id="auditLogList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>User</th>
+                                <th>Action Type</th>
+                                <th>Description</th>
+                                <th>Created On</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th>No</th>
+                                <th>User</th>
+                                <th>Action Type</th>
+                                <th>Description</th>
+                                <th>Created On</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @section Scripts {
+        <script type="text/javascript">
+            LoadAuditLogList();
+        </script>
+    }
+
+
+

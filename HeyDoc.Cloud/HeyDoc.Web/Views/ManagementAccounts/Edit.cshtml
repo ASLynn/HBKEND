@@ -1,0 +1,106 @@
+﻿@model HeyDoc.Web.Models.UserModel
+@using HeyDoc.Web
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/ManagementAccounts/Index">Outlet List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-search"></i>
+                    <span>Edit Management Account</span>
+                </div>
+                <div class="box-icons">
+                  
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("Edit", "ManagementAccounts", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "managementEdit" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                    @Html.HiddenFor(m=>m.UserId)
+                    <h4 class="page-header">Register</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email *</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "Email", data_fv_remote = "true" })
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password *</label>
+                        <div class="col-sm-4">
+                           <input type="text" name="Password" class="form-control" />
+                        </div>
+                    </div>
+                    
+                    <h4 class="page-header">Outlet Info</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Photo</label>
+                        @{
+                            var src = "/Images/placeholder.png";
+                            if (Model.Photo != null)
+                            {
+                                src = Model.Photo.ImageUrl;
+                            }
+                        }
+                        <div class="col-sm-2">
+                            <div class="thumbnail-wapper">
+                                <div class="thumbnail">
+                                    <img src="@src" />
+                                </div>
+                                <input type="file" value="" style="display: none" name="imageFile" id="File" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Full Name *</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = "Full name" })
+                            @Html.ValidationMessageFor(model => model.FullName)
+                        </div>
+                    </div>
+                  
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label">Contact No.</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-4">
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Address)
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        LoadManagementEditScripts();
+    </script>
+}

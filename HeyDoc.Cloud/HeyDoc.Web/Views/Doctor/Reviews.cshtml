@@ -1,0 +1,103 @@
+﻿@model HeyDoc.Web.Models.UserModel
+@using HeyDoc.Web.Helpers;
+@using HeyDoc.Web;
+
+<!-- Menu Links -->
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        @Html.MenuLinks(new List<HtmlHelpers.MenuLink>() { 
+            new HtmlHelpers.MenuLink() { LinkText = "Doctor List", ActionName = "Index", ControllerName = "Doctor" },
+            new HtmlHelpers.MenuLink() { LinkText = "Doctor Reviews", ActionName = "Reviews", ControllerName = "Doctor" },
+        })
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-user-md"></i>
+                    <span>Doctor Info</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+
+                <div class="card">
+                    <h4 class="page-header">
+                        @Model.FullName</h4>
+                    <p>
+                        <b>Gender:</b> @Model.Gender
+                        <br />
+                        <b>Country:</b> @Model.Country.Name
+                        <br />
+                        <b>Language:</b> @Model.Language
+                        <br />
+                        <b>Email:</b> <a href="mailto:@(Model.UserName)">@Model.UserName</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-user-md"></i>
+                    <span>Review List</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+                <!-- Table -->
+                <table id="reviewList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Patient</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                            <th>Create Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Index</th>
+                            <th>Patient</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                            <th>Create Date</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadDoctorReviewScripts('@Model.UserId');
+    </script>
+}

@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddressInfoLabel" xml:space="preserve">
+    <value>地址：</value>
+  </data>
+  <data name="AdministrationRouteDrugTableHeader" xml:space="preserve">
+    <value>摄入</value>
+  </data>
+  <data name="AllergiesInfoLabel" xml:space="preserve">
+    <value>过敏症：</value>
+  </data>
+  <data name="AmountDrugTableHeader" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="CheckMedicationAndAdviceDisclaimer" xml:space="preserve">
+    <value>您必须检查提供给您的所有物品，并且不得服用任何似乎已被篡改或错误提供的药物。 不遵守此警告可能会严重损害您的健康。 在采取或避免采取任何行动或治疗措施之前，您还必须检查我们小组与您自己的家庭医生提供的任何建议。 否则可能会严重损害您的健康。</value>
+  </data>
+  <data name="CreateDateInfoLabel" xml:space="preserve">
+    <value>日期：</value>
+  </data>
+  <data name="CreatedElectronicallyByInfoLabel" xml:space="preserve">
+    <value>电子创建者：</value>
+  </data>
+  <data name="DateOfBirthInfoLabel" xml:space="preserve">
+    <value>生日：</value>
+  </data>
+  <data name="DiagnosisCodeInfoLabel" xml:space="preserve">
+    <value>诊断（ICD-11）：</value>
+  </data>
+  <data name="DiagnosisCodeInfoLabelNonBreakHyphen" xml:space="preserve">
+    <value>诊断（ICD&amp;#8209;11）：</value>
+  </data>
+  <data name="DisclaimerWarningHeader" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="DispensedAmountDrugTableHeader" xml:space="preserve">
+    <value>供应量：</value>
+  </data>
+  <data name="DispensedByInfoLabel" xml:space="preserve">
+    <value>受供于:</value>
+  </data>
+  <data name="DispensedFromOutlet" xml:space="preserve">
+    <value>受供于: {0}</value>
+  </data>
+  <data name="DispensedOnDate" xml:space="preserve">
+    <value>提供于: {0}</value>
+  </data>
+  <data name="DoctorRemarksInfoLabel" xml:space="preserve">
+    <value>医生评语：</value>
+  </data>
+  <data name="DosageDrugTableHeader" xml:space="preserve">
+    <value>剂量</value>
+  </data>
+  <data name="DrugFrequency_72 hourly" xml:space="preserve">
+    <value>七十二小时</value>
+  </data>
+  <data name="DrugFrequency_Breakfast, lunch &amp; dinner" xml:space="preserve">
+    <value>早餐午餐晚餐</value>
+  </data>
+  <data name="DrugFrequency_Every 12 hours" xml:space="preserve">
+    <value>每十二小时</value>
+  </data>
+  <data name="DrugFrequency_Every 2 hours" xml:space="preserve">
+    <value>每两小时</value>
+  </data>
+  <data name="DrugFrequency_Every 4 hours" xml:space="preserve">
+    <value>每四小时</value>
+  </data>
+  <data name="DrugFrequency_Every 6 hours" xml:space="preserve">
+    <value>每六小时</value>
+  </data>
+  <data name="DrugFrequency_Every 8 hours" xml:space="preserve">
+    <value>每八小时</value>
+  </data>
+  <data name="DrugFrequency_Every hour" xml:space="preserve">
+    <value>每隔一小时</value>
+  </data>
+  <data name="DrugFrequency_Every morning" xml:space="preserve">
+    <value>每天早上</value>
+  </data>
+  <data name="DrugFrequency_Every morning &amp; afternoon" xml:space="preserve">
+    <value>每天早上和下午</value>
+  </data>
+  <data name="DrugFrequency_Every morning &amp; night" xml:space="preserve">
+    <value>每天早晚</value>
+  </data>
+  <data name="DrugFrequency_Every night" xml:space="preserve">
+    <value>每天晚上</value>
+  </data>
+  <data name="DrugFrequency_Every other day" xml:space="preserve">
+    <value>每隔一天</value>
+  </data>
+  <data name="DrugFrequency_Every other morning" xml:space="preserve">
+    <value>每隔一个早晨</value>
+  </data>
+  <data name="DrugFrequency_Every other night" xml:space="preserve">
+    <value>每隔一个晚上</value>
+  </data>
+  <data name="DrugFrequency_Five times a week" xml:space="preserve">
+    <value>一周五次</value>
+  </data>
+  <data name="DrugFrequency_Five times daily" xml:space="preserve">
+    <value>每天五次</value>
+  </data>
+  <data name="DrugFrequency_Four times daily" xml:space="preserve">
+    <value>每天四次</value>
+  </data>
+  <data name="DrugFrequency_Half an hour before dinner" xml:space="preserve">
+    <value>晚餐前半小时</value>
+  </data>
+  <data name="DrugFrequency_Half an hour before lunch" xml:space="preserve">
+    <value>午餐前半小时</value>
+  </data>
+  <data name="DrugFrequency_Immediately" xml:space="preserve">
+    <value>立即</value>
+  </data>
+  <data name="DrugFrequency_Monday to Friday" xml:space="preserve">
+    <value>星期一到星期五</value>
+  </data>
+  <data name="DrugFrequency_On Mondays &amp; Fridays" xml:space="preserve">
+    <value>在星期一和星期五</value>
+  </data>
+  <data name="DrugFrequency_On Mondays &amp; Thursdays" xml:space="preserve">
+    <value>在星期一和星期四</value>
+  </data>
+  <data name="DrugFrequency_On Mondays &amp; Wednesdays" xml:space="preserve">
+    <value>在星期一和星期三</value>
+  </data>
+  <data name="DrugFrequency_On Mondays, Wednesdays &amp; Fridays" xml:space="preserve">
+    <value>在星期一，星期三和星期五</value>
+  </data>
+  <data name="DrugFrequency_On Saturdays &amp; Sundays" xml:space="preserve">
+    <value>在星期六和星期日</value>
+  </data>
+  <data name="DrugFrequency_On Tuesdays &amp; Thursdays" xml:space="preserve">
+    <value>在星期二和星期四</value>
+  </data>
+  <data name="DrugFrequency_On Tuesdays, Thursdays &amp; Saturdays" xml:space="preserve">
+    <value>在星期二，星期四和星期六</value>
+  </data>
+  <data name="DrugFrequency_On Wednesdays &amp; Fridays" xml:space="preserve">
+    <value>在星期三和星期五</value>
+  </data>
+  <data name="DrugFrequency_On Wednesdays &amp; Saturdays" xml:space="preserve">
+    <value>在星期三和星期六</value>
+  </data>
+  <data name="DrugFrequency_Once a month" xml:space="preserve">
+    <value>每月一次</value>
+  </data>
+  <data name="DrugFrequency_Once a week" xml:space="preserve">
+    <value>一个星期一次</value>
+  </data>
+  <data name="DrugFrequency_Once daily" xml:space="preserve">
+    <value>每天一次</value>
+  </data>
+  <data name="DrugFrequency_Other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="DrugFrequency_Three times daily" xml:space="preserve">
+    <value>每天三次</value>
+  </data>
+  <data name="DrugFrequency_Twice a month" xml:space="preserve">
+    <value>每月两次</value>
+  </data>
+  <data name="DrugFrequency_Twice a week" xml:space="preserve">
+    <value>一周两次</value>
+  </data>
+  <data name="DrugFrequency_Twice daily" xml:space="preserve">
+    <value>每天两次</value>
+  </data>
+  <data name="DrugFrequency_When necessary" xml:space="preserve">
+    <value>必要时</value>
+  </data>
+  <data name="DrugNamesDrugTableHeader" xml:space="preserve">
+    <value>药物</value>
+  </data>
+  <data name="DrugRemark" xml:space="preserve">
+    <value>评语：{0}</value>
+  </data>
+  <data name="DrugRoute_Buccal" xml:space="preserve">
+    <value>颊部</value>
+  </data>
+  <data name="DrugRoute_Gargle" xml:space="preserve">
+    <value>漱口</value>
+  </data>
+  <data name="DrugRoute_Intramuscular" xml:space="preserve">
+    <value>肌内</value>
+  </data>
+  <data name="DrugRoute_Intranasal" xml:space="preserve">
+    <value>鼻内</value>
+  </data>
+  <data name="DrugRoute_Intravenous" xml:space="preserve">
+    <value>静脉</value>
+  </data>
+  <data name="DrugRoute_Ocular" xml:space="preserve">
+    <value>眼科</value>
+  </data>
+  <data name="DrugRoute_Oral" xml:space="preserve">
+    <value>口服</value>
+  </data>
+  <data name="DrugRoute_Oral Inhalation" xml:space="preserve">
+    <value>口服吸入</value>
+  </data>
+  <data name="DrugRoute_Other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="DrugRoute_Otic" xml:space="preserve">
+    <value>耳的</value>
+  </data>
+  <data name="DrugRoute_Rectal" xml:space="preserve">
+    <value>直肠的</value>
+  </data>
+  <data name="DrugRoute_Sublingual" xml:space="preserve">
+    <value>舌下</value>
+  </data>
+  <data name="DrugRoute_Topical" xml:space="preserve">
+    <value>外用</value>
+  </data>
+  <data name="DrugRoute_Vaginal" xml:space="preserve">
+    <value>阴道</value>
+  </data>
+  <data name="DrugStatus_Delivered" xml:space="preserve">
+    <value>已递送</value>
+  </data>
+  <data name="DrugStatus_Delivery in Process" xml:space="preserve">
+    <value>传递中</value>
+  </data>
+  <data name="DrugStatus_Dispensed" xml:space="preserve">
+    <value>已提供</value>
+  </data>
+  <data name="DrugStatus_Other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="DrugStatus_Prescribed" xml:space="preserve">
+    <value>已配药</value>
+  </data>
+  <data name="EPrescriptionElectrionicallyGenerated" xml:space="preserve">
+    <value>*此电子处方副本是电子生成的。</value>
+  </data>
+  <data name="EPrescriptionMustBeDispensedByLicensedPharmacist" xml:space="preserve">
+    <value>除非有执照的药剂师特别提供，否则此电子处方不适用于自配药。</value>
+  </data>
+  <data name="EPrescriptionTitle" xml:space="preserve">
+    <value>电子处方</value>
+  </data>
+  <data name="FrequencyDrugTableHeader" xml:space="preserve">
+    <value>频率</value>
+  </data>
+  <data name="HeightInfoLabel" xml:space="preserve">
+    <value>身高：</value>
+  </data>
+  <data name="IcNumberInfoLabel" xml:space="preserve">
+    <value>身份证：</value>
+  </data>
+  <data name="InformationDisclaimer" xml:space="preserve">
+    <value>免责声明：本文中包含的信息不能代替具有适当资格和执照的医师或其他医疗保健提供者的建议。 此处提供的信息仅供参考。 该工具可能无法涵盖所有可能的药物相互作用或所有FDA警告或警报。 如果您对健康有疑问或对相互作用有疑问，请咨询医生，或向FDA获取FDA警告的完整列表。 尽管我们尝试提供准确和最新的信息，但不能保证达到这种效果。</value>
+  </data>
+  <data name="MedicalRecordElectronicallyGenerated" xml:space="preserve">
+    <value>*此病历副本是电子生成的。</value>
+  </data>
+  <data name="MedicalRecordMustBeDispensedByLicensedPharmacist" xml:space="preserve">
+    <value>除非由获得许可的药剂师特别提供，否则此医疗记录对自我分配无效。</value>
+  </data>
+  <data name="MedicalSummaryInfoLabel" xml:space="preserve">
+    <value>医学总结：</value>
+  </data>
+  <data name="MedicationMayNotBeSuitableDisclaimer" xml:space="preserve">
+    <value>并非所有产品都适合所有医疗疾病，有时，它们的使用可能会干扰您正在接受的任何治疗或加重病情。 在使用任何医疗产品之前，应先咨询您的家庭医生。</value>
+  </data>
+  <data name="MedicationRecordTitle" xml:space="preserve">
+    <value>用药记录</value>
+  </data>
+  <data name="NameInfoLabel" xml:space="preserve">
+    <value>名称：</value>
+  </data>
+  <data name="NumberDrugTableHeader" xml:space="preserve">
+    <value>数量</value>
+    <comment>This is just drug number 1, 2, 3, etc. not the amount to be given for each drug</comment>
+  </data>
+  <data name="PrescribedElectronicallyByInfoLabel" xml:space="preserve">
+    <value>电子规定：</value>
+  </data>
+  <data name="PrescriptionIdInfoLabel" xml:space="preserve">
+    <value>处方ID：</value>
+  </data>
+  <data name="PrescriptionNoDrugs" xml:space="preserve">
+    <value>没有毒品信息</value>
+  </data>
+  <data name="RecordIdInfoLabel" xml:space="preserve">
+    <value>记录ID</value>
+  </data>
+  <data name="StatusDrugTableHeader" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="WeightInfoLabel" xml:space="preserve">
+    <value>体重：</value>
+  </data>
+</root>

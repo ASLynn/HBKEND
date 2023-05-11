@@ -1,0 +1,34 @@
+﻿
+insert into Speciality Select 'Family Medicine',1
+insert into Speciality Select 'General Medicine',1
+insert into Speciality Select 'General Surgery',1
+insert into Speciality Select 'Cardiology',1
+insert into Speciality Select 'Cardiac Surgery',1
+insert into Speciality Select 'Dermatology and Aesthetic' ,1
+insert into Speciality Select 'Otorhinlaryngology Head & Neck Surgery' ,1
+insert into Speciality Select 'Gastroenterology' ,1
+insert into Speciality Select 'GI Surgery' ,1
+insert into Speciality Select 'Clinical Haematology' ,1
+insert into Speciality Select 'Hepatology' ,1
+insert into Speciality Select 'Maxillofacial Surgery' ,1
+insert into Speciality Select 'Nephrology' ,1
+insert into Speciality Select 'Neurology' ,1
+insert into Speciality Select 'Neuro-Surgery' ,1
+insert into Speciality Select 'Nutrition' ,1
+insert into Speciality Select 'Obstetric & Gynaecology',1 
+insert into Speciality Select 'Medical Oncology' ,1
+insert into Speciality Select 'Orthopedics',1
+insert into Speciality Select 'Paediatrics Surgery' ,1
+insert into Speciality Select 'Paediatrics',1
+insert into Speciality Select 'Physical Medicine & Rehabilitation' ,1
+insert into Speciality Select 'Radiology' ,1
+insert into Speciality Select 'Urosurgery' ,1
+insert into Speciality Select 'Chest Medicine' ,1
+insert into Speciality Select 'Chest Surgery' ,1
+insert into Speciality Select 'Mental Health' ,1
+insert into Speciality Select 'Endocrinology- Diabetes, Hormone & General Medicine',1
+insert into Speciality Select 'Thoracic Surgery' ,1
+insert into Speciality Select 'Rheumatology' ,1
+insert into Speciality Select 'Urology' ,1
+insert into Speciality Select 'Ophthalmology' ,1
+insert into Speciality Select 'Dental and oral health' ,1

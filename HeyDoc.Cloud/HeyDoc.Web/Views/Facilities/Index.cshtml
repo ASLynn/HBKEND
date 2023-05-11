@@ -1,0 +1,94 @@
+﻿@model IEnumerable<HeyDoc.Web.Models.FacilityListModel>
+@using HeyDoc.Web;
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Categories</a></li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-tags fa-lg"></i>
+                    <span>Facility List</span>
+                </div>
+                <div class="box-icons">
+                    <a href="/Facilities/Create" title="Add new facility">
+                        <i class="fa fa-plus "></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <br />
+            <div class="box-content no-padding">
+
+                <table id="facilityList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <tr>
+
+                        <th>
+                            <text>Facility Name</text>
+                        </th>
+                        <th>
+                            <text>Facility State</text>
+                        </th>
+                        <th>
+                            <text>Facility Township</text>
+                        </th>
+                        <th>
+                            <text>Contact No</text>
+                        </th>
+                        <th>
+                            <text>Facility Address</text>
+                        </th>
+
+
+
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacilityName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.State)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Township)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacilityPh)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacilityAddress)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.FacilityId }) |
+                                @*@Html.ActionLink("Details", "Details", new { id=item.FacilityId }) |*@
+                                @Html.ActionLink("Delete", "Delete", new { id = item.FacilityId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

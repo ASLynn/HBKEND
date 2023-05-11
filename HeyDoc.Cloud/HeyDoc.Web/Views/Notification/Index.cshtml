@@ -1,0 +1,150 @@
+﻿@using HeyDoc.Web;
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Notification/Index">Notification</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row" style="display:flex;">
+    <button class="btn btn-primary" type="button" onclick="location.href='/Notification/CreateTag'" style="margin-right: 16px; margin-left: auto; display: block;">+ Create New Tag</button>
+    <button class="btn btn-primary" type="button" onclick="location.href='/Notification/Stats'" style="margin-right: 16px; margin-left: 0; display: block;">View Stats</button>
+</div>
+<div class="row" id="msgView">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-calendar"></i>
+                    <span>Scheduled Notifications</span>
+                </div>
+                <div class="box-icons">
+                    <a href="/Notification/Create" title="New push notification">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <table id="enqueuedList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Type</th>
+                            <th>Notification Text</th>
+                            <th>URL</th>
+                            <th>Device</th>
+                            <th>Corporate</th>
+                            <th>Scheduled Time</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            LoadDataTablesScripts(function () {
+                var oTable = $('table#enqueuedList').DataTable({
+                    ordering: true,
+                    searching: false,
+                    order: [[6, 'asc']],
+                    paging: true,
+                    lengthChange: false,
+                    processing: true,
+                    serverSide: false,
+                    ajax: {
+                        url: "/Notification/GetScheduledList",
+                        type: "GET"
+                    },
+                    language: {
+                        emptyTable: "No notifications scheduled."
+                    },
+                    columns: [
+                        {
+                            data: null,
+                            orderable: false
+                        },
+                        {
+                            data: "NotificationType",
+                            orderable: false
+                        },
+                        {
+                            data: "Text",
+                            orderable: false
+                        },
+                        {
+                            data: "URL",
+                            defaultContent: "-",
+                            orderable: false
+                        },
+                        {
+                            data: "DeviceType",
+                            orderable: false
+                        },
+                        {
+                            data: "Corporate",
+                            orderable: false
+                        },
+                        {
+                            data: "ScheduledDateTime",
+                            orderable: true,
+                            render: function (data, type, row, meta) {
+                                if (type == 'display') {
+                                    return moment.utc(data).local().format("dddd, D MMM YYYY h:mma");
+                                } else {
+                                    return data;
+                                }
+                            }
+                        },
+                        {
+                            data: "SequenceNumber",
+                            name: "sequenceNumber",
+                            render: function (data, type, row, meta) {
+                                var html = "";
+                                html += '&nbsp;&nbsp;<a href="/Notification/Edit?sequenceNumber=' + data + '" class="edit"><i class="fa fa-pencil"></i></a>';
+                                html += '&nbsp;&nbsp;<a href="#" class="del" data-seqNum="' + data + '"><i class="fa fa-trash-o"></i></a>';
+                                return html;
+                            },
+                            orderable: false
+                        }
+                    ]
+                })
+
+                // Index column
+                oTable.on('draw', function () {
+                    oTable.column(0).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                });
+
+                $('table#enqueuedList tbody').on('click', 'a.del', function () {
+                    var $this = $(this);
+                    var seqNum = $this.attr('data-seqNum');
+
+                    if (confirm("Are you sure you want to unschedule and delete this notification?")) {
+                        $.post('/Notification/Delete?sequenceNumber=' + seqNum, function () {
+                            window.location.reload();
+                        }).error(function (jsonError) {
+                            alert(jsonError);
+                        });
+                    }
+                });
+
+                oTable.draw();
+            })
+        })
+    </script>
+}

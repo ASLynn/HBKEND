@@ -1,0 +1,347 @@
+﻿@model HeyDoc.Web.Models.DoctorUpdateModel
+    @using HeyDoc.Web
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <div class="row">
+        <div id="breadcrumb" class="col-xs-12">
+            <a href="#" class="show-sidebar">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ol class="breadcrumb pull-left">
+                <li><a href="/Doctor/Index">Doctor List</a></li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="box ui-draggable ui-droppable">
+                <div class="box-header">
+                    <div class="box-name ui-draggable-handle">
+                        <i class="fa fa-search"></i>
+                        <span>Doctor edit form</span>
+                    </div>
+                    <div class="box-icons">
+                        <a class="expand-link">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                    </div>
+                    <div class="no-move"></div>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm("Edit", "Doctor", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "doctorEdit" }))
+                    {
+                        @Html.HiddenFor(model => model.DoctorId)
+                        if (!string.IsNullOrEmpty(Model.SignatureUrl))
+                        {
+                            @Html.HiddenFor(model => model.SignatureUrl)
+                        }
+                        if (!string.IsNullOrEmpty(Model.Photo.ThumbnailUrl))
+                        {
+                            @Html.HiddenFor(model => model.Photo.ThumbnailUrl)
+                        }
+                        <h4 class="page-header">User Info</h4>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Model.Email
+                                @Html.HiddenFor(m => m.Email)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Photo</label>
+                            <div class="col-sm-2">
+                                <div class="thumbnail-wapper">
+                                    <div class="thumbnail">
+                                        <img src="@(string.IsNullOrEmpty(Model.Photo.ThumbnailUrl) ? "/Images/placeholder.png" : Model.Photo.ThumbnailUrl)" />
+                                    </div>
+                                    <input type="file" value="" style="display: none" name="imageFile" id="File" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.Title,
+                                  new List<SelectListItem>() {
+                                    new SelectListItem(){Text="Select Title", Value=""},
+                                    new SelectListItem(){Text="Dr.", Value="Dr."},
+                                    new SelectListItem(){Text="Prof", Value="Prof"},
+                                    new SelectListItem(){Text="Ph", Value="Ph"},
+                                    new SelectListItem(){Text="AP", Value="AP"},
+                                  }
+                                  , new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.Title)
+                            </div>
+                            @Html.LabelFor(m => m.FullName, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = "Full name" })
+                                @Html.ValidationMessageFor(model => model.FullName)
+                            </div>
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">IC/NRC *</label>
+                            <div class="col-sm-4 has-feedback">
+                                @Html.TextBoxFor(model => model.IC, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.IC)
+                            </div>
+                            <label class="col-sm-2 control-label">Blood Type</label>
+                            <div class="col-sm-4 has-feedback">
+                                @Html.TextBoxFor(model => model.BloodType, new { @class = "form-control" })                              
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            @Html.LabelFor(m => m.Gender, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.Gender, Gender.Female.ToSelectList(), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Gender)
+                            </div>
+                            @Html.LabelFor(m => m.Birthday, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4 has-feedback">
+                                @Html.TextBoxFor(model => model.Birthday, new { @class = "form-control hasDatepicker" })
+                                <span class="fa fa-calendar form-control-feedback"></span>
+                                @Html.ValidationMessageFor(model => model.Birthday)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">Phone Number *</label>                  
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+
+                            </div>
+                            <label class="col-sm-2 control-label">Country</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.CountryId, ViewBag.Countries as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CountryId)
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            @Html.LabelFor(m => m.Language, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Language, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Language)
+                            </div>
+                            <label class="col-sm-2 control-label">State *</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.StateId, ViewBag.State as IEnumerable<SelectListItem>, new { data_url = Url.Action("GetTownship"), @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.StateId)
+
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">Video Chat URL</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.VideoChatURL, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.VideoChatURL)
+                            </div>
+                            <label class="col-sm-2 control-label">Township *</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.TownshipId, ViewBag.Township as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TownshipId)
+                            </div>
+                        </div>
+                        <h4 class="page-header">User Settings</h4>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.IsDigitalSignatureEnabled, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-1">
+                                @Html.CheckBoxFor(model => model.IsDigitalSignatureEnabled, new { @style = "width:20px;height:20px;", placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.IsDigitalSignatureEnabled)
+                            </div>
+
+                            @Html.LabelFor(m => m.IsPartner, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-1">
+                                @Html.CheckBoxFor(model => model.IsPartner, new { @style = "width:20px;height:20px;", placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.IsPartner)
+                            </div>
+
+                            @Html.LabelFor(m => m.ShowInApp, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-1">
+                                @Html.CheckBoxFor(model => model.ShowInApp, new { @style = "width:20px;height:20px;", placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.ShowInApp)
+                            </div>
+
+                            @Html.LabelFor(m => m.CanApproveEPS, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-1">
+                                @Html.CheckBoxFor(model => model.CanApproveEPS, new { @style = "width:20px;height:20px;", placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.CanApproveEPS)
+                            </div>
+
+                            @Html.LabelFor(m => m.IsChatBotEnabled, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-1">
+                                @Html.CheckBoxFor(model => model.IsChatBotEnabled, new { @style = "width:20px;height:20px;", placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.IsChatBotEnabled)
+                            </div>
+                        </div>
+                        <br />
+                        <h4 class="page-header">Experience</h4>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Speciality *<br /> (family medicine, general surgery etc)</label>
+                            <div class="col-sm-4">
+                                @Html.ListBoxFor(m => m.SpecialityId, ViewBag.SpecilityList as IEnumerable<SelectListItem>, new { @class = "listbox form-control" })
+                            </div>
+                            <label class="col-sm-2 control-label">Qualification * <br /> ( MBBS, MBChB etc)</label>
+                            <div class="col-sm-4">
+                                @Html.ListBoxFor(m => m.QualificationId, ViewBag.QualificationList as IEnumerable<SelectListItem>, new { @class = "listbox form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Category</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.CategoryId, ViewBag.Categories as IEnumerable<SelectListItem>, "--Select--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CategoryId)
+                            </div>
+                            <label class="col-sm-2 control-label">Group</label>
+                            <div class="col-sm-4">
+                                <select id="ddl_group" name="GroupId" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.HospitalName, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.HospitalName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HospitalName)
+                            </div>
+                            @Html.LabelFor(m => m.Practicing, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4 has-feedback">
+                                @Html.TextBoxFor(model => model.Practicing, new { @class = "form-control hasDatepicker", @id = "practicing", placeholder = "" })
+                                <span class="fa fa-calendar form-control-feedback"></span>
+                                @Html.ValidationMessageFor(model => model.Practicing)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.RegisterNumber, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.RegisterNumber, new { @class = "form-control", placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.RegisterNumber)
+                            </div>
+                            @*<label class="col-sm-2 control-label">Practicing Certificate</label>
+                <div class="col-sm-4">
+                    <input type="file" name="certificateFile" />
+                </div>*@
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Qualification, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Qualification, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Qualification)
+                            </div>
+                            @Html.LabelFor(m => m.MedicalSch, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.MedicalSch, new { @class = "form-control", placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.MedicalSch)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Address, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", placeholder = "", rows = "5" })
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </div>
+                            @Html.LabelFor(m => m.AboutMe, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextAreaFor(model => model.AboutMe, new { @class = "form-control", placeholder = "", rows = "5" })
+                                @Html.ValidationMessageFor(model => model.AboutMe)
+                            </div>
+                        </div>
+                        <h4 class="page-header">Hospital / Clinic </h4>
+                        <div class="form-group">
+                            @*@Html.ListBoxFor(m => m.FacilitiesId, ViewBag.FacilityList as IEnumerable<SelectListItem>, new { @class = "listbox form-control" })*@
+                            <div class="col-sm-4">
+                                @Html.ListBoxFor(model => model.FacilitiesId, ViewBag.FacilityList as IEnumerable<SelectListItem>, new { @class = "listbox form-control" })
+                            </div>
+                        </div>
+                        <h4 class="page-header">Documents And Certificates</h4>
+                        <div class="form-group">
+                            @for (int i = 0; i < Model.certiModels.Count; i++)
+                            {
+
+                                <div class="col-sm-4">
+
+                                    @if (Model.certiModels[i].CertiStatus == 1)
+                                    {<div>MBBS <a href="@Model.certiModels[i].CertiUrl">Download</a></div>}
+                                    @if (Model.certiModels[i].CertiStatus == 2)
+                                    {<div>MMEDSC <a href="@Model.certiModels[i].CertiUrl">Download</a></div>}
+                                    @if (Model.certiModels[i].CertiStatus == 3)
+                                    {<div>DRMEDSC <a href="@Model.certiModels[i].CertiUrl">Download</a></div>}
+                                    @if (Model.certiModels[i].CertiStatus == 4)
+                                    {<div>SAMA <a href="@Model.certiModels[i].CertiUrl">Download</a></div>}
+                                    @if (Model.certiModels[i].CertiStatus == 5)
+                                    {<div>PHD <a href="@Model.certiModels[i].CertiUrl">Download</a></div>}
+                                    @if (Model.certiModels[i].CertiStatus == 6)
+                                    {<div>DFamilyMed <a href="@Model.certiModels[i].CertiUrl">Download</a></div>}
+                                    @if (Model.certiModels[i].CertiStatus == 7)
+                                    {<div>Other <a href="@Model.certiModels[i].CertiUrl">Download</a></div>}
+
+                                </div>
+
+                            }
+                        </div>
+                        <h4 class="page-header">Signature</h4>
+
+                        <div class="form-group">
+
+                            @if (!string.IsNullOrEmpty(Model.SignatureUrl))
+                            {
+                                @Html.Label("Uploaded Signature", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    <img src="@Model.SignatureUrl" style="max-width:100px;" />
+                                </div>
+                            }
+
+
+
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-primary" id="btnSubmit1">Update</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+                    </div>
+                    </div>
+    </div>
+    @section Scripts {
+        <script type="text/javascript">
+            LoadDoctorEditScripts('@Model.GroupId');
+            //$(function () {
+            //    $('#mycheckbox').change(function () {
+            //        $('#btnSubmit1').removeAttr('disabled');
+            //    });
+            //});
+
+            $(document).ready(function () {
+
+                $('#StateId').change(function () {
+                    var url = $(this).data('url');
+
+                    var data = { stateId: $(this).val() };
+
+                    $.getJSON(url, data, function (GetTownship) {
+                        var ddlTownship = $('#TownshipId');
+                        ddlTownship.empty();
+                        ddlTownship.append($('<option/>', {
+                            value: 0,
+                            text: "Select Township"
+                        }));
+
+
+                        $.each(GetTownship, function (index, TownshipObj) {
+                            ddlTownship.append($('<option/>', {
+                                value: TownshipObj.Value,
+                                text: TownshipObj.Text
+                            }));
+                        });
+                    });
+                });
+            });
+
+        </script>
+    }

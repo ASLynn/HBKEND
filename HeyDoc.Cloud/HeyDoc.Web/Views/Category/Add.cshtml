@@ -1,0 +1,127 @@
+﻿@using HeyDoc.Web;
+@model HeyDoc.Web.Models.CategoryModel
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Category</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-tags fa-lg"></i>
+                    <span>@(Model.CategoryId > 0 ? "Edit Category" : "Add Category")</span>
+                </div>
+                <div class="box-icons">
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("AddOrEditCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col-md-4">
+                            <label class="control-label">Name </label>
+                            @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control", placeholder = "Category Name", required = "required" })
+                            @Html.ValidationMessageFor(model => model.CategoryName)
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">Price </label>
+                            @Html.TextBoxFor(model => model.CategoryPrice, new { @class = "form-control", type = "number", required = "required" })
+                            @Html.ValidationMessageFor(model => model.CategoryPrice)
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="control-label">Midnight Price </label>
+                            @Html.TextBoxFor(model => model.MidnightPrice, new { @class = "form-control", type = "number", required = "required" })
+                            @Html.ValidationMessageFor(model => model.MidnightPrice)
+                        </div>
+                        @*<div class="col-md-2">
+                    <label class="control-label">Is Free Chat?</label>
+                    @Html.CheckBoxFor(model => model.IsFreeChat, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IsFreeChat)
+                </div>*@
+                    </div>
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col-sm-6 col-xs-8 col-md-4">
+                            <label class="control-label">Is Free Chat?</label>
+                        </div>
+                        <div class="col-sm-1 col-xs-1 col-md-1" style="width:50px;">
+                            @Html.CheckBoxFor(model => model.IsFreeChat, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IsFreeChat)
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col-sm-6 col-xs-8 col-md-4">
+                            <label class="control-label">QueueMed Ready: Public user?</label>
+                        </div>
+                        <div class="col-sm-1 col-xs-1 col-md-1" style="width:50px;">
+                            @Html.CheckBoxFor(model => model.IsQueueMedPublicUser, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IsQueueMedPublicUser)
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col-sm-6 col-xs-8 col-md-4">
+                            <label class="control-label">QueueMed Ready: Corporate user?</label>
+                        </div>
+                        <div class="col-sm-1 col-xs-1 col-md-1" style="width:50px;">
+                            @Html.CheckBoxFor(model => model.IsQueueMedCorporateUser, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IsQueueMedCorporateUser)
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col-sm-6 col-xs-8 col-md-4">
+                            <label class="control-label">Hidden From Public</label>
+                        </div>
+                        <div class="col-sm-1 col-xs-1 col-md-1" style="width:50px;">
+                            @Html.CheckBoxFor(model => model.IsHiddenFromPublic, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IsHiddenFromPublic)
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col-md-4">
+                            <label class="control-label">Sequence</label>
+                            @Html.TextBoxFor(model => model.Sequence, new { @class = "form-control", type = "number", required = "required" })
+                            @Html.ValidationMessageFor(model => model.Sequence)
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">Image </label>
+                            <input type="file" name="categoryImage" />
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <div class="col-md-4">
+                                <br />
+                                <img src="@Model.ImageUrl" style="width:10%;" />
+                            </div>
+                        }
+                        @Html.HiddenFor(m => m.CategoryId)
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        //LoadCategoryIndexScripts();
+    </script>
+}

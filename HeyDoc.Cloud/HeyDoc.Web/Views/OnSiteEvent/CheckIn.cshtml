@@ -1,0 +1,223 @@
+﻿@using HeyDoc.Web
+
+@section Styles
+{
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.5rem;
+        }
+
+        .detailLabel {
+            font-weight: 700;
+        }
+    </style>
+}
+
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/OnSiteEvent/Index">On Site Events</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-plus"></i>
+                    <span>Check In</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("CheckIn", "OnSiteEvent", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "eventCheckIn" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                    @Html.TextBox("Medical ID", null, new { id = "medicalIdText", style = "display: none;" })
+                    <div class="row">
+                        <div class="col-sm-2">
+                            @Html.Label("Event Code")
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBox("Event Code", (string)ViewBag.EventCode, new { id = "eventCodeText", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 32px;">
+                        <div class="col-sm-2">
+                            @Html.Label("User ID")
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBox("User ID", null, new { id = "userIdText" })
+                        </div>
+                        <button id="searchUserBtn" type="button" class="btn btn-primary">Search User</button>
+                    </div>
+                    <table id="patientCheckIns" hidden style="margin-bottom: 16px">
+                        <thead>
+                            <tr>
+                                <th>Previous check-in times</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div id="patientDetailsDiv" hidden="hidden">
+                        <h3 style="margin-bottom: 16px;">Patient details</h3>
+                        <table>
+                            <tr>
+                                <td class="detailLabel">Corporate name</td>
+                                <td id="corporateNameValue"></td>
+                            </tr>
+                            <tr>
+                                <td class="detailLabel">Corporate branch name</td>
+                                <td id="corporateBranchNameValue"></td>
+                            </tr>
+                            <tr>
+                                <td class="detailLabel">Corporate branch address</td>
+                                <td id="corporateBranchAddressValue"></td>
+                            </tr>
+                            <tr>
+                                <td class="detailLabel">Patient name</td>
+                                <td id="patientNameValue"></td>
+                            </tr>
+                            <tr>
+                                <td class="detailLabel">IC</td>
+                                <td id="icValue"></td>
+                            </tr>
+                            <tr>
+                                <td class="detailLabel">Gender</td>
+                                <td id="genderValue"></td>
+                            </tr>
+                            <tr>
+                                <td class="detailLabel">Phone number</td>
+                                <td id="phoneNumberValue"></td>
+                            </tr>
+                            <tr>
+                                <td class="detailLabel">Address</td>
+                                <td id="addressValue"></td>
+                            </tr>
+                        </table>
+                        <div id="corporateIdValue" hidden="hidden"></div>
+                        <div class="buttonContainer" style="margin-top: 16px;">
+                            <button id="submitCheckInBtn" type="submit" class="btn btn-primary">Confirm & Check In</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(function () {
+        var checkInTimes;
+
+        $('#searchUserBtn').click(function () {
+            var userId = $('#userIdText').val();
+            if (userId != null) {
+                $.ajax(`/Account/View?userId=${userId}`, {
+                    success: (res) => {
+                        $('#corporateNameValue').text(res.CorporateName);
+                        $('#corporateBranchNameValue').text(res.BranchName);
+                        $('#corporateBranchAddressValue').text(res.BranchAdress);
+                        $('#patientNameValue').text(res.FullName);
+                        $('#icValue').text(res.IC);
+                        $('#genderValue').text(res.Gender === 1 ? 'Male' : 'Female');
+                        $('#phoneNumberValue').text(res.PhoneNumber);
+                        $('#addressValue').text(res.Address);
+                        $('#medicalIdText').val(res.MedicalId);
+                        $('#corporateIdValue').text(res.CorporateId);
+                        $('#patientDetailsDiv').show();
+                    },
+                    error: () => {
+                        alert('Error fetching user details. Please try again.');
+                    }
+                });
+                var eventCode = $('#eventCodeText').val();
+                $.ajax(`/OnSiteEvent/GetCheckInsForUser?userId=${userId}&eventCode=${eventCode}`, {
+                    success: (res) => {
+                        checkInTimes = res.map(d => moment.utc(d));
+                        var checkInsTable = $('#patientCheckIns');
+                        // Clear out any previous times in the table
+                        checkInsTable.find('tbody > tr').remove();
+
+                        if (checkInTimes.length > 0) {
+                            checkInTimes.map(d => $.parseHTML(`<tr><td>${d.local().format('YYYY-MM-DD HH:mm:ss')}</td></tr>`)).forEach(el => checkInsTable.append(el));
+                        } else {
+                            checkInsTable.append('<tr><td>None</td></tr>');
+                        }
+                        checkInsTable.show();
+                    },
+                    error: () => {
+                        alert('Error fetching user check-ins. Please try again.');
+                    }
+                });
+            } else {
+                alert('Please enter the user ID.');
+            }
+        });
+
+        function checkInUser(medicalId, eventCode) {
+            var patientName = $('#patientNameValue').text();
+            $.ajax(`/OnSiteEvent/CheckInUser?userMedicalId=${medicalId}&eventCode=${eventCode}`, {
+                type: 'POST',
+                success: (res) => {
+                    alert(`Successfully checked in ${patientName} into ${eventCode}.`);
+                    location.href = "/OnSiteEvent/Index";
+                },
+                error: e => {
+                    if (e.responseJSON && e.responseJSON.error) {
+                        alert(e.responseJSON.error);
+                    } else {
+                        alert('Error checking in user. Please try again.');
+                    }
+                }
+            });
+        }
+
+        $('#submitCheckInBtn').click(function (e) {
+            e.preventDefault();
+            var medicalId = $('#medicalIdText').val();
+            var eventCode = $('#eventCodeText').val();
+            $.ajax(`/OnSiteEvent/GetEventDetails?eventCode=${eventCode}`, {
+                type: 'GET',
+                success: (res) => {
+                    var momentNow = moment();
+                    if (!checkInTimes.some(d => momentNow.isSame(d, 'day')) || confirm('This user has already been checked in to this event today. Are you sure you want to proceed?')) {
+                        if (res.CorporateId.toString() != $('#corporateIdValue').text()) {
+                            if (confirm("This user does not belong to the corporate setup for this event. Are you sure you want to proceed?")) {
+                                checkInUser(medicalId, eventCode);
+                            }
+                        } else {
+                            checkInUser(medicalId, eventCode);
+                        }
+                    }
+                },
+                error: e => {
+                    if (e.responseJSON && e.responseJSON.error) {
+                        alert(e.responseJSON.error);
+                    } else {
+                        alert('Error fetching event details. Please try again.');
+                    }
+                }
+            });
+        });
+    })
+</script>
+}

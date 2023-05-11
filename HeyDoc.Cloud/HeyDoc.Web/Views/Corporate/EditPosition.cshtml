@@ -1,0 +1,61 @@
+﻿@model HeyDoc.Web.Models.CorporatePositionModel
+@using HeyDoc.Web
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Corporate/Index">Corporate List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-support"></i>
+                    <span>Edit Position</span>
+                </div>
+                <div class="box-icons">
+
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("EditPosition", "Corporate", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "outletCreate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                    @Html.HiddenFor(Model => Model.PositionId)
+                    @Html.HiddenFor(Model => Model.CorporateId)
+                    <h4 class="page-header">Edit Position</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Position Name *</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.Position, new { @class = "form-control", placeholder = "Position Name" })
+                            @Html.ValidationMessageFor(model => model.Position)
+                        </div>
+                    </div>
+
+         
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        //LoadOutletCreateScripts();
+    </script>
+}

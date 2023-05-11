@@ -1,0 +1,134 @@
+﻿@using HeyDoc.Web;
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Transactions</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-credit-card fa-lg"></i>
+                    <span>Transactions</span>
+                </div>
+                <div class="box-icons">
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group col-md-3 col-md-offset-1">
+                    <label>Patient Name</label>
+                    <input type="text" class="form-control" id="txt_patientName" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Doctor Name</label>
+                   
+                    @if (User.IsInRole("Doctor"))
+                    {
+
+                        <input type="text" class="form-control" id="txt_doctorName" disabled="disabled" value="@ViewBag.DoctorName" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txt_doctorName" />
+                    }
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3 col-md-offset-1">
+                    <label>From</label>
+                    <input type="text" id="from" class="form-control" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>To</label>
+                    <input type="text" id="to" class="form-control" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Status</label>
+                    <select class="form-control" id="ddl_status">
+                        <option>All</option>
+                        <option value="Authorised">Authorised</option>
+                        <option value="Canceled">Canceled</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Failed">Failed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3 col-md-offset-1">
+                    <label>Category</label>
+                    @Html.DropDownList("category", ViewBag.Categories as IEnumerable<SelectListItem>, new { @class = "form-control ddl_hcp", @id = "ddl_category" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Group</label>
+                    <select class="form-control ddl_hcp" id="ddl_group">
+                        <option value="-1">All</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <br />
+                    <button type="button" class="btn btn-primary" id="search">Search</button>
+                </div>
+                <div class="form-group col-md-1">
+                    <br />
+                    <button type="button" class="btn btn-primary" id="export">Export</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3 col-md-offset-1">
+                    <label>Platform Earnings Total : <span id="platformTotal"></span></label>
+                </div>
+            </div>
+            <div class="box-content no-padding">
+                <!-- Table -->
+                <table id="transactionList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>T Details</th>
+                            <th>Patient</th>
+                            <th>HCP</th>
+                            <th>Amount<br />Paid</th>
+                            <th>Original<br />amount</th>
+                            <th>Platform <br /> earning</th>
+                            <th>HCP<br />amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>T Details</th>
+                            <th>Patient</th>
+                            <th>HCP</th>
+                            <th>Amount<br />paid</th>
+                            <th>Original<br />amount</th>
+                            <th>Platform <br /> earning</th>
+                            <th>HCP<br />amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadTransactionIndexScripts();
+    </script>
+}

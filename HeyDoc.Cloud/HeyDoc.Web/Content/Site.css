@@ -1,0 +1,43 @@
+﻿
+/* table-datatable
+    ----------------------------------------------------------*/
+table.dataTable img { border: 1px solid #f8f8f8; margin-right: 10px; width: 40px; }
+table.dataTable td { vertical-align: middle !important; }
+.dataTables_scrollBody { overflow: hidden; }
+
+table.dataTable td.details-control { width: 20px; background: url('../images/details_open.png') no-repeat center center; cursor: pointer; }
+table.dataTable tr.details td.details-control { background: url('../images/details_close.png') no-repeat center center; }
+
+table.dataTable div.detail { padding: 10px 0; }
+table.dataTable div.detail span { margin-right: 10px; }
+table.dataTable div.detail hr { margin: 10px 0; }
+table.dataTable td.rank { width: 2em; text-align: center; }
+.dataTables_scrollHead { margin-bottom: 1px; }
+.dataTables_scrollHead th { border: 1px solid #bbb!important; }
+.dataTables_processing { background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0; color: white; padding: 20px; text-align: center; }
+
+.avatar { border: 1px solid #f8f8f8; margin-right: 10px; width: 40px; border-radius: 6px; }
+.pagination { margin: 0px; }
+
+#chatList .doctor small { margin-left: 15px; }
+#chatList .patient small { margin-right: 15px; }
+#chatList a.del { display: none; color: #d15e5e; }
+#chatList tr:hover { background: #f5f5f5; }
+#chatList tr:hover a.del { display: inline; }
+#chatList .media { padding: 10px 0; }
+
+.onduty, .onduty td {
+    background-color: #50b261 !important;
+}
+
+/* Error */
+.field-validation-error, .validation-summary-errors { color: red; }
+/*Custom Pop Up Style 21/7/2016  */
+.customPopUp{
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    width: 900px;
+    padding: 15px;
+    margin: auto auto;
+}
+/*Custom Pop Up Style 21/7/2016  */

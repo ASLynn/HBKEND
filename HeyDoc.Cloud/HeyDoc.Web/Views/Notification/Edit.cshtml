@@ -1,0 +1,175 @@
+﻿@model HeyDoc.Web.Models.ServiceBusQueueMessage<HeyDoc.Web.Models.CreateNotificationModel>
+@using HeyDoc.Web
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Notification/Index">Notification</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" id="msgCreate">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-paper-plane"></i>
+                    <span>Edit Notification</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("Edit", "Notification", FormMethod.Post, new { @class = "form form-horizontal", id = "create" }))
+                {
+                    @Html.HiddenFor(model => model.SequenceNumber)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Message.NotificationType, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            <span class=" col-xs-12 col-sm-3">@Html.RadioButtonFor(model => model.Message.NotificationType, PnActionType.Message) Message</span>
+                            <span class=" col-xs-12 col-sm-3">@Html.RadioButtonFor(model => model.Message.NotificationType, PnActionType.URL) URL</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Message.Text, new { @class = "col-md-2 control-label", id = "text" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Message.Text, new { @class = "form-control" })
+                            <div class="count text-right" data-max="499"><b>0</b>/499</div>
+                            @Html.ValidationMessageFor(model => model.Message.Text)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="url" @(Model.Message.NotificationType == PnActionType.URL ? "" : "style=display:none")>
+                        @Html.LabelFor(model => model.Message.URL, new { @class = "col-md-2 control-label", id = "url" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Message.URL, new { @class = "form-control" })
+                            <div class="count text-right" data-max="999"><b>0</b>/999</div>
+                            @Html.ValidationMessageFor(model => model.Message.URL)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Message.Email, new { @class = "col-md-2 control-label", id = "email" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Message.Email, new { @class = "form-control" })
+                            <p><em>Please separate multiple emails using a semicolon ( ; )</em></p>
+                            @Html.ValidationMessageFor(model => model.Message.Email)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Device</label>
+                        <div class="col-md-10">
+                            <span class="col-xs-12 col-sm-3">@Html.RadioButtonFor(model => model.Message.DeviceType, DeviceType.Invalid) All</span>
+                            <span class="col-xs-12 col-sm-3">@Html.RadioButtonFor(model => model.Message.DeviceType, DeviceType.IOS) IOS</span>
+                            <span class="col-xs-12 col-sm-3">@Html.RadioButtonFor(model => model.Message.DeviceType, DeviceType.Android) Android</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Message.CorporateId, new { @class = "col-md-2 control-label", id = "corporateId" })
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.Message.CorporateId, ViewBag.CorporateList as List<SelectListItem>, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Message.CorporateId)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Tags", new { @class = "col-md-2 control-label", id = "notificationTag" })
+                        <div class="col-md-4" style="margin-top: 4px;">
+                            @for (var i = 0; i < Model.Message.PnTagSelectList.Count; i++)
+                            {
+                                @Html.CheckBoxFor(model => model.Message.PnTagSelectList[i].Selected)
+                                @Html.HiddenFor(model => model.Message.PnTagSelectList[i].Text)
+                                @Html.HiddenFor(model => model.Message.PnTagSelectList[i].Value)
+                                @Model.Message.PnTagSelectList[i].Text
+                            }
+                            @if (Model.Message.PnTagSelectList.Count == 0)
+                            {
+                                <p>No tags found. Create a new tag to show up here.</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Scheduled Time</label>
+                        <div class="col-md-4" style="display: flex">
+                            <input class="form-control" id="datetimepicker" value="@Model.Message.ScheduledDateTime.Value.UtcDateTime" autocomplete="off" />
+                            @Html.TextBoxFor(model => model.Message.ScheduledDateTime, new { id = "isoDateTime", hidden = "hidden" })
+                            <button hidden="hidden" id="clearDateBtn" onclick="$('#datetimepicker').val(''); $(this).hide(); return false;" style="background: none; border: none; position: absolute; right: 20px; top: 2px"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-2">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-paper-plane "></i> Confirm Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <link rel="stylesheet" type="text/css" href="/Content/jquery.datetimepicker.css" />
+    <script>
+        {
+            $('document').ready(function () {
+                $('#Text, #URL').each(function () {
+                    var $this = $(this);
+                    $this.keyup(function () {
+                        var $count = $this.siblings('.count'), str = $this.val();
+                        var max = parseInt($count.attr('data-max')), length = str.length;
+                        if (length > max) {
+                            $this.val(str.substring(0, max));
+                            length = $this.val().length;
+                        }
+                        $count.children('b').html(length);
+                    });
+                });
+
+                $("input[name='Message.NotificationType']").change(function () {
+                    if ($(this).val() == "URL") {
+                        $('#url').show();
+                    }
+                    else {
+                        $('#URL').val('');
+                        $('#url').hide();
+                    }
+                });
+
+                LoadDateTimePickerScript(function () {
+                    $("#datetimepicker").datetimepicker({
+                        minDate: 0,
+                    });
+                });
+
+                $('#datetimepicker').val(moment.utc($('#datetimepicker').val()).local().format("YYYY/M/D HH:mm"));
+
+                $('#datetimepicker').change(function () {
+                    if ($(this).val() === '') {
+                        $('#clearDateBtn').hide();
+                    } else {
+                        $('#clearDateBtn').show();
+                        $('#isoDateTime').val(moment($(this).val()).toISOString());
+                    }
+                });
+
+                // Load doctor edit form validation
+                LoadBootstrapValidatorScript(NotificationValidator);
+            });
+        }
+    </script>
+}

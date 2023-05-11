@@ -1,0 +1,80 @@
+﻿@model List<HeyDoc.Web.Models.ChatModel>
+@using HeyDoc.Web;
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Patient Media</a></li>
+        </ol>
+    </div>
+</div>
+
+
+<div id="gallery-container" style="padding: 36px; padding-top: 0; display: inline-flex; align-items: flex-start; overflow: auto; flex-wrap: wrap;">
+    @foreach (var im in Model)
+    {
+        <div style="padding: 16px; width: 20%; height: 18vw;">
+            <img src="@im.Photo.ThumbnailUrl" data-photo-url="@im.Photo.ImageUrl" style="width: 100%; height: 80%; object-fit: cover; cursor: pointer;" />
+            <p style="text-align: center; margin: 0; margin-top: 8px;">To: @im.ToUserFullName</p>
+            <p style="text-align: center; margin: 0;" class="time-text" data-time-utc="@im.CreateDate.ToString("o")">@im.CreateDate.ToString("d/M/yyyy h:mm tt") (UTC)</p>
+        </div>
+    }
+    @if (Model.Count() == 0)
+    {
+        <p style="text-align: center;">No media found.</p>
+    }
+</div>
+
+<div style="display: flex; float: right; margin-right: 64px;">
+    @if (ViewBag.Page > 1)
+    {
+        <a href="/PrescriptionRequest/ViewPatientMedia?patientId=@(ViewBag.PatientId)&page=@(ViewBag.Page - 1)">< Prev</a>
+    }
+    @if (ViewBag.Page > 1 && ViewBag.TotalRecords > (ViewBag.Page * ViewBag.Take))
+    {
+        <p>&nbsp;|&nbsp;</p>
+    }
+    @if (ViewBag.TotalRecords > (ViewBag.Page * ViewBag.Take))
+    {
+        <a href="/PrescriptionRequest/ViewPatientMedia?patientId=@(ViewBag.PatientId)&page=@(ViewBag.Page + 1)">Next ></a>
+    }
+</div>
+
+<div style="float: right; clear: both; margin-right: 64px; margin-top: 16px;">
+    @(((ViewBag.Page - 1) * ViewBag.Take) + 1) - @Math.Min(ViewBag.Page * ViewBag.Take, ViewBag.TotalRecords) out of @ViewBag.TotalRecords records
+</div>
+
+<div class="modal fade bs-example-modal-md" id="popup-modal" tabindex="-1">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header text-center ">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 32px; margin-top: -12px;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="popup-modal-img" style="width: 570px;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#gallery-container img').each(function () {
+                let imgElemRef = $(this);
+                imgElemRef.click(function () {
+                    $('#popup-modal-img').attr('src', imgElemRef.attr('data-photo-url'));
+                    $("#popup-modal").modal("show");
+                });
+            })
+
+            $(".time-text").each(function () {
+                var utc = $(this).data('time-utc');
+                $(this).text(moment.utc(utc).local().format("D/M/YYYY h:mm A"));
+            })
+        })
+    </script>
+}

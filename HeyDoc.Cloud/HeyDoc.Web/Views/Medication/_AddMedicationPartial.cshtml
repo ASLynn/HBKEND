@@ -1,0 +1,47 @@
+﻿@model HeyDoc.Web.Models.MedicationModel
+@using HeyDoc.Web
+@{
+    Layout = null;
+}
+
+<h4 class="page-header">Add Medication</h4>
+<div class="form-group">
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-sm-6 col-xs-8 col-md-3">
+            <label class="control-label">Medication Name *</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(model => model.MedicationName, new { @class = "form-control", placeholder = "Name", @required = "required" })
+            @Html.ValidationMessageFor(model => model.MedicationName)
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-sm-6 col-xs-8 col-md-3">
+            <label class="control-label">Is LTM?</label>
+        </div>
+        <div class="col-sm-1 col-xs-1 col-md-1" style="width:50px;">
+            @Html.CheckBoxFor(model => model.IsLTM, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IsLTM)
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-sm-6 col-xs-8 col-md-3">
+            <label class="control-label">Prescribed For:</label>
+        </div>
+        <div class="col-sm-4">
+            @foreach (var medicalConditionModel in ViewContext.Controller.ViewBag.MedicalConditions as List<HeyDoc.Web.Models.MedicalConditionModel>)
+            {
+                <div class="row">
+                    <input type="checkbox" name="ForMedicalConditionsWithIds" value="@medicalConditionModel.ConditionId" />
+                    <label>@medicalConditionModel.ConditionName</label>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="form-group">
+    <div class="col-sm-12 text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</div>

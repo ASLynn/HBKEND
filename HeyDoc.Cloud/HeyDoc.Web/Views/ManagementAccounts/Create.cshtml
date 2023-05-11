@@ -1,0 +1,112 @@
+﻿@model HeyDoc.Web.Models.ManagementRegisterModel
+@using HeyDoc.Web
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/ManagementAccounts/Index">Management Account List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-search"></i>
+                    <span>Create Management Account</span>
+                </div>
+                <div class="box-icons">
+                  
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("Create", "ManagementAccounts", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "managementCreate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+
+                    <h4 class="page-header">Register</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email *</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email", data_fv_remote = "true" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password *</label>
+                        <div class="col-sm-4">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                        <label class="col-sm-2 control-label">Confirm Password *</label>
+                        <div class="col-sm-4">
+                            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                        </div>
+                    </div>
+
+                    <h4 class="page-header">Management Account Info</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Photo</label>
+                        <div class="col-sm-2">
+                            <div class="thumbnail-wapper">
+                                <div class="thumbnail">
+                                    <img src="~/Images/placeholder.png" />
+                                </div>
+                                <input type="file" value="" style="display: none" name="imageFile" id="File" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Full Name *</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = "Full name" })
+                            @Html.ValidationMessageFor(model => model.FullName)
+                        </div>
+                    </div>
+                  
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label">Contact No.</label>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-4">
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Address)
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label">Role *</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownList("RoleType", ViewBag.ManagementRoles as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RoleType)
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        LoadManagementCreateScripts();
+    </script>
+}

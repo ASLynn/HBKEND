@@ -1,0 +1,96 @@
+﻿@using HeyDoc.Web;
+
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+<link href="~/Scripts/devoops-master/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Doctor List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-money fa-lg"></i>
+                    <span>Cash Out Requests</span>
+                </div>
+                <div class="box-icons">
+                
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+                <!-- Table -->
+                <table id="cashoutList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Request Date</th>
+                            <th>Cash Out Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Request Date</th>
+                            <th>Cash Out Date</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="CashOutRemark" class="white-popup-block popup mfp-hide customPopUp" style="width: 450px;">
+    <h4 style="text-align: center">
+        <span>Cash out Details</span>
+    </h4>
+    <br />
+    <div class="row">
+         <div class="form-group col-sm-3">
+           Remark
+        </div>
+        <div class="form-group col-sm-8">
+            <input id="remark" name="rmark" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+           <div class="form-group col-sm-3">
+               Receipt
+               </div>
+         <div class="form-group col-sm-8">
+            <input id="receipt" name="receipt" type="file" class="form-control">
+        </div>
+
+        </div>
+    <footer style="text-align: center;">
+        <button class="btn btn-primary done" type="button">OK</button>
+        <button id="resetCancel" class="btn btn-default cancel" type="button">Cancel</button>
+    </footer>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadCashOutIndexScripts();
+    </script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+}

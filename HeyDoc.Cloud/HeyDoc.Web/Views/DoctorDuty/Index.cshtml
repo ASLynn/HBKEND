@@ -1,0 +1,157 @@
+﻿@model HeyDoc.Web.Models.DoctorDutyModel
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Add / Edit Duty Time for Doctor </a></li>
+        </ol>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("AddDutyTime", "DoctorDuty", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label class="control-label">Doctors</label>
+            @Html.Hidden("hid_userid", ViewBag.userid as string);
+            @Html.DropDownList("UserId", ViewBag.Doctors as IEnumerable<SelectListItem>, new { data_url = Url.Action("GetDutyTime"), @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Monday</label>
+        </div>
+        <div class="col-md-2" style="width:50px;">
+
+            @Html.CheckBox("isMon",false)
+
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Tuesday</label>
+        </div>
+        <div class="col-md-2" style="width:50px;">
+            @Html.CheckBox("isTue", false)
+
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Wednesday</label>
+        </div>
+        <div class="col-md-2" style="width:50px;">
+            @Html.CheckBox("isWed", false)
+
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Thuesday</label>
+        </div>
+        <div class="col-md-2" style="width:50px;">
+            @Html.CheckBox("isThu", false)
+
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Friday</label>
+        </div>
+        <div class="col-md-2" style="width:50px;">
+            @Html.CheckBox("isFri", false)
+
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Satusday</label>
+        </div>
+        <div class="col-md-2" style="width:50px;">
+            @Html.CheckBox("isSat", false)
+
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Sunday</label>
+        </div>
+        <div class="col-md-2" style="width:50px;">
+            @Html.CheckBox("isSun", false)
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Duty Start Time</label>
+        </div>
+        <div class="col-md-2">
+            
+             @Html.TextBox("from")
+        </div>
+
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+            <label class="control-label">Duty End Time</label>
+        </div>
+        <div class="col-md-2">
+            
+            @Html.TextBox("to")
+
+        </div>
+
+    </div>
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary" id="add">Add</button>
+
+        </div>
+
+    </div>
+
+}
+<div class="row">
+    <div class="box-content no-padding">
+        <!-- Table -->
+        <table id="dutytime" class="table table-bordered table-striped table-hover table-heading table-datatable">
+            <thead>
+                <tr>
+                    <th>UserId</th>
+                    <th>Day</th>
+                    <th>Duty Start</th>
+                    <th>Duty End</th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th>UserId</th>
+                    <th>Day</th>
+                    <th>Duty Start</th>
+                    <th>Duty End</th>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        LoadDoctorDutyScripts();
+   
+
+    </script>
+}

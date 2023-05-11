@@ -1,0 +1,395 @@
+﻿@model HeyDoc.Web.Models.RegisterModel
+@using HeyDoc.Web
+
+@{
+    Layout = null;
+}
+
+
+<h4 class="page-header">Register</h4>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Email *</label>
+    <div class="col-sm-4">
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email", data_fv_remote = "true" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Password *</label>
+    <div class="col-sm-4">
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "" })
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+    <label class="col-sm-2 control-label">Confirm Password *</label>
+    <div class="col-sm-4">
+        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "" })
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+    </div>
+</div>
+
+<h4 class="page-header">User Info</h4>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Photo</label>
+    <div class="col-sm-2">
+        <div class="thumbnail-wapper">
+            <div class="thumbnail">
+                <img src="~/Images/placeholder.png" />
+            </div>
+            <input type="file" value="" style="display: none" name="imageFile" id="File" />
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Title *</label>
+    <div class="col-sm-4">
+        <select class="form-control" name="Title" id="Title">
+            <option value="">Select Title</option>
+            <option value="Dr.">Dr.</option>
+            <option value="Prof">Prof</option>
+            <option value="Ph">Ph</option>
+            <option value="AP">AP</option>
+        </select>
+        @Html.ValidationMessageFor(model => model.Title)
+
+    </div>
+    <label class="col-sm-2 control-label">Full Name *</label>
+    <div class="col-sm-4">
+        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = "Full name" })
+        @Html.ValidationMessageFor(model => model.FullName)
+
+    </div>
+</div>
+<div class="form-group has-feedback">
+    <label class="col-sm-2 control-label">NRC *</label>
+    <div class="col-sm-4 has-feedback">
+        @Html.TextBoxFor(model => model.IC, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IC)
+    </div>
+    <label class="col-sm-2 control-label">Blood Type</label>
+    <div class="col-sm-4">
+        @Html.TextBoxFor(model => model.BloodType, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BloodType)
+    </div>
+</div>
+<div class="form-group has-feedback">
+    <label class="col-sm-2 control-label">Gender *</label>
+    <div class="col-sm-4">
+        @Html.DropDownListFor(m => m.Gender, Gender.Female.ToSelectList(), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Gender)
+    </div>
+    <label class="col-sm-2 control-label">Birthday *</label>
+    <div class="col-sm-4 has-feedback">
+        @Html.TextBoxFor(model => model.Birthday, new { @class = "form-control hasDatepicker" })
+        <span class="fa fa-calendar form-control-feedback"></span>
+        @Html.ValidationMessageFor(model => model.Birthday)
+    </div>
+</div>
+<div class="form-group has-feedback">
+    <label class="col-sm-2 control-label">Contact No. *</label>
+    <div class="col-sm-4">
+        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PhoneNumber)
+    </div>
+    <label class="col-sm-2 control-label">Country *</label>
+    <div class="col-sm-4">
+        @Html.DropDownListFor(m => m.CountryId, ViewBag.Countries as IEnumerable<SelectListItem>, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CountryId)
+    </div>
+</div>
+<div class="form-group has-feedback">
+    <label class="col-sm-2 control-label">Language  <br /> (English, mandarin etc)</label>
+    <div class="col-sm-4">
+        @Html.TextBoxFor(model => model.Language, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Language)
+    </div>
+    <label class="col-sm-2 control-label">State *</label>
+    <div class="col-sm-4">
+        @Html.DropDownListFor(m => m.StateId, ViewBag.State as IEnumerable<SelectListItem>, "Select State", new { data_url = Url.Action("GetTownship"), @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.StateId)
+    </div>
+</div>
+<div class="form-group has-feedback">
+    <label class="col-sm-2 control-label">Video Chat URL</label>
+    <div class="col-sm-4">
+        @Html.TextBoxFor(model => model.VideoChatURL, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.VideoChatURL)
+    </div>
+    <label class="col-sm-2 control-label">Township *</label>
+    <div class="col-sm-4">
+        @Html.DropDownListFor(m => m.TownshipId, ViewBag.Township as IEnumerable<SelectListItem>, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.TownshipId)
+    </div>
+</div>
+<h4 class="page-header">User Setting </h4>
+<div class="row">
+    <div class="col-md-6 row">
+        @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+        {
+            <div class="form-group col-md-6">
+                @Html.LabelFor(m => m.IsPartner, new { @class = "col-sm-8 control-label" })
+                <div class="col-sm-4">
+                    @Html.CheckBoxFor(model => model.IsPartner, new { @style = "width:20px;height:20px;", placeholder = "" })
+                    @Html.ValidationMessageFor(model => model.IsPartner)
+                </div>
+            </div>
+        }
+        <div class="form-group col-md-6">
+            <label class="col-sm-8 control-label">Show in App</label>
+            <div class="col-sm-4">
+                @Html.CheckBoxFor(model => model.ShowInApp, new { @style = "width:20px;height:20px;", placeholder = "" })
+                @Html.ValidationMessageFor(model => model.ShowInApp)
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.CanApproveEPS, new { @class = "col-sm-8 control-label" })
+            <div class="col-sm-4">
+                @Html.CheckBoxFor(model => model.CanApproveEPS, new { @style = "width:20px;height:20px;", placeholder = "" })
+                @Html.ValidationMessageFor(model => model.CanApproveEPS)
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.IsChatBotEnabled, new { @class = "col-sm-8 control-label" })
+            <div class="col-sm-4">
+                @Html.CheckBoxFor(model => model.IsChatBotEnabled, new { @style = "width:20px;height:20px;", placeholder = "" })
+                @Html.ValidationMessageFor(model => model.IsChatBotEnabled)
+            </div>
+        </div>
+    </div>
+</div>
+    <h4 class="page-header">Experience </h4>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Speciality *<br /> (family medicine, general surgery etc)</label>
+                <div class="col-sm-8">
+                    @*@Html.TextBoxFor(model => model.Specialty, new { @class = "form-control", placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Specialty)*@
+                    @Html.ListBoxFor(m => m.SpecialityId, ViewBag.SpecilityList as IEnumerable<SelectListItem>, new { @class = "listbox form-control" })
+
+
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Category </label>
+                <div class="col-sm-8">
+                    @Html.DropDownListFor(m => m.CategoryId, ViewBag.Categories as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Group</label>
+                <div class="col-sm-8">
+                    <select id="ddl_group" name="GroupId" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Qualification * <br /> ( MBBS, MBChB etc)</label>
+                <div class="col-sm-8">
+                    @*@Html.TextBoxFor(model => model.Qualification, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Qualification)*@
+                    @Html.ListBoxFor(m => m.QualificationId, ViewBag.QualificationList as IEnumerable<SelectListItem>, new { @class = "listbox form-control" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Clinic </label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(model => model.HospitalName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HospitalName)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Practicing Since </label>
+                <div class="col-sm-8 has-feedback">
+                    @Html.TextBoxFor(model => model.Practicing, new { @class = "form-control hasDatepicker", placeholder = "" })
+                    <span class="fa fa-calendar form-control-feedback"></span>
+                    @Html.ValidationMessageFor(model => model.Practicing)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Registration Number</label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(model => model.RegisterNumber, new { @class = "form-control", placeholder = "" })
+                    @Html.ValidationMessageFor(model => model.RegisterNumber)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Medical School </label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(model => model.MedicalSch, new { @class = "form-control", placeholder = "" })
+                    @Html.ValidationMessageFor(model => model.MedicalSch)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Practicing Address </label>
+                <div class="col-sm-8">
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", placeholder = "", rows = "5" })
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+            </div>
+        </div>
+        @* <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">About Me *</label>
+                    <div class="col-sm-8">
+                        @Html.TextAreaFor(model => model.AboutMe, new { @class = "form-control", placeholder = "", rows = "5" })
+                        @Html.ValidationMessageFor(model => model.AboutMe)
+                    </div>
+                </div>
+            </div>*@
+    </div>
+
+    <h4 class="page-header">Hospital / Clinic </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+
+                @Html.ListBoxFor(m => m.FacilitiesId, ViewBag.FacilityList as IEnumerable<SelectListItem>, new { @class = "listbox form-control" })
+
+            </div>
+        </div>
+
+    </div>
+    <h4 class="page-header">Documentation of Certificate </h4>
+    <h5 style="color:red;">(If more then 6, please use word format.)</h5>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-4 text-left">M.B.,B.S </label>
+                <div class="col-sm-8 text-left">
+                    <input type="file" name="certificateFile1" id="certificateFile1" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-4 text-left">M.Med.Sc</label>
+                <div class="col-sm-8 text-left">
+                    <input type="file" name="certificateFile2" id="certificateFile2" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-4 text-left">Dr.Med.Sc</label>
+                <div class="col-sm-8 text-left">
+                    <input type="file" name="certificateFile3" id="certificateFile3" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-4 text-left">SAMA</label>
+                <div class="col-sm-8 text-left">
+                    <input type="file" name="certificateFile4" id="certificateFile4" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-4 text-left">PhD</label>
+                <div class="col-sm-8 text-left">
+                    <input type="file" name="certificateFile5" id="certificateFile5" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-4 text-left">Diploma in Family Medicine</label>
+                <div class="col-sm-8 text-left">
+                    <input type="file" name="certificateFile6" id="certificateFile6" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-4 text-left">
+                    other more certificate
+                </label>
+                <div class="col-sm-8 text-left">
+                    <input type="file" name="certificateFile7" id="certificateFile7" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="page-header">Signature</h4>
+    <div class="form-group">
+        @Html.Label("Signature", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-4">
+            <input type="file" name="signatureFile" />
+        </div>
+    </div>
+
+    @*<div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @if (!User.IsInRole("Admin"))
+                    {
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-6">
+                            <input style="width: 10%; float: left;" name="Terms" type="checkbox" class="form-control" id="Terms" />
+                            <div style="height: 30px; line-height: 31px;">
+                                <a onclick="openTerms()" href="javascript:void(0);">I agree to the Terms and Conditions</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>*@
+
+
+    <div class="clearfix"></div>
+    <div class="form-group">
+        <div class="col-sm-12 text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+
+
+    </script>

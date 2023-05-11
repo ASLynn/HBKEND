@@ -1,0 +1,177 @@
+﻿@using HeyDoc.Web;
+
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+<link href="~/Scripts/devoops-master/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Promo Codes</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-gift fa-lg"></i>
+                    <span>Promo Codes</span>
+                </div>
+                <div class="box-icons">
+                    <a href="javascript:void(0);" title="Add new promo code" id="addNew">
+                        <i class="fa fa-plus "></i></a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+
+                <div class="row">
+                    <div class="form-group col-sm-3 col-sm-offset-1">
+                        @Html.Label("Code", new { @class = "control-label" })
+                        <input type="text" id="code" class="form-control" />
+                    </div>
+                    <div class="form-group col-sm-3 ">
+                        @Html.Label("Partner", new { @class = "control-label" })
+                        <input type="text" id="partner" class="form-control" />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <br />
+                        <button class="btn btn-primary" id="search" type="button">Search</button>
+                        <button class="btn btn-primary" onclick="Export()" id="export" type="button">Export</button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <table id="codeList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Code</th>
+                            <th>Discount</th>
+                            <th>Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Code</th>
+                            <th>Discount</th>
+                            <th>Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="codePopup" class="white-popup-block popup mfp-hide customPopUp" style="width: 500px;">
+    <h4 style="text-align: center">
+        <span id="popupHead">Promo Code Settings</span>
+    </h4>
+    <br />
+    <div class="row">
+        <div class="form-group col-sm-6" style="padding-right:10px;">
+            @Html.Label("Code", new { @class = "control-label" })
+            <input id="txtCode" type="text" class="form-control"/>
+        </div>
+         <div class="form-group col-sm-2" style="padding-left:0px;padding-top:5px;">
+             <br />
+             <input type="button" id="genCode" value="Generate" />
+             </div>
+        <div class="form-group col-sm-4">
+            @Html.Label("Discount", new { @class = "control-label" })
+            <input id="txtDiscount" type="text" class="form-control"/>
+        </div>
+    </div>
+     <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.Label("Type", new { @class = "control-label" })
+            <br />
+            <input type="radio" name="codeType" value="0" />Amount
+            <input type="radio" style="margin-left:10px;" name="codeType" value="1" />Percentage
+        </div>
+        <div class="form-group col-sm-6" id="divBulk">
+            @Html.Label("Bulk Generate ?", new { @class = "control-label" })
+            <input type="checkbox" id="bulkGen" />
+            <div class="row">
+                <div class="col-md-4">Count : </div>
+                <div class="col-md-8">  <input type="text" class="form-control" id="codeCount"/></div>
+            </div>
+          
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.Label("Start Date", new { @class = "control-label" })
+            <input id="startDate" type="text" class="form-control" />
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.Label("End Date", new { @class = "control-label" })
+            <input id="endDate" type="text" class="form-control">
+        </div>
+    </div>
+     <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.Label("Category", new { @class = "control-label" })
+            @Html.DropDownList("categoryPopup", ViewBag.Categories as IEnumerable<SelectListItem>, new { @class = "form-control ddl_hcp", @id = "ddl_category_popup" })
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.Label("HCP", new { @class = "control-label" })
+            <select id="ddl_hcp" name="DoctorId" class="form-control">
+                <option value="0">All</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.Label("Partner", new { @class = "control-label" })
+            <input id="txtPartner" type="text" class="form-control" />
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.Label("Description", new { @class = "control-label" })
+            <textarea id="codeDesc" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.Label("Usage per User", new { @class = "control-label" })
+            <input id="userUsage" type="number" class="form-control" />
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.Label("Max Rdemptions", new { @class = "control-label" })
+            <input id="maxUsage" type="number" class="form-control"  />
+        </div>
+    </div>
+
+    <footer style="text-align: center;">
+        <button class="btn btn-primary done" type="button">OK</button>
+        <button id="resetCancel" class="btn btn-default cancel" type="button">Cancel</button>
+    </footer>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadPromoCodeIndexScripts();
+        function Export() {
+            var partner = $("#partner").val();
+            var code = $("#code").val();
+            window.location = '/PromoCode/ExportToExcel?partner='+partner+'&code='+code;
+        }
+    </script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+}

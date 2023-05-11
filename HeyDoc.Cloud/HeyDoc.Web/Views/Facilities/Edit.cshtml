@@ -1,0 +1,122 @@
+﻿@model HeyDoc.Web.Entity.Facility
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Facility -Edit</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.FacilityId)
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Facility Type </label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.FacilityTypeId, ViewBag.FacilityTypeList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FacilityTypeId)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Facility Name </label>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.FacilityName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FacilityName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Facility State </label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.StateId, ViewBag.StateList as IEnumerable<SelectListItem>, "--select--", new { @class = "form-control", @id = "ddlState", @onchange = "javascript:GetTownshipByStateId();" })
+                    @Html.ValidationMessageFor(model => model.StateId)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Facility Township </label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.TownshipId, ViewBag.TownshipList as IEnumerable<SelectListItem>, "--select--", new { @class = "form-control", @id = "ddlTownship" })
+                    @Html.ValidationMessageFor(model => model.TownshipId)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Address </label>
+                <div class="col-md-6">
+                    @Html.TextAreaFor(model => model.FacilityAddress, new { @class = "form-control", placeholder = "", rows = "5" })
+                    @Html.ValidationMessageFor(model => model.FacilityAddress)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Contact No </label>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.FacilityPh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FacilityPh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    $('document').ready(function () {
+      
+        GetTownshipByStateId();
+    });
+    function GetTownshipByStateId() {
+        var StateId = $('#ddlState').val();
+
+        $.ajax({
+            url: '/Helper/GetTownshipByStateId',
+            type: "GET",
+            dataType: "JSON",
+            data: { StateId: StateId },
+            success: function (res) {
+                $("#ddlTownship").html("");
+                console.log(res);
+                $.each(res, function (i, townshipModel) {
+                    console.log(townshipModel);
+                    console.log(townshipModel.townshipDesc);
+                    $("#ddlTownship").append(
+
+                        $('<option></option>').val(townshipModel.TownshipId).html(townshipModel.TownshipDesc));
+                });
+
+            }
+        });
+    }
+</script>

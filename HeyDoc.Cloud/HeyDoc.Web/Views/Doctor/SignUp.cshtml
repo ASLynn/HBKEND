@@ -1,0 +1,228 @@
+﻿@model HeyDoc.Web.Models.RegisterModel
+@using HeyDoc.Web;
+@using HeyDoc.Web.Helpers;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HOPE</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/images/appicon.png" rel="shortcut icon" type="image/x-icon" />
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link href="~/Content/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/devoops-master/style_v1.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+                <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+                <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+        <![endif]-->
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@ConstantHelper.GoogleAnalyticsId"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', '@ConstantHelper.GoogleAnalyticsId');
+    </script>
+
+    <script>
+        var d = new Date();
+        var gmtHours = d.getTimezoneOffset() / 60;
+        document.cookie = "offset=" + gmtHours;
+    </script>
+</head>
+<body>
+    <!--Start Header-->
+    @*    <div id="screensaver">
+        <canvas id="canvas"></canvas>
+        <i class="fa fa-lock" id="screen_unlock"></i>
+    </div>*@
+    <header class="navbar">
+        <div class="container-fluid expanded-panel">
+            <div class="row">
+                <div id="logo" class="col-xs-12 col-sm-2">
+                    <a href="/">
+                        <img src="~/Content/images/appicon.png" style="height: 40px;" />
+                        HOPE
+                    </a>
+                </div>
+                <div id="top-panel" class="col-xs-12 col-sm-10">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-4">
+                        </div>
+                        <div class="col-xs-4 col-sm-8 top-panel-right">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--End Header-->
+    <!--Start Container-->
+    <div id="main" class="container-fluid">
+        <div class="row">
+            <div id="sidebar-left" class="col-xs-2 col-sm-2">
+            </div>
+            <!--Start Content-->
+            <div id="content" class="col-xs-12 col-sm-10" style="width: 83%; left: 8%; margin-top: 2%; margin-bottom: 2% !important; padding-bottom: 5px !important;">
+                <div class="preloader" style="display: none;">
+                    <img src="~/Images/getdata.gif" class="devoops-getdata" alt="preloader" />
+                </div>
+                <div id="ajax-content">
+                    <div class="row">
+                        <div id="breadcrumb" class="col-xs-12">
+                            <ol class="breadcrumb pull-left">
+                                <li><a href="/Doctor/Index">Health Care Professional Sign Up</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="box ui-draggable ui-droppable">
+                                <div class="box-header">
+                                    <div class="box-name ui-draggable-handle">
+                                        <i class="fa fa-search"></i>
+                                        <span>Registration form</span>
+                                    </div>
+                                    <div class="box-icons">
+                                    </div>
+                                    <div class="no-move"></div>
+                                </div>
+                                <div class="box-content" id="div_signup_otp" style="display:none">
+
+                                    <h4 class="page-header">Mobile Phone Number Verification</h4>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">One Time Password *</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" id="txtOtp" class="form-control" />
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="button" id="btn_verify" class="btn btn-primary" value="Verify" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                  
+
+                                </div>
+                                    <div class="box-content" id="div_signup"  style="display:block">
+                                        @using (Html.BeginForm("SignUp", "Doctor", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "doctorCreate" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.ValidationSummary()
+                                            @Html.Partial("_SignUpPartial", Model)
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Content-->
+        </div>
+    </div>
+
+    <!--End Container-->
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/jquery.form.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- All functions for this theme + document.ready processing -->
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/devoops-master/js/devoops.js"></script>
+    <script src="~/Scripts/devoops-master/plugins/bootstrapvalidator/bootstrapValidator.js"></script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+
+    <script type="text/javascript">
+        function openTerms() {
+            window.open("@Url.Content("/Docs/Terms.html")", "", "status=no,menubar=no,location=no,toolbar=no,scrollbars=yes,resizable=yes,top=20,left=150,width=900,height=500");
+        }
+        function openPolicy()
+        {
+            window.open("https://www.hope.com.mm/privacy-policy/", "", "status=no,menubar=no,location=no,toolbar=no,scrollbars=yes,resizable=yes,top=20,left=150,width=900,height=500");
+        }
+
+        LoadDoctorCreateScripts();
+
+
+        $(document).ready(function () {
+            var isSuccess = '@ViewBag.IsSuccess';
+            if(isSuccess=="True")
+            {
+                var userid = '@ViewBag.UserId'
+                alert("Sign up successfull!");
+                $("#div_signup").hide();
+                $("#div_signup_otp").show();
+
+
+            $("#btn_verify").click(function () {
+                    var otp = $("#txtOtp").val();
+           
+                        var fd = new FormData();
+                        fd.append('UserId', userid);
+                        fd.append('OTP', otp);
+                        $.ajax({
+                            url: '/api/account/VerifyPhoneWithOTP',
+                            data: fd,
+                            processData: false,
+                            contentType: false,
+                            type: 'POST',
+                            success: function (data) {
+                                if (data == true) {
+                                    alert("Otp Verification Successfull!");
+                                    window.location = "https://web.hope.com.mm/";
+                                }
+                                else {
+                                    alert("Wrong or Expired OTP, Please try again!");
+                                }
+                            }
+                        });
+                });
+            }
+
+
+
+                $('#StateId').change(function () {
+                    var url = $(this).data('url');
+
+                    var data = { stateId: $(this).val() };
+
+                    $.getJSON(url, data, function (GetTownship) {
+                        var ddlTownship = $('#TownshipId');
+                        ddlTownship.empty();
+                        ddlTownship.append($('<option/>', {
+                            value: 0,
+                            text: "Select Township"
+                        }));
+
+
+                        $.each(GetTownship, function (index, TownshipObj) {
+                            ddlTownship.append($('<option/>', {
+                                value: TownshipObj.Value,
+                                text: TownshipObj.Text
+                            }));
+                        });
+                    });
+                });
+
+
+        });
+    </script>
+
+</body>
+</html>

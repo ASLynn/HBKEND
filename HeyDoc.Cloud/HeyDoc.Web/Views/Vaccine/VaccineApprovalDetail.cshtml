@@ -1,0 +1,188 @@
+﻿@model HeyDoc.Web.Models.VaccinatedUserModel
+@using HeyDoc.Web
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Doctor/Index">Vaccination Approval Form</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-search"></i>
+                    <span>Detail Information</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+
+
+                <h4 class="page-header">Patient Info</h4>
+
+                @using (Html.BeginForm("VaccineApprovalDetail", "Vaccine", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "VaccineApprovalDetail" }))
+                {
+                    @Html.HiddenFor(model => model.Vaccination_Id)
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">User Name</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.VUserName" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">NRC</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.VNrc" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Date of Birth</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.VDob" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Age</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.VAge" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Sex</label>
+                            <div class="col-sm-4">
+
+                                <input type="text" class="form-control" id="Name" value="@Model.gender" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Phone</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.VPhone" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Address</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.VAddress" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="page-header">Vaccination Info And Certificate</h4>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Vaccine</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="VaccineGeneralId" value="@Model.VaccineGeneralId" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Vaccine Name</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.VaccineDetailName, new { @class = "form-control", placeholder = @Model.VaccineDetailName })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Dose</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.Dose" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Vaccination Date</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.VaccinationDate" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Vaccination Site</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.VaccinationSite" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">LotNoOfVaccine</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.LotNoOfVaccine" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Status</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Name" value="@Model.Status" disabled="disabled" />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label">Uploaded Certificate</label>
+
+                            <img src="@Model.VacCertificateUrl" style="height:900px" />
+
+                        </div>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                    <div class="form-group col-sm-10">
+                        <label class="col-sm-4 control-label">Reason for Reject အကြောင်းပြချက်ထည့်ပါ</label>
+                        <div class="col-sm-6">
+
+                            @Html.TextBoxFor(model => model.RemarkReason, new { @class = "form-control", placeholder = "Reason For Reject" })
+                        </div>
+                    </div>
+                    if (Model.Status.Trim().ToLower() == "pending")
+                    {
+
+                        <div class="form-group">
+
+                            <div class="col-sm-12 text-center">
+                                <input name="submit" type="submit" id="btnApprove" value="Approve" />&nbsp;&nbsp;&nbsp;
+                                <input name="submit" type="submit" id="btnReject" value="Reject" />
+                            </div>
+
+                        </div>
+                    }
+
+                }
+            </div>
+                </div>
+    </div>
+</div>
+@section Scripts {
+    
+}

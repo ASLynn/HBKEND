@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "uploadBranch";
+    Layout = null;
+}
+
+<h2>UPLOAD</h2>
+@using (Html.BeginForm("UploadNewBranch", "Corporate", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" value="@ViewBag.corporateId" name="corporateId"/>
+    <input type="file" name="file" />
+    <input type="submit" />
+
+}

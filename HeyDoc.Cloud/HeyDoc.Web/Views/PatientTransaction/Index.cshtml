@@ -1,0 +1,179 @@
+﻿@using HeyDoc.Web;
+@model HeyDoc.Web.Models.UserModel
+@using HeyDoc.Web.Helpers;
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Patient Transactions</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-credit-card fa-lg"></i>
+                    <span>@Model.FullName Detail Transaction</span>
+                </div>
+                <div class="box-icons">
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group col-md-3 col-md-offset-1">
+                    <input id="Radio1" type="radio" name="ddl_status" value="all" checked="checked" /><span style="margin-right:10px" >All</span>
+                    <input id="Radio2" type="radio" name="ddl_status" value="income" /><span style="margin-right:10px" >Income</span>
+                    <input id="Radio3" type="radio" name="ddl_status" value="expense" /><span style="margin-right:10px" >Expense</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3 col-md-offset-1">
+                    <label>Patient Name</label>
+                    <input type="hidden" id="hid_patientId" value="@Model.UserId" />
+                    <input type="text" class="form-control" id="txt_patientName" value="@Model.FullName" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Remaining Point Balance : <span id="platformTotal">@Model.StateId</span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3 col-md-offset-1">
+                        <label>From</label>
+                        <input type="text" id="from" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>To</label>
+                        <input type="text" id="to" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label>Search</label>
+                        <button type="button" class="btn btn-primary" id="search">Search</button>
+
+                    </div>
+                </div>
+
+
+                <div class="box" id="div_income">
+                    <div class="box-header">
+                        <div class="box-name">
+                            <i class="fa fa-credit-card fa-lg"></i>
+                            <span>@Model.FullName Topup Details</span>
+                        </div>
+                        <div class="box-icons">
+                        </div>
+                        <div class="no-move"></div>
+                    </div>
+                    <div class="box-content no-padding">
+                        <!-- Table -->
+                        <table id="transactionList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>FullName</th>
+                                    <th>PhoneNumber</th>
+                                    <th>Transaction ID</th>
+                                    <th>Date</th>
+                                    <th>Topup Amt</th>
+                                    <th>Payment Type</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>FullName</th>
+                                    <th>PhoneNumber</th>
+                                    <th>Transaction ID</th>
+                                    <th>Date</th>
+                                    <th>Topup Amt</th>
+                                    <th>Payment Type</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="box" id="div_expense">
+                    <div class="box-header">
+                        <div class="box-name">
+                            <i class="fa fa-credit-card fa-lg"></i>
+                            <span>@Model.FullName Expense Detail</span>
+                        </div>
+                        <div class="box-icons">
+                        </div>
+                        <div class="no-move"></div>
+                    </div>
+                    <div class="box-content no-padding">
+                        <!-- Table -->
+                        <table id="transactionListSpend" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Date</th>
+                                    <th>Point Cost</th>
+                                    <th>Reason</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Date</th>
+                                    <th>Point Cost</th>
+                                    <th>Reason</th>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadPatientTransactionIndexScripts();
+        $(document).ready(function () {
+
+            $('input[type=radio][name=ddl_status]').change(function () {
+                if (this.value == 'income') {
+                    $("#div_income").show();
+                    $("#div_expense").hide();
+                }
+                else if (this.value == 'expense') {
+                    $("#div_income").hide();
+                    $("#div_expense").show();
+                }
+                else {
+                    $("#div_income").show();
+                    $("#div_expense").show();
+                }
+            });
+
+
+            //$('ddl_status').on('change', function () {
+            //    if (this.value == 'income')                
+            //    {
+            //        $("#div_income").show();
+            //        $("#div_expense").hide();
+            //    }
+            //    if (this.value == 'expense') {
+            //        $("#div_income").hide();
+            //        $("#div_expense").show();
+            //    }
+            //    if (this.value == 'all') {
+            //        $("#div_income").show();
+            //        $("#div_expense").show();
+            //    }
+            //});
+        });
+    </script>
+}

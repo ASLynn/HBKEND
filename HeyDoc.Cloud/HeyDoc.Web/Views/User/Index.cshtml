@@ -1,0 +1,125 @@
+﻿@model  List<HeyDoc.Web.Models.UserModel>
+@using HeyDoc.Web;
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">User List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-wheelchair"></i>
+                    <span>User List</span>
+                </div>
+                <div class="box-icons">
+                    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                    {
+                        <a class="download-link">
+                            <i class="fa fa-cloud-download"></i>
+                        </a>
+                    }
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    @Html.Label("Companies", new { @class = "col-sm-4 control-label" })
+                  
+                    <div class="col-sm-8">
+                        @Html.DropDownList("companies", ViewBag.Companies as IEnumerable<SelectListItem>, new { @class = "form-control ddl_hcp", @id = "ddl_companies" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    @Html.Label("Email", new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="Email" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    @Html.Label("Name", new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="Name" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    @Html.Label("User Type", new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        <select class="form-control" id="UserType">
+                            <option value="@ListUserType.NonCorporateUser">Non Coporate User</option>
+                            <option value="@ListUserType.CorporateUser">Corporate User</option>
+                            <option value="@ListUserType.All">All User</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <button type="button" class="btn btn-primary" id="search">Search</button>
+                </div>
+            </div>
+
+            <div class="box-content no-padding">
+                <!-- Table -->
+                <table id="userList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Country/Corporate</th>
+                            <th>Join Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Country/Corporate</th>
+                            <th>Join Date</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@Html.Action("RequestList", "User")
+@Html.Action("Details", "Request")*@
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadUserIndexScripts(); 
+    </script>
+}
+
+
+

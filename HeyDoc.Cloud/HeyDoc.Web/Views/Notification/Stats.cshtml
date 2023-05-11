@@ -1,0 +1,223 @@
+﻿@using HeyDoc.Web;
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Notification/Index">Notification</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" id="msgView">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-calendar"></i>
+                    <span>Tags Statistics</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <table id="tagStatsList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tag Name</th>
+                            <th>Click-Through Rate (CTR)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="msgView">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box ui-draggable ui-droppable">
+            <div class="box-header">
+                <div class="box-name ui-draggable-handle">
+                    <i class="fa fa-calendar"></i>
+                    <span>Individual Notifications Statistics</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <div class="row">
+                    <div class="form-group col-sm-11 col-sm-offset-1">
+                        <div class="col-sm-6" style="padding-left: 0 !important;">
+                            @Html.Label("Notification Type", new { @class = "col-sm-3 control-label", @style = "padding-left: 0 !important;" })
+                            <div class="col-sm-8" style="padding-left: 0 !important;">
+                                @Html.DropDownList("notificationType", ViewBag.PnTypes as List<SelectListItem>, new { @class = "form-control", @placeholder = "Notification Type" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="padding-left: 0 !important;">
+                            <button class="btn btn-primary" id="search" type="button">Search</button>
+                        </div>
+                        <div class="col-sm-6" style="padding-left: 0 !important;">
+                            @Html.Label("Tag Name", new { @class = "col-sm-3 control-label", @style = "padding-left: 0 !important;" })
+                            <div class="col-sm-8" style="padding-left: 0 !important;">
+                                @Html.DropDownList("tag", ViewBag.Tags as List<SelectListItem>, new { @class = "form-control", @placeholder = "Tag Name" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="notificationStatsList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Type</th>
+                            <th>Notification Text</th>
+                            <th>URL</th>
+                            <th>Device</th>
+                            <th>Scheduled Time</th>
+                            <th>Tag Name</th>
+                            <th>Reach</th>
+                            <th>Click-Through Rate (CTR)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        $(function () {
+            LoadDataTablesScripts(function () {
+                var tagTable = $('table#tagStatsList').DataTable({
+                    searching: false,
+                    paging: false,
+                    lengthChange: false,
+                    processing: true,
+                    serverSide: false,
+                    ajax: {
+                        url: "/Notification/GetNotificationTagStats",
+                        type: "GET",
+                        async: false
+                    },
+                    language: {
+                        emptyTable: "No tags created."
+                    },
+                    columns: [
+                        {
+                            data: null,
+                            orderable: false
+                        },
+                        {
+                            data: "TagName",
+                            orderable: false
+                        },
+                        {
+                            data: "Ctr",
+                            orderable: false,
+                            render: function (data, type, row, meta) {
+                                return data + '%';
+                            }
+                        }
+                    ]
+                })
+
+                var notificationTable = $('table#notificationStatsList').DataTable({
+                    order: [[5, 'desc']],
+                    ordering: true,
+                    searching: false,
+                    paging: true,
+                    lengthChange: false,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: "/Notification/GetNotificationStats",
+                        type: "POST",
+                        async: false,
+                        data: function (d) {
+                            d.pnType = $("#notificationType").val();
+                            d.tag = $("#tag").val();
+                        }
+                    },
+                    language: {
+                        emptyTable: "No notifications sent."
+                    },
+                    columns: [
+                        {
+                            data: null,
+                            orderable: false
+                        },
+                        {
+                            data: "NotificationType",
+                            orderable: false
+                        },
+                        {
+                            data: "Text",
+                            orderable: false
+                        },
+                        {
+                            data: "URL",
+                            defaultContent: "-",
+                            orderable: false
+                        },
+                        {
+                            data: "DeviceType",
+                            orderable: false
+                        },
+                        {
+                            data: "SentDateTime",
+                            name: "SentDateTime",
+                            orderable: true,
+                            render: function (data, type, row, meta) {
+                                if (type == 'display') {
+                                    return moment.utc(data).local().format("dddd, D MMM YYYY h:mma");
+                                } else {
+                                    return data;
+                                }
+                            }
+                        },
+                        {
+                            data: "TagNames",
+                            orderable: false
+                        },
+                        {
+                            data: "Reach",
+                            orderable: false
+                        },
+                        {
+                            data: "Ctr",
+                            orderable: false,
+                            render: function (data, type, row, meta) {
+                                return data + '%';
+                            }
+                        }
+                    ]
+                })
+
+                // Index column
+                tagTable.on('draw', function () {
+                    tagTable.column(0).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                });
+                notificationTable.on('draw', function () {
+                    notificationTable.column(0).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                });
+
+                $("#search").on("click", function () {
+                    notificationTable.ajax.reload(null, true);
+                });
+
+                tagTable.draw();
+                notificationTable.draw();
+            })
+        })
+    </script>
+
+}

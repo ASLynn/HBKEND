@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EPrescriptionTitle" xml:space="preserve">
+    <value>e-Prescription</value>
+  </data>
+  <data name="MedicationRecordTitle" xml:space="preserve">
+    <value>Medication Record</value>
+  </data>
+  <data name="NameInfoLabel" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="DateOfBirthInfoLabel" xml:space="preserve">
+    <value>DOB:</value>
+  </data>
+  <data name="IcNumberInfoLabel" xml:space="preserve">
+    <value>NRIC:</value>
+  </data>
+  <data name="AddressInfoLabel" xml:space="preserve">
+    <value>Address:</value>
+  </data>
+  <data name="AllergiesInfoLabel" xml:space="preserve">
+    <value>Allergies:</value>
+  </data>
+  <data name="HeightInfoLabel" xml:space="preserve">
+    <value>Height:</value>
+  </data>
+  <data name="WeightInfoLabel" xml:space="preserve">
+    <value>Weight:</value>
+  </data>
+  <data name="MedicalSummaryInfoLabel" xml:space="preserve">
+    <value>Medical Summary:</value>
+  </data>
+  <data name="RecordIdInfoLabel" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="PrescriptionIdInfoLabel" xml:space="preserve">
+    <value>Prescription ID :</value>
+  </data>
+  <data name="DoctorRemarksInfoLabel" xml:space="preserve">
+    <value>Doctor's Remarks:</value>
+  </data>
+  <data name="CreateDateInfoLabel" xml:space="preserve">
+    <value>Date:</value>
+  </data>
+  <data name="NumberDrugTableHeader" xml:space="preserve">
+    <value>No</value>
+    <comment>This is just drug number 1, 2, 3, etc. not the amount to be given for each drug</comment>
+  </data>
+  <data name="DrugNamesDrugTableHeader" xml:space="preserve">
+    <value>Drugs</value>
+  </data>
+  <data name="DosageDrugTableHeader" xml:space="preserve">
+    <value>Dosage</value>
+  </data>
+  <data name="AdministrationRouteDrugTableHeader" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="FrequencyDrugTableHeader" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="AmountDrugTableHeader" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="StatusDrugTableHeader" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="PrescriptionNoDrugs" xml:space="preserve">
+    <value>No Drug information</value>
+  </data>
+  <data name="DrugRemark" xml:space="preserve">
+    <value>Remark: {0}</value>
+  </data>
+  <data name="DispensedByInfoLabel" xml:space="preserve">
+    <value>Supplied By:</value>
+  </data>
+  <data name="DispensedOnDate" xml:space="preserve">
+    <value>Supplied on: {0}</value>
+  </data>
+  <data name="DispensedFromOutlet" xml:space="preserve">
+    <value>Supplied from: {0}</value>
+  </data>
+  <data name="CreatedElectronicallyByInfoLabel" xml:space="preserve">
+    <value>Created electronically by:</value>
+  </data>
+  <data name="PrescribedElectronicallyByInfoLabel" xml:space="preserve">
+    <value>Prescribed electronically by:</value>
+  </data>
+  <data name="MedicalRecordMustBeDispensedByLicensedPharmacist" xml:space="preserve">
+    <value>This medical record is not valid for self dispensary unless specifically supplied by licensed pharmacists.</value>
+  </data>
+  <data name="MedicalRecordElectronicallyGenerated" xml:space="preserve">
+    <value>*This copy of medical record is electronically generated.</value>
+  </data>
+  <data name="EPrescriptionMustBeDispensedByLicensedPharmacist" xml:space="preserve">
+    <value>This e-Prescription is not valid for self dispensary unless specifically supplied by licensed pharmacists.</value>
+  </data>
+  <data name="EPrescriptionElectrionicallyGenerated" xml:space="preserve">
+    <value>*This copy of e-Prescription is electronically generated.</value>
+  </data>
+  <data name="DisclaimerWarningHeader" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="CheckMedicationAndAdviceDisclaimer" xml:space="preserve">
+    <value>You must check all items supplied to you and should not take any medication that appears to have been tampered with or which may have been supplied in error. Failure to abide by this warning could seriously damage your health. You must also check any advice given by our panel with your own GP before taking or refraining from any course of action or treatment. Failure to do so could seriously damage your health.</value>
+  </data>
+  <data name="MedicationMayNotBeSuitableDisclaimer" xml:space="preserve">
+    <value>Not all products are suitable for all medical ailments and, occasionally, their use may interfere with any treatment you are receiving or aggravate a condition. You should check with your GP before using any medical product.</value>
+  </data>
+  <data name="InformationDisclaimer" xml:space="preserve">
+    <value>DISCLAIMER: The information contained herein should NOT be used as a substitute for the advice of an appropriately qualified and licensed physician or other health care provider. The information provided here is for informational purposes only. This tool may not cover all possible drug interactions or all FDA warnings or alerts. Please check with a physician if you have health questions or concerns about interactions or go to the FDA for a comprehensive list of FDA warnings. Although we attempt to provide accurate and up-to-date information, no guarantee is made to that effect.</value>
+  </data>
+  <data name="DrugFrequency_72 hourly" xml:space="preserve">
+    <value>72 hourly</value>
+  </data>
+  <data name="DrugFrequency_Breakfast, lunch &amp; dinner" xml:space="preserve">
+    <value>Breakfast, lunch &amp; dinner</value>
+  </data>
+  <data name="DrugFrequency_Every 12 hours" xml:space="preserve">
+    <value>Every 12 hours</value>
+  </data>
+  <data name="DrugFrequency_Every 2 hours" xml:space="preserve">
+    <value>Every 2 hours</value>
+  </data>
+  <data name="DrugFrequency_Every 4 hours" xml:space="preserve">
+    <value>Every 4 hours</value>
+  </data>
+  <data name="DrugFrequency_Every 6 hours" xml:space="preserve">
+    <value>Every 6 hours</value>
+  </data>
+  <data name="DrugFrequency_Every 8 hours" xml:space="preserve">
+    <value>Every 8 hours</value>
+  </data>
+  <data name="DrugFrequency_Every hour" xml:space="preserve">
+    <value>Every hour</value>
+  </data>
+  <data name="DrugFrequency_Every morning" xml:space="preserve">
+    <value>Every morning</value>
+  </data>
+  <data name="DrugFrequency_Every morning &amp; afternoon" xml:space="preserve">
+    <value>Every morning &amp; afternoon</value>
+  </data>
+  <data name="DrugFrequency_Every morning &amp; night" xml:space="preserve">
+    <value>Every morning &amp; night</value>
+  </data>
+  <data name="DrugFrequency_Every night" xml:space="preserve">
+    <value>Every night</value>
+  </data>
+  <data name="DrugFrequency_Every other day" xml:space="preserve">
+    <value>Every other day</value>
+  </data>
+  <data name="DrugFrequency_Every other morning" xml:space="preserve">
+    <value>Every other morning</value>
+  </data>
+  <data name="DrugFrequency_Every other night" xml:space="preserve">
+    <value>Every other night</value>
+  </data>
+  <data name="DrugFrequency_Five times a week" xml:space="preserve">
+    <value>Five times a week</value>
+  </data>
+  <data name="DrugFrequency_Five times daily" xml:space="preserve">
+    <value>Five times daily</value>
+  </data>
+  <data name="DrugFrequency_Four times daily" xml:space="preserve">
+    <value>Four times daily</value>
+  </data>
+  <data name="DrugFrequency_Half an hour before dinner" xml:space="preserve">
+    <value>Half an hour before dinner</value>
+  </data>
+  <data name="DrugFrequency_Half an hour before lunch" xml:space="preserve">
+    <value>Half an hour before lunch</value>
+  </data>
+  <data name="DrugFrequency_Immediately" xml:space="preserve">
+    <value>Immediately</value>
+  </data>
+  <data name="DrugFrequency_Monday to Friday" xml:space="preserve">
+    <value>Monday to Friday</value>
+  </data>
+  <data name="DrugFrequency_On Mondays &amp; Fridays" xml:space="preserve">
+    <value>On Mondays &amp; Fridays</value>
+  </data>
+  <data name="DrugFrequency_On Mondays &amp; Thursdays" xml:space="preserve">
+    <value>On Mondays &amp; Thursdays</value>
+  </data>
+  <data name="DrugFrequency_On Mondays &amp; Wednesdays" xml:space="preserve">
+    <value>On Mondays &amp; Wednesdays</value>
+  </data>
+  <data name="DrugFrequency_On Mondays, Wednesdays &amp; Fridays" xml:space="preserve">
+    <value>On Mondays, Wednesdays &amp; Fridays</value>
+  </data>
+  <data name="DrugFrequency_On Saturdays &amp; Sundays" xml:space="preserve">
+    <value>On Saturdays &amp; Sundays</value>
+  </data>
+  <data name="DrugFrequency_On Tuesdays &amp; Thursdays" xml:space="preserve">
+    <value>On Tuesdays &amp; Thursdays</value>
+  </data>
+  <data name="DrugFrequency_On Tuesdays, Thursdays &amp; Saturdays" xml:space="preserve">
+    <value>On Tuesdays, Thursdays &amp; Saturdays</value>
+  </data>
+  <data name="DrugFrequency_On Wednesdays &amp; Fridays" xml:space="preserve">
+    <value>On Wednesdays &amp; Fridays</value>
+  </data>
+  <data name="DrugFrequency_On Wednesdays &amp; Saturdays" xml:space="preserve">
+    <value>On Wednesdays &amp; Saturdays</value>
+  </data>
+  <data name="DrugFrequency_Once a month" xml:space="preserve">
+    <value>Once a month</value>
+  </data>
+  <data name="DrugFrequency_Once a week" xml:space="preserve">
+    <value>Once a week</value>
+  </data>
+  <data name="DrugFrequency_Once daily" xml:space="preserve">
+    <value>Once daily</value>
+  </data>
+  <data name="DrugFrequency_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="DrugFrequency_Three times daily" xml:space="preserve">
+    <value>Three times daily</value>
+  </data>
+  <data name="DrugFrequency_Twice a month" xml:space="preserve">
+    <value>Twice a month</value>
+  </data>
+  <data name="DrugFrequency_Twice a week" xml:space="preserve">
+    <value>Twice a week</value>
+  </data>
+  <data name="DrugFrequency_Twice daily" xml:space="preserve">
+    <value>Twice daily</value>
+  </data>
+  <data name="DrugFrequency_When necessary" xml:space="preserve">
+    <value>When necessary</value>
+  </data>
+  <data name="DrugRoute_Buccal" xml:space="preserve">
+    <value>Buccal</value>
+  </data>
+  <data name="DrugRoute_Gargle" xml:space="preserve">
+    <value>Gargle</value>
+  </data>
+  <data name="DrugRoute_Intramuscular" xml:space="preserve">
+    <value>Intramuscular</value>
+  </data>
+  <data name="DrugRoute_Intranasal" xml:space="preserve">
+    <value>Intranasal</value>
+  </data>
+  <data name="DrugRoute_Intravenous" xml:space="preserve">
+    <value>Intravenous</value>
+  </data>
+  <data name="DrugRoute_Ocular" xml:space="preserve">
+    <value>Ocular</value>
+  </data>
+  <data name="DrugRoute_Oral" xml:space="preserve">
+    <value>Oral</value>
+  </data>
+  <data name="DrugRoute_Oral Inhalation" xml:space="preserve">
+    <value>Oral Inhalation</value>
+  </data>
+  <data name="DrugRoute_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="DrugRoute_Otic" xml:space="preserve">
+    <value>Otic</value>
+  </data>
+  <data name="DrugRoute_Rectal" xml:space="preserve">
+    <value>Rectal</value>
+  </data>
+  <data name="DrugRoute_Sublingual" xml:space="preserve">
+    <value>Sublingual</value>
+  </data>
+  <data name="DrugRoute_Topical" xml:space="preserve">
+    <value>Topical</value>
+  </data>
+  <data name="DrugRoute_Vaginal" xml:space="preserve">
+    <value>Vaginal</value>
+  </data>
+  <data name="DrugStatus_Delivered" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="DrugStatus_Delivery in Process" xml:space="preserve">
+    <value>Delivery in Process</value>
+  </data>
+  <data name="DrugStatus_Dispensed" xml:space="preserve">
+    <value>Supplied</value>
+  </data>
+  <data name="DrugStatus_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="DrugStatus_Prescribed" xml:space="preserve">
+    <value>Prescribed</value>
+  </data>
+  <data name="DiagnosisCodeInfoLabel" xml:space="preserve">
+    <value>Diagnosis (ICD-11):</value>
+  </data>
+  <data name="DiagnosisCodeInfoLabelNonBreakHyphen" xml:space="preserve">
+    <value>Diagnosis (ICD&amp;#8209;11):</value>
+  </data>
+  <data name="DispensedAmountDrugTableHeader" xml:space="preserve">
+    <value>Supplied Amount</value>
+  </data>
+</root>

@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<div>
+    <div class="contentpanel">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box" style="border: none;">
+
+                    <div class="box-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info fade in nomargin">
+                                    <h4>Hi	Admin,</h4>
+                                    <p>Here's	a	summary	of activites in the app</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-2"><b>Total Users :</b></div>
+                                            <div class="col-md-2"><b>@ViewBag.TotalUsers</b></div>
+                                            <div class="col-md-2"><b>Total Doctors :</b></div>
+                                            <div class="col-md-2"><b>@ViewBag.TotalDoctors</b></div>
+                                            <div class="col-md-2"><b>Total Partners :</b></div>
+                                            <div class="col-md-2"><b>@ViewBag.TotalPartnes</b></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Transaction Summary</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="validation-summary-errors">
+                                                <ul style="list-style-type: none;">
+                                                    <li id="error_details"></li>
+                                                </ul>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-offset-1">
+                                                    <label>From</label>
+                                                    <input id="start_date" value="@DateTime.UtcNow.AddMonths(-1).ToString("yyyy/MM/dd")" name="StartDate" type="text" class="form-control" required="required" />
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>To</label>
+                                                    <input id="end_date"  value="@DateTime.UtcNow.ToString("yyyy/MM/dd")" name="EndDate" type="text" class="form-control" required="required" />
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <br />
+                                                    <button type="button" class="btn btn-primary" id="search">Generate</button>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-1" style="width: 80%; height: 300px;" id="graph">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="/Scripts/jquery.flot.min.js"></script>
+    <script type="text/javascript">
+        LoadDashBoardIndexScripts();       
+    </script>
+}

@@ -1,0 +1,79 @@
+﻿@using HeyDoc.Web;
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Management Accounts</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-plus-square"></i>
+                    <span>Management Account List</span>
+                </div>
+                <div class="box-icons">
+                    <a href="/ManagementAccounts/Create" title="Create new management account">
+                        <i class="fa fa-user-plus"></i>
+                    </a>                    
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+                <div class="row">
+                    <div class="form-group form-col-2">
+                        @Html.Label("Search Management Accounts", new { @class = "control-label" })
+                        @Html.TextBox("searchName", ViewBag.FilterValue as string, new { @class = "form-control", @placeholder = "Name / Email" })
+                    </div>
+                    <div class="form-group form-col-2">
+                        @Html.Label("Role", new { @class = "control-label" })
+                        @Html.DropDownList("managementRole", ViewBag.ManagementRoles as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group form-col-1">
+                        <br />
+                        <input type="submit" id="searchBtn" value="Search" class="btn btn-primary" onclick="Load();" />
+                    </div>
+                </div>
+                <!-- Table -->
+                <table id="accountList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Created on</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Created on</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadManagementAccountIndexScripts(@Html.Raw(ViewBag.RoleToNameJson));
+    </script>
+}

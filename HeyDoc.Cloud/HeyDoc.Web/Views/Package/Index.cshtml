@@ -1,0 +1,111 @@
+﻿
+@using HeyDoc.Web;
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+<link href="~/Scripts/devoops-master/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Subscription List</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-bookmark"></i>
+                    <span>Subscription List</span>
+                </div>
+                <div class="box-icons">
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <br />
+            <div class="row">
+            <div class="form-group col-sm-6">
+            @Html.Label("Email", new { @class = "col-sm-4 control-label" })
+                 <div class="col-sm-8">
+            <input type="text" class="form-control" id="Email" />
+                     </div>
+             </div>
+               
+                </div>
+               <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button type="button" class="btn btn-primary" id="search">Search</button>
+                        </div>
+                </div>
+
+            <div class="box-content no-padding">
+                <!-- Table -->
+                <table id="packageList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Rank</th>
+                            <th>Package Id</th>
+                            <th>Patient</th>
+                            <th>Package</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Rank</th>
+                            <th>Package Id</th>
+                            <th>Patient</th>
+                            <th>Package</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="PremiumPackage" class="white-popup-block popup mfp-hide customPopUp" style="width: 450px;">
+    <h4 style="text-align: center">
+        <span>Premium Package Upgradation</span>
+    </h4>
+    <br />
+    <div class="row">
+         <div class="form-group col-sm-3 col-sm-offset-2">
+            End Date
+        </div>
+        <div class="form-group col-sm-6">
+            <input id="endDate" name="endDate" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+           <div class="form-group col-sm-3 col-sm-offset-2">
+               Remark
+               </div>
+         <div class="form-group col-sm-6">
+            <input id="remark" name="remark" type="text" class="form-control">
+        </div>
+
+        </div>
+    <footer style="text-align: center;">
+        <button class="btn btn-primary done" type="button">Upgrade</button>
+        <button id="resetCancel" class="btn btn-default cancel" type="button">Cancel</button>
+    </footer>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadPackageIndexScripts();
+    </script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+
+}
+
+
+

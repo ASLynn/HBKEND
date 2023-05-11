@@ -1,0 +1,265 @@
+﻿@using HeyDoc.Web;
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Corporate Prescription Request</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box clearfix">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-file-text"></i>
+                    <span>Export Request List</span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <form id="requestExportForm">
+                    <div class="form-group form-col-2">
+                        @Html.Label("Start Date", new { @class = "control-label" })
+                        <input type="date" placeholder="yyyy-mm-dd" name="startDate" id="startDate" class="form-control" />
+                    </div>
+                    <div class="form-group form-col-2">
+                        @Html.Label("End Date", new { @class = "control-label" })
+                        <input type="date" placeholder="yyyy-mm-dd" name="endDate" id="endDate" class="form-control" />
+                    </div>
+                    @if (User.IsInRole("SuperAdmin"))
+                    {
+                        <div class="form-group col-sm-3 ">
+                            @Html.Label("Responsible Pharmacy", new { @class = "control-label" })
+                            @Html.DropDownList("exportResponsiblePharmacy", ViewBag.Pharmacies as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                    }
+                    <div class="form-group form-col-1">
+                        <br />
+                        <button class="btn btn-primary" id="getRequestListExport" type="submit">Get Request List</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-stethoscope fa-lg"></i>
+                    <span>Request List</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <br />
+            <form id="searchRequestList">
+                <div class="row">
+                    <div class="form-group col-sm-3 ">
+                        @Html.Label("Prescription Number", new { @class = "control-label" })
+                        <input type="text" id="searchName" class="form-control" />
+                    </div>
+                    <div class="form-group col-sm-3 ">
+                        @Html.Label("Name", new { @class = "control-label" })
+                        <input type="text" id="searchFullname" class="form-control" />
+                    </div>
+                    <div class="form-group col-sm-3 ">
+                        @Html.Label("Request Mode", new { @class = "control-label" })
+                        <select id="status" class="form-control">
+                            <option>All</option>
+                            <option value="@PrescriptionStatus.SelfCollection">Self Collection</option>
+                            <option value="@PrescriptionStatus.Delivery">Delivery</option>
+                            <option value="@PrescriptionStatus.OnSite">On Site Collection</option>
+                            <option value="@PrescriptionStatus.NoStatus">No Status</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-3 ">
+                        @Html.Label("Corporate", new { @class = "control-label" })
+                        @Html.DropDownList("corporate", ViewBag.Corporates as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-sm-3 ">
+                        @Html.Label("TPA", new { @class = "control-label" })
+                        @Html.DropDownList("tpa", ViewBag.TPAs as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>
+
+                    @if (User.IsInRole("SuperAdmin")) {
+                        <div class="form-group col-sm-3 ">
+                            @Html.Label("Responsible Pharmacy", new { @class = "control-label" })
+                            @Html.DropDownList("responsiblePharmacy", ViewBag.Pharmacies as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                    }
+                </div>
+                
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        @Html.Label("Start Date (leave empty for no limit)", new { @class = "control-label" })
+                        <input type="date" placeholder="yyyy-mm-dd" name="startDate" id="searchStartDate" class="form-control" value="@DateTime.Today.AddYears(-1).AddDays(1).ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        @Html.Label("End Date (leave empty for no limit)", new { @class = "control-label" })
+                        <input type="date" placeholder="yyyy-mm-dd" name="endDate" id="searchEndDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    </div>
+                    @if (User.IsInRole("SuperAdmin"))
+                    {
+                        <div class="form-group col-sm-3 ">
+                            @Html.Label("Status", new { @class = "control-label" })
+                            @Html.DropDownList("processingStatus", ViewBag.Statuses as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                    }
+                    <div class="form-group col-sm-3">
+                        <br />
+                        <button class="btn btn-primary" id="search" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            @if (User.IsInRole("SuperAdmin"))
+            {
+                <hr />
+
+                <div class="row" style="margin-bottom: 16px;">
+                    <div class="col-sm-3">
+                        <label for="bulk-status-select">Apply Status To Selected:</label>
+                        <select id="bulk-status-select" name="bulk-status-select" class="form-control">
+                            <option value="1">Processing</option>
+                            <option value="2">To Ship</option>
+                            <option value="3">Shipped</option>
+                            <option value="4">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-9">
+                        <button id="bulk-status-button" class="btn btn-primary" style="margin-top: 12px;" disabled>Apply</button>
+                        <button id="bulk-print-button" class="btn btn-primary" style="margin-top: 12px; margin-left: 16px;" disabled>Download Selected CNs</button>
+                    </div>
+                </div>
+            }
+
+            <!-- Table -->
+            <table id="codeList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all-prescription-checkbox" /></th>
+                        <th></th>
+                        <th>No</th>
+                        <th>Prescription Number</th>
+                        <th>Patient </th>
+                        <th>Doctor </th>
+                        <th>Created Date</th>
+                        <th>Requested Date by Client</th>
+                        <th>Request Mode</th>
+                        <th>Status</th>
+                        <th>Last Updated by Pharmacy</th>
+                        <th>Corporate</th>
+                        <th>TPA</th>
+                        <th>Medication Type</th>
+                        <th>Dig. Rx</th>
+                        <th></th>
+                        <th>Processed</th>
+                        <th>Payment Amount</th>
+                        <th>Patient Media</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>No</th>
+                        <th>Prescription Number</th>
+                        <th>Patient </th>
+                        <th>Doctor </th>
+                        <th>Created Date</th>
+                        <th>Requested Date by Client</th>
+                        <th>Request Mode</th>
+                        <th>Status</th>
+                        <th>Last Updated by Pharmacy</th>
+                        <th>Corporate</th>
+                        <th>TPA</th>
+                        <th>Medication Type</th>
+                        <th>Dig. Rx</th>
+                        <th></th>
+                        <th>Processed</th>
+                        <th>Payment Amount</th>
+                        <th>Patient Media</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<form id="edit-payment-form" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 500px; margin: 20px auto;">
+    <h2>Edit Payment Amount</h2>
+    <br />
+    <div class="container">
+        <div class="row">
+            <label class="col-md-2" for="consultation">Consultation Fees</label>
+            <input class="col-md-2" id="consultation" name="consultation" type="number" step=".01" />
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-2" for="medication">Medication Fees</label>
+            <input class="col-md-2" id="medication" name="medication" type="number" step=".01" />
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-2" for="delivery">Delivery Fees</label>
+            <input class="col-md-2" id="delivery" name="delivery" type="number" step=".01" />
+        </div>
+        <br />
+        <button id="submit-payment-edit" class="row" type="button" style="margin-right: 0; margin-left: auto;">Save</button>
+    </div>
+</form>
+
+<form id="create-cn-form" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 500px; margin: 20px auto;">
+    <h2>Create GDex Consignment Note</h2>
+    <br />
+    <div class="container">
+        <div class="row">
+            <label class="col-md-1" for="address">Address</label>
+            <textarea class="col-md-3" id="address" name="address" type="text" rows="5"></textarea>
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-1" for="postcode">Postcode</label>
+            <input class="col-md-3" id="postcode" name="postcode" type="text" />
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-1" for="phone">Phone Number</label>
+            <input class="col-md-3" id="phone" name="phone" type="text" />
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-1" for="weight">Shipment Weight (kg)</label>
+            <input class="col-md-3" id="weight" name="weight" type="number" step=".1" />
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-1" for="remarks">Remarks</label>
+            <textarea class="col-md-3" id="remarks" name="remarks" type="text" rows="5"></textarea>
+        </div>
+        <br />
+        <button id="submit-create-cn" class="row" type="button" style="margin-right: 0; margin-left: auto;">Create CN</button>
+    </div>
+</form>
+
+@section Scripts {
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Scripts/devoops-master/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <script type="text/javascript">
+        loadRequestedList(@Html.Raw(ViewBag.ProcessingStatusJson), @Html.Raw(ViewBag.ShipmentStatusJson), @((User.IsInRole("SuperAdmin")).ToString().ToLower()));
+    </script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+}

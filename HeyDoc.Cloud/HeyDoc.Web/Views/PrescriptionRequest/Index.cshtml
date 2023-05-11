@@ -1,0 +1,77 @@
+﻿@using HeyDoc.Web;
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Corporate User</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-plus-square"></i>
+                    <span>Corporate User List</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+                <div class="row">
+                    <div class="form-group col-sm-11 col-sm-offset-1">
+                        <div class="col-sm-6" style="padding-left: 0 !important;">
+                            @Html.Label("Search", new { @class = "col-sm-3 control-label", @style = "padding-left: 0 !important;" })
+                            <div class="col-sm-8" style="padding-left: 0 !important;">
+                                @Html.TextBox("searchName", ViewBag.FilterValue as string, new { @class = "form-control", @placeholder = "Name / IC" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="padding-left: 0 !important;">
+                            <input type="submit" id="searchBtn" value="Search" class="btn btn-primary" onclick="Load();" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Table -->
+                <table id="outletList" class="table table-bordered table-striped table-hover table-heading table-datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>IC</th>
+                            <th>Email</th>
+                            <th>Created on</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>IC</th>
+                            <th>Email</th>
+                            <th>Created on</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@Html.Action("RequestList", "User")
+    @Html.Action("Details", "Request")*@
+@*@Html.Action("Reviews", "Doctor")*@
+
+
+@section Scripts {
+    <script type="text/javascript">
+        LoadCorporateUserIndexScripts();
+    </script>
+}

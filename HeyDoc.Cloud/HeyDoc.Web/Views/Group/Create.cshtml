@@ -1,0 +1,37 @@
+﻿@model HeyDoc.Web.Models.GroupEditModel
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="/Group/Index">Groups</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-users fa-lg"></i>
+                    <span>Create Group</span>
+                </div>
+            </div>
+            <div class="box-content no-padding">
+                @using (Html.BeginForm("Create", "Group", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "groupCreate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Partial("_CreateEditFormPartial", Model)
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary" id="btnSubmit1">Create</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
